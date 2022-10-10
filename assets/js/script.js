@@ -22,7 +22,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("https://neft-tk.github.io/Project1-Prototype/pages/hobby.html");
+    window.location.assign("https://diangigrich.github.io/PineappleMotivator/");
 
 });
 
