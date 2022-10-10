@@ -142,6 +142,7 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
+
 // proof of concept motivational quote api
 fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 .then (function (response) {
@@ -150,3 +151,11 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 .then (function (data) {
     console.log(data)
 })
+=======
+// proof of concept Pirate API fetch
+fetch("url").then(function(respose){consol.elog(respone);
+    //return response.json();
+    }).then(function(data){
+    console.log(data.setup*for only the setup to the joke*)
+    }
+
