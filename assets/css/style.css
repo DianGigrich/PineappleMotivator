@@ -1,6 +1,12 @@
 :root {
-    --animate-duration: 1s;
-    --animate-delay: 1s ;
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  /* pineapple colors */
+  --background: #fee332;
+  --orange: #e38003;
+  --brown: #c17a05;
+  --green: #789e4f;
+  --lightgreen: #bed09f;
 }
 
 .level {
@@ -31,40 +37,49 @@
 }
 
 .input-field {
-    background-color: white !important;
-};
+  background-color: white !important;
+}
+
+;
 
 /* label color */
 .input-field label {
   color: #000 !important;
 }
+
 /* label focus color */
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus+label {
   color: #000 !important;
 }
+
 /* label underline focus color */
 .input-field input[type=text]:focus {
   border-bottom: 1px solid #000 !important;
   box-shadow: 0 1px 0 0 #000 !important;
 }
+
 /* valid color */
 .input-field input[type=text].valid {
   border-bottom: 1px solid #000 !important;
   box-shadow: 0 1px 0 0 #000 !important;
 }
+
 /* invalid color */
 .input-field input[type=text].invalid {
   border-bottom: 1px solid #000 !important;
   box-shadow: 0 1px 0 0 #000 !important;
 }
+
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #000 !important;
 }
-     
+
 
 .task {
-    border: 1px solid black;
-    background-color: burlywood !important;
-    padding: 10px !important;
-};
+  border: 1px solid black;
+  background-color: burlywood !important;
+  padding: 10px !important;
+}
+
+;

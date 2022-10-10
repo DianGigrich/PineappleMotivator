@@ -160,15 +160,13 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 })
 
 // proof of concept Pirate API fetch
-fetch("https://pirate.monkeyness.com/api/insult")
-.then(function(response)
-{console.log(response);
-    //return response.json();
-    }).then(function(data){
-    console.log(data)
-    })
-// var pirate = src="https://pirate.monkeyness.com/api/insult"
-// console.log(pirate)
+// fetch (`https://api.pirate.monkeyness.com`)
+// .then (function (response) {
+//     return response.json()
+// })
+// .then (function (data) {
+//     console.log(data, "1")
+// })
 
 
 function updateEasy()
