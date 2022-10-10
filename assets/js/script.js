@@ -3,7 +3,11 @@ let submitButton = $('#submitBtn');
 let firstName = $('#first_name');
 let userMotivator = $('#motivator');
 let userInfo = {};
-
+let exp = 0;
+let level = 1;
+var easyEXP = document.querySelector("#easy");
+var mediumEXP = document.querySelector("#medium");
+var hardEXP = document.querySelector("#hard");
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
@@ -135,31 +139,53 @@ function createTask() {
     createCard();
 };
 
-// proof of concept youtube API fetch
-fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
-.then (function(response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log (data)
-})
+function updateEasy()
+{
+    exp += 25;
+    
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
 
+function updateMedium()
+{
+    exp += 50;
 
-// proof of concept motivational quote api
-fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then (function (response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log(data)
-})
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
 
-// proof of concept Pirate API fetch
-fetch("https://pirate.monkeyness.com/api/insult")
-.then(function(response)
-{console.log(response);
-    //return response.json();
-    }).then(function(data){
-    console.log(data)
-    })
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
 
+function updateHard()
+{
+    exp += 75;
+
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
+
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+  easyEXP.addEventListener("click", updateEasy);
+  mediumEXP.addEventListener("click", updateMedium);
+  hardEXP.addEventListener("click", updateHard);
