@@ -162,4 +162,6 @@ fetch("https://pirate.monkeyness.com/api/insult")
     }).then(function(data){
     console.log(data)
     })
+// var pirate = src="https://pirate.monkeyness.com/api/insult"
+// console.log(pirate)
 
