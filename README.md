@@ -37,6 +37,14 @@ THEN the progress tracker fills up
 WHEN the progress tracker is full
 THEN a youtube video pops up of your favorite thing and I can choose from 5 videos
 
+
+MANATEE TANK
+wireframe
+role breakdown
+kanban board w/ tasks assigned
+api;s make sure they work
+rouch schedule, tasks/ milestones
+=======
 html psuedo
 //seperate loading page**
 //   asks for name and fav things
@@ -66,3 +74,4 @@ JavaScript
 //fetch demotivational 'quote' and display on page for dark mode
 //event listener for hamburger menu
 //on tasks prevent defualt to save checkbox (subtasks) input -> local storage 
+
