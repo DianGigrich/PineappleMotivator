@@ -3,6 +3,32 @@
     --animate-delay: 1s ;
 }
 
+.level {
+  width: 210px;
+  height: 30px;
+  background: #9cbab4;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.levelFill {
+  width: 0%;
+  height: 100%;
+  background: #009579;
+  transition: all 0.5s;
+}
+
+.levelPrcnt {
+  position: absolute;
+  font: bold 14px 'Quicksand', sans-serif;
+  color: white;
+}
+
+.skillLevel {
+  position: absolute;
+  font: bold 14px 'Quicksand', sans-serif;
+  color: white;
+}
 
 .input-field {
     background-color: white !important;

@@ -3,7 +3,11 @@ let submitButton = $('#submitBtn');
 let firstName = $('#first_name');
 let userMotivator = $('#motivator');
 let userInfo = {};
-
+let exp = 0;
+let level = 1;
+var easyEXP = document.querySelector("#easy");
+var mediumEXP = document.querySelector("#medium");
+var hardEXP = document.querySelector("#hard");
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
@@ -131,3 +135,54 @@ function createTask() {
 
     createCard();
 };
+
+function updateEasy()
+{
+    exp += 25;
+    
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+function updateMedium()
+{
+    exp += 50;
+
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
+
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+function updateHard()
+{
+    exp += 75;
+
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${level}`;
+        exp -= 100;
+    }
+
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+  easyEXP.addEventListener("click", updateEasy);
+  mediumEXP.addEventListener("click", updateMedium);
+  hardEXP.addEventListener("click", updateHard);
