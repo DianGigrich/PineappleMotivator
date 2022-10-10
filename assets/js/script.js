@@ -8,6 +8,7 @@ let userInfo = {};
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -51,9 +52,9 @@ function dropdownTranslate2() {
         return div.append(label), label.append(createInput);
     } else if (storedTasks.subtasks == 2) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks == 3) {
+    } else (storedTasks.subtasks == 3) 
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    };
+    
 
 };
 
@@ -102,10 +103,9 @@ function createCard() {
     div.append(h3);
     div.append(h4);
     div.append(p);
-    p.append(checkbox);
-    checkbox.append(label);
-    label.append(span);
-    span.append(textarea);
+    div.append(label);
+    label.append(createInput);
+
 };
 
 // Modal function
@@ -133,10 +133,4 @@ function createTask() {
     console.log(taskDetails);
 
     createCard();
-};
-
-// Launches the modal window
-function toggleModal() {
-    var instance = M.Modal.getInstance($('#modal3'))
-    instance.open();
 };
