@@ -36,3 +36,10 @@ THEN the progress tracker fills up
 
 WHEN the progress tracker is full
 THEN a youtube video pops up of your favorite thing and I can choose from 5 videos
+
+MANATEE TANK
+wireframe
+role breakdown
+kanban board w/ tasks assigned
+api;s make sure they work
+rouch schedule, tasks/ milestones
