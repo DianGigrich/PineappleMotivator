@@ -134,7 +134,6 @@ function createTask() {
 };
 
 // proof of concept youtube API fetch
-// fetch (`https://www.googleapis.com/youtube/v3?key=${youtubeAPIKey}`)
 fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
 .then (function(response) {
     return response.json()
@@ -143,9 +142,20 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
+
+// proof of concept motivational quote api
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data)
+})
+=======
 // proof of concept Pirate API fetch
 fetch("url").then(function(respose){consol.elog(respone);
     //return response.json();
     }).then(function(data){
     console.log(data.setup*for only the setup to the joke*)
     }
+
