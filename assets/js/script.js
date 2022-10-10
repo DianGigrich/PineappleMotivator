@@ -12,6 +12,7 @@ var hardEXP = document.querySelector("#hard");
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -26,7 +27,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("https://neft-tk.github.io/Project1-Prototype/pages/hobby.html");
+    window.location.assign("https://diangigrich.github.io/PineappleMotivator/");
 
 });
 
@@ -55,9 +56,9 @@ function dropdownTranslate2() {
         return div.append(label), label.append(createInput);
     } else if (storedTasks.subtasks == 2) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks == 3) {
+    } else (storedTasks.subtasks == 3) 
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    };
+    
 
 };
 
@@ -99,8 +100,10 @@ function createCard() {
     listedTasks.append(div);
     div.append(h3);
     div.append(p);
-    div.append(label);
-    label.append(createInput);
+    dropdownTranslate2();
+
+    // div.append(label);
+    // label.append(createInput);
 
 };
 
@@ -136,6 +139,7 @@ function createTask() {
     createCard();
 };
 
+<<<<<<< HEAD
 function updateEasy()
 {
     exp += 25;
@@ -186,3 +190,33 @@ function updateHard()
   easyEXP.addEventListener("click", updateEasy);
   mediumEXP.addEventListener("click", updateMedium);
   hardEXP.addEventListener("click", updateHard);
+=======
+// proof of concept youtube API fetch
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+.then (function(response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log (data)
+})
+
+
+// proof of concept motivational quote api
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data)
+})
+
+// proof of concept Pirate API fetch
+fetch("https://pirate.monkeyness.com/api/insult")
+.then(function(response)
+{console.log(response);
+    //return response.json();
+    }).then(function(data){
+    console.log(data)
+    })
+
+>>>>>>> 3c32b44ab398ab061ace9a14e3e173ffed50973d
