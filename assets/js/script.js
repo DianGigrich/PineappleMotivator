@@ -83,28 +83,22 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
-    let label = document.createElement("label");
-    let checkbox = document.createElement('input');
-    let span = document.createElement('span');
-    let textarea = document.createElement('textarea');
-
-    checkbox.type = 'checkbox';
-    checkbox.id = 'subtask';
-    checkbox.name = 'subtask';
+    let textarea = document.createElement("textarea");
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
-    h4.innerText= dropdownTranslate1();
-    span.innerText="Red";
+    h4.innerText = dropdownTranslate1();
+    textarea.innerText = "Notes go here!";
+    textarea.setAttribute("class", "white");
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(label);
-    label.append(createInput);
+    div.append(textarea);
+
 
 };
 
@@ -115,9 +109,12 @@ $(document).ready(function() {
 });
 
 
+// Launches the modal window
+function toggleModal() {
+    var instance = M.Modal.getInstance($('#modal3'))
+    instance.open();
+};
 
-
-// TODO: grabbing an option from the modal
 
 // Creates an object that CURRENTLY locally stores the most recent input value
 function createTask() {
@@ -154,12 +151,12 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     console.log(data)
 })
 
-// proof of concept Pirate API fetch
-fetch("https://pirate.monkeyness.com/api/insult")
-.then(function(response)
-{console.log(response);
-    //return response.json();
-    }).then(function(data){
-    console.log(data)
-    })
+// // proof of concept Pirate API fetch
+// fetch("https://pirate.monkeyness.com/api/insult")
+// .then(function(response)
+// {console.log(response);
+//     //return response.json();
+//     }).then(function(data){
+//     console.log(data)
+//     })
 
