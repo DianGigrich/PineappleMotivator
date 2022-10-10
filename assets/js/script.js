@@ -22,7 +22,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("https://diangigrich.github.io/PineappleMotivator/");
+    window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
 
 });
 
@@ -80,24 +80,32 @@ function createCard() {
     console.log("taskbutton clicked");
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
+    let h4 = document.createElement("h4");
     let p = document.createElement("p");
     let label = document.createElement("label");
-    let createInput = document.createElement("input");
-    // let span = document.createElement("span");
+    let checkbox = document.createElement('input');
+    let span = document.createElement('span');
+    let textarea = document.createElement('textarea');
 
+    checkbox.type = 'checkbox';
+    checkbox.id = 'subtask';
+    checkbox.name = 'subtask';
+    
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
-    p.innerText= dropdownTranslate1();
-    createInput.setAttribute("type", "checkbox");
+    h4.innerText= dropdownTranslate1();
+    span.innerText="Red";
            
     
     listedTasks.append(div);
     div.append(h3);
+    div.append(h4);
     div.append(p);
-    div.append(label);
-    label.append(createInput);
-
+    p.append(checkbox);
+    checkbox.append(label);
+    label.append(span);
+    span.append(textarea);
 };
 
 // Modal function
@@ -106,11 +114,6 @@ $(document).ready(function() {
     $('.parallax').parallax();
 });
 
-// Launches the modal window
-function toggleModal() {
-    var instance = M.Modal.getInstance($('#modal3'))
-    instance.open();
-};
 
 
 
@@ -118,16 +121,22 @@ function toggleModal() {
 
 // Creates an object that CURRENTLY locally stores the most recent input value
 function createTask() {
-
+    
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
         subtasks: document.querySelector('#subtaskSelect').value
     };
-
+    
     localStorage.setItem("Task", JSON.stringify(taskDetails));
-  
+    
     console.log(taskDetails);
 
     createCard();
+};
+
+// Launches the modal window
+function toggleModal() {
+    var instance = M.Modal.getInstance($('#modal3'))
+    instance.open();
 };
