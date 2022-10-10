@@ -51,9 +51,9 @@ function dropdownTranslate2() {
         return div.append(label), label.append(createInput);
     } else if (storedTasks.subtasks == 2) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks == 3) {
+    } else (storedTasks.subtasks == 3) 
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    };
+    
 
 };
 
@@ -95,8 +95,10 @@ function createCard() {
     listedTasks.append(div);
     div.append(h3);
     div.append(p);
-    div.append(label);
-    label.append(createInput);
+    dropdownTranslate2();
+
+    // div.append(label);
+    // label.append(createInput);
 
 };
 
