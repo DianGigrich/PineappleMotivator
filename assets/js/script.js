@@ -47,11 +47,11 @@ function dropdownTranslate2() {
     
 
 
-    if (storedTasks.subtasks === 1) {
+    if (storedTasks.subtasks == 1) {
         return div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks === 2) {
+    } else if (storedTasks.subtasks == 2) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks === 3) {
+    } else if (storedTasks.subtasks == 3) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
     };
 
@@ -60,9 +60,9 @@ function dropdownTranslate2() {
 function dropdownTranslate1() {
     let storedTasks = JSON.parse(localStorage.getItem("Task"));
 
-    if (storedTasks.exp === 1) {
+    if (storedTasks.exp == 1) {
         return "Easy";
-    } else if (storedTasks.exp === 2) {
+    } else if (storedTasks.exp == 2) {
         return "Medium"; 
     } else    {
         return "Hard";
