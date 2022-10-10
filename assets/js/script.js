@@ -8,6 +8,7 @@ let userInfo = {};
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -131,3 +132,13 @@ function createTask() {
 
     createCard();
 };
+
+// proof of concept youtube API fetch
+// fetch (`https://www.googleapis.com/youtube/v3?key=${youtubeAPIKey}`)
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+.then (function(response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log (data)
+})
