@@ -161,5 +161,5 @@ fetch("https://pirate.monkeyness.com/api/insult")
     //return response.json();
     }).then(function(data){
     console.log(data)
-    }
+    })
 
