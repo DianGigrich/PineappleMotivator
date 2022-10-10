@@ -142,3 +142,10 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
 .then (function (data) {
     console.log (data)
 })
+
+// proof of concept Pirate API fetch
+fetch("url").then(function(respose){consol.elog(respone);
+    //return response.json();
+    }).then(function(data){
+    console.log(data.setup*for only the setup to the joke*)
+    }
