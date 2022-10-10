@@ -153,11 +153,13 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 .then (function (data) {
     console.log(data)
 })
-=======
+
 // proof of concept Pirate API fetch
-fetch("url").then(function(respose){consol.elog(respone);
+fetch("https://pirate.monkeyness.com/api/insult")
+.then(function(response)
+{console.log(response);
     //return response.json();
     }).then(function(data){
-    console.log(data.setup*for only the setup to the joke*)
+    console.log(data)
     }
 
