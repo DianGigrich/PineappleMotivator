@@ -139,6 +139,38 @@ function createTask() {
     createCard();
 };
 
+
+// proof of concept youtube API fetch
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+.then (function(response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log (data)
+})
+
+
+// proof of concept motivational quote api
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data)
+})
+
+// proof of concept Pirate API fetch
+fetch("https://pirate.monkeyness.com/api/insult")
+.then(function(response)
+{console.log(response);
+    //return response.json();
+    }).then(function(data){
+    console.log(data)
+    })
+// var pirate = src="https://pirate.monkeyness.com/api/insult"
+// console.log(pirate)
+
+
 function updateEasy()
 {
     exp += 25;
@@ -189,3 +221,4 @@ function updateHard()
   easyEXP.addEventListener("click", updateEasy);
   mediumEXP.addEventListener("click", updateMedium);
   hardEXP.addEventListener("click", updateHard);
+
