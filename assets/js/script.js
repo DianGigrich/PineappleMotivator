@@ -140,33 +140,33 @@ function createTask() {
 };
 
 
-// proof of concept youtube API fetch
-fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
-.then (function(response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log (data)
-})
+// // proof of concept youtube API fetch
+// fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+// .then (function(response) {
+//     return response.json()
+// })
+// .then (function (data) {
+//     console.log (data)
+// })
 
 
-// proof of concept motivational quote api
-fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then (function (response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log(data)
-})
-
-// proof of concept Pirate API fetch
-// fetch (`https://api.pirate.monkeyness.com`)
+// // proof of concept motivational quote api
+// fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 // .then (function (response) {
 //     return response.json()
 // })
 // .then (function (data) {
-//     console.log(data, "1")
+//     console.log(data)
 // })
+
+// proof of concept Pirate API fetch
+fetch (`https://the-one-api.dev/`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data, "1")
+})
 
 
 function updateEasy()

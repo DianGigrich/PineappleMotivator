@@ -7,8 +7,26 @@
   --brown: #c17a05;
   --green: #789e4f;
   --lightgreen: #bed09f;
+  /* pirate colors */
+  --black: #000000;
+  --red: #760a0a;
+  --brown2: #5e2a0e;
+  --yellow: #ddd417;
+  --blue: #1c8bc1;
 }
 
+body {
+  background: var(--lightgreen);
+}
+
+h1 {
+  color: var(--green);
+}
+
+.tasks {
+  background: var(--orange);
+  border: 2px solid var(--brown);
+}
 .level {
   width: 210px;
   height: 30px;
@@ -77,8 +95,8 @@
 
 
 .task {
-  border: 1px solid black;
-  background-color: burlywood !important;
+  border: 2px solid var(--brown);
+  background-color: var(--background) !important;
   padding: 10px !important;
 }
 
