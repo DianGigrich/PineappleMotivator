@@ -15,6 +15,7 @@ var hardEXP = document.querySelector("#hard");
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
+let subtaskBtn = document.createElement("button");
 let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 
 
@@ -36,7 +37,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
+    window.location.assign("C:\Users\krist\code\bootcamp\challenges\PineappleMotivator\index.html");
 
 });
 
@@ -95,15 +96,18 @@ function createCard() {
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
+
     let p = document.createElement("p");
     let checkbox = document.querySelector("#hiddenCheckbox");
     let clonedCheckbox = checkbox.cloneNode(true);
+
     let textarea = document.createElement("textarea");
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
+    subtaskBtn.innerText = `Create Subtask`;
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
     clonedCheckbox.classList.remove("hide");
@@ -114,11 +118,21 @@ function createCard() {
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
+
     div.append(p);
     div.append(clonedCheckbox);
     div.append(textarea);
 
+
+    div.append(subtaskBtn);
+    div.append(textarea);
+
 };
+
+// create subtasks button
+subtaskBtn.click(function () {
+    console.log(`clicked`)
+})
 
 // Modal function
 $(document).ready(function() {
@@ -169,14 +183,26 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     console.log(data)
 })
 
-// proof of concept Pirate API fetch
-// fetch("https://pirate.monkeyness.com/api/insult")
-// .then(function(response)
-// {console.log(response);
-//     //return response.json();
-//     }).then(function(data){
-//     console.log(data)
-//     })
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+// ========================================================
 
 function updateEasy()
 {
