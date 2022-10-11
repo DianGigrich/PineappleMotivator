@@ -168,14 +168,26 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     console.log(data)
 })
 
-// proof of concept Pirate API fetch
-// fetch("https://pirate.monkeyness.com/api/insult")
-// .then(function(response)
-// {console.log(response);
-//     //return response.json();
-//     }).then(function(data){
-//     console.log(data)
-//     })
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+// ========================================================
 
 function updateEasy()
 {
