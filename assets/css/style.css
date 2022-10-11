@@ -3,15 +3,34 @@
   --animate-delay: 1s;
 
   /* pirate colors */
-  --black: #000000;
-  --red: #760a0a;
-  --brown2: #5e2a0e;
+  --black: #050404;
+  --dkgray: #252422;
+  --mdgray: #403D39;
+  --ltgray:#CCC5B9;
+  --whyte:#FFFCF2;
+  --orange:#EB5E28;
+  --red: #eb2d28;
+  --brown: #5e2a0e;
   --wood: #A47449;
   --yellow: #ddd417;
 }
+ .bts {
+  background-color: var(--red);
+ }
+body {
+  background-color: #CCC5B9;
+}
+
+.headerClr {
+  color: #EB5E28;
+}
+.txtColor{
+  color: #252422;
+}
+
 /* pirate changes */
 .pirateBody {
-  /* font-family: 'Homemade Apple';
+  /* font-family: 'Homemade Apple', cursive;
   background-color: #050404 !important; */
 }
 
@@ -20,8 +39,7 @@ h1 {
 }
 
 .tasks {
-  background: var(--orange);
-  border: 2px solid var(--brown);
+ 
 }
 
 .modal {
@@ -42,7 +60,7 @@ h1 {
   width: 100%;
   height: 30px;
   text-align: center;
-  background: #9cbab4;
+  background: var(--whyte);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -50,14 +68,14 @@ h1 {
 .levelFill {
   width: 0%;
   height: 100%;
-  background: #009579;
+  background: #EB5E28;
   transition: all 3s;
 }
 
 .levelPrcnt {
   position: absolute;
   font: bold 25px 'Quicksand', sans-serif;
-  color: white;
+  color: var(--whyte);
 }
 
 .levelNotify {
@@ -70,7 +88,7 @@ h1 {
 .skillLevel {
   position: absolute;
   font: bold 20px 'Quicksand', sans-serif;
-  color: white;
+  color: var(--whyte);
 }
 
 .input-field {
@@ -82,6 +100,8 @@ h1 {
 /* label color */
 .input-field label {
   color: #000 !important;
+  font-size: 30px;
+  margin: -15px;
 }
 
 /* label focus color */
@@ -118,3 +138,13 @@ h1 {
   color: black !important;
 }
 
+/* quoteBox */
+.motivationals {
+  background-color: var(--whyte) !important;
+  padding: 10px;
+  border: 3px solid var(--brown);
+}
+
+#motivating {
+  font-size:larger;
+}

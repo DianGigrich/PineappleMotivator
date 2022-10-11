@@ -195,25 +195,25 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 })
 
 // proof of concept pirate translator api
-function displayPirate(pwords) {
-    console.log(pwords)
-    var pirateSec = document.querySelector("#demotivating")
-    pirateSec.textContent = pwords.contents.translated
-    console.log(pwords.contents.translated)
-}
+// function displayPirate(pwords) {
+//     console.log(pwords)
+//     var pirateSec = document.querySelector("#demotivating")
+//     pirateSec.textContent = pwords.contents.translated
+//     console.log(pwords.contents.translated)
+// }
 
-var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
-console.log(pirateURL)
-fetch(pirateURL)
-    .then(function (response) {
-        console.log(response);
-        if (response.ok) {
-            response.json().then(function (data) {
+// var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+// console.log(pirateURL)
+// fetch(pirateURL)
+//     .then(function (response) {
+//         console.log(response);
+//         if (response.ok) {
+//             response.json().then(function (data) {
 
-                displayPirate(data);
-            })
-        }
-    })
+//                 displayPirate(data);
+//             })
+//         }
+//     })
 // ========================================================
 
 function updateEasy()
