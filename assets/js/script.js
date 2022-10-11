@@ -83,23 +83,24 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
-    let textarea = document.createElement("textarea");
+    let checkbox = document.querySelector('#checkboxHidden');
+    let clonedCheckbox = checkbox.cloneNode(true);
+
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
-    textarea.innerText = "Notes go here!";
-    textarea.setAttribute("class", "white");
+    clonedCheckbox.id = 'subtaskCheckbox';
+    clonedCheckbox.classList.remove("hide");
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(textarea);
-
-
+    div.append(clonedCheckbox);
+ 
 };
 
 // Modal function
