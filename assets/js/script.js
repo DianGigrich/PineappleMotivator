@@ -103,6 +103,7 @@ function createCard() {
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
     subtaskBtn.innerText = `Create Subtask`;
+    subtaskBtn.setAttribute(`id`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
            
@@ -115,8 +116,31 @@ function createCard() {
 };
 
 // create subtasks button
-subtaskBtn.click(function () {
-    console.log(`clicked`)
+$(document).click(function (event) {
+    if (event.target.id ===`subtask-btn`) {
+        console.log(`subtask button clicked`);
+        let form = document.createElement(`form`);
+        let p = document.createElement(`p`);
+        let label = document.createElement(`label`)
+        let inputCheck = document.createElement(`input`);
+        let inputCheckSpan = document.createElement(`span`)
+        let inputSubtask = document.createElement(`input`);
+
+        inputCheck.type = `checkbox`;
+        inputSubtask.type = `text`;
+        
+        inputCheckSpan.append(inputSubtask);
+        inputCheck.append(inputCheckSpan);
+        label.append(inputCheck);
+        p.append(label);
+        form.append(p)
+        $(`.task`).append(form)
+    } else {
+        return;
+    }
+    
+    
+
 })
 
 // Modal function
@@ -139,7 +163,7 @@ function createTask() {
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
-        subtasks: document.querySelector('#subtaskSelect').value
+        // subtasks: document.querySelector('#subtaskSelect').value
     };
     
     localStorage.setItem("Task", JSON.stringify(taskDetails));
