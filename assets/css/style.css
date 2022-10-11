@@ -1,32 +1,42 @@
 :root {
   --animate-duration: 1s;
   --animate-delay: 1s;
-  /* pineapple colors */
-  --background: #feed7e;
-  --orange: #fca536;
-  --brown: #c17a05;
-  --green: #789e4f;
-  --lightgreen: #bed09f;
+
   /* pirate colors */
   --black: #000000;
   --red: #760a0a;
   --brown2: #5e2a0e;
+  --wood: #A47449;
   --yellow: #ddd417;
-  --blue: #1c8bc1;
 }
-
-body {
-  background: var(--lightgreen);
+/* pirate changes */
+.pirateBody {
+  /* font-family: 'Homemade Apple';
+  background: black !important; */
 }
 
 h1 {
-  color: var(--green);
+  color: white;
 }
 
 .tasks {
   background: var(--orange);
   border: 2px solid var(--brown);
 }
+
+.modal {
+  /* background-image: url("/assets/Images/981.jpg");
+  background-size: cover;
+  background-attachment: fixed; */
+}
+
+.task {
+  border: 2px solid var(--brown2);
+  border-radius: 2%;
+  background-color: #A47449;
+  padding: 10px !important;
+}
+
 .level {
   width: 100%;
   height: 30px;
@@ -94,11 +104,14 @@ h1 {
   color: #000 !important;
 }
 
-
 .task {
   border: 2px solid var(--brown);
   background-color: var(--background) !important;
   padding: 10px !important;
 }
 
-;
+/* switch text color */
+.switch label {
+  color: black !important;
+}
+

@@ -8,11 +8,14 @@ let level = 1;
 var easyEXP = document.querySelector("#easy");
 var mediumEXP = document.querySelector("#medium");
 var hardEXP = document.querySelector("#hard");
+let lightMode = true;
+let darkMode = false;
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
-let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let modeToggle = $(`input:checkbox`);
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -232,4 +235,24 @@ function updateHard()
   mediumEXP.addEventListener("click", updateMedium);
   hardEXP.addEventListener("click", updateHard);
 
+//   dark mode/light mode functions
+function changeDark () {
+    console.log(`I will change to dark mode`)
+}
+function changeLight () {
+    console.log(`I will change to light mode`)
+}
 
+
+// dark mode toggle
+modeToggle.on(`change`, function () {
+    if (lightMode === true) {
+        lightMode = false;
+        darkMode = true;
+        changeDark();
+    } else {
+        lightMode = true;
+        darkMode = false;
+        changeLight();
+    }
+})
