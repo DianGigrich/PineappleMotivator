@@ -174,7 +174,7 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
-var motivSec;
+var motivSec = ("");
 // proof of concept motivational quote api
 function displayMotiv(mwords) {
     console.log(mwords)
@@ -182,6 +182,28 @@ function displayMotiv(mwords) {
    motivSec.textContent = mwords.quote + ". " + mwords.person
    motivSec = mwords.quote + ". "
     console.log(mwords.quote, "1")
+    // pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#demotivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+console.log(pirateURL)
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+return motivSec
+    
 }
 fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 .then(function (response) {
@@ -193,7 +215,8 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
         })
     }
 })
-
+console.log(motivSec, "after return")
+// ======================================ran out of times to do it, but it worked!
 // proof of concept pirate translator api
 // function displayPirate(pwords) {
 //     console.log(pwords)
