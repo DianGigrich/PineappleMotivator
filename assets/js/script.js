@@ -3,12 +3,19 @@ let submitButton = $('#submitBtn');
 let firstName = $('#first_name');
 let userMotivator = $('#motivator');
 let userInfo = {};
-
+let exp = 0;
+let level = 1;
+var easyEXP = document.querySelector("#easy");
+var mediumEXP = document.querySelector("#medium");
+var hardEXP = document.querySelector("#hard");
+let lightMode = true;
+let darkMode = false;
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
-let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let modeToggle = $(`input:checkbox`);
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -139,6 +146,7 @@ function createTask() {
     createCard();
 };
 
+
 // proof of concept youtube API fetch
 fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
 .then (function(response) {
@@ -158,12 +166,100 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     console.log(data)
 })
 
-// // proof of concept Pirate API fetch
-// fetch("https://pirate.monkeyness.com/api/insult")
-// .then(function(response)
-// {console.log(response);
-//     //return response.json();
-//     }).then(function(data){
-//     console.log(data)
-//     })
 
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+
+    // ======================================================================== 
+
+function updateEasy()
+{
+    exp += 25;
+    
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".levelPrcnt").textContent = "LEVELED UP!";
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+        exp -= 100;
+    }
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+function updateMedium()
+{
+    exp += 50;
+
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+        exp -= 100;
+    }
+
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+function updateHard()
+{
+    exp += 75;
+
+    if(exp >= 100)
+    {
+        level += 1;
+        //add a level up
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+        exp -= 100;
+    }
+
+
+  document.querySelector(".levelFill").style.width = `${exp}%`;
+  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+}
+
+  easyEXP.addEventListener("click", updateEasy);
+  mediumEXP.addEventListener("click", updateMedium);
+  hardEXP.addEventListener("click", updateHard);
+
+//   dark mode/light mode functions
+function changeDark () {
+    console.log(`I will change to dark mode`)
+}
+function changeLight () {
+    console.log(`I will change to light mode`)
+}
+
+
+// dark mode toggle
+modeToggle.on(`change`, function () {
+    if (lightMode === true) {
+        lightMode = false;
+        darkMode = true;
+        changeDark();
+    } else {
+        lightMode = true;
+        darkMode = false;
+        changeLight();
+    }
+})
