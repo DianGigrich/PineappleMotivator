@@ -11,8 +11,8 @@
 }
 /* pirate changes */
 .pirateBody {
-  /* font-family: 'Homemade Apple';
-  background: black !important; */
+  font-family: 'Homemade Apple';
+  background-color: black !important;
 }
 
 h1 {
@@ -31,11 +31,12 @@ h1 {
 }
 
 .task {
-  border: 2px solid var(--brown2);
-  border-radius: 2%;
-  background-color: #A47449;
+  border: 2px solid var(--brown2) !important;
+  border-radius: 2% !important;
+  background-color: #A47449 !important;
   padding: 10px !important;
 }
+
 
 .level {
   width: 100%;
@@ -69,7 +70,7 @@ h1 {
   background-color: white !important;
 }
 
-;
+
 
 /* label color */
 .input-field label {
@@ -104,11 +105,6 @@ h1 {
   color: #000 !important;
 }
 
-.task {
-  border: 2px solid var(--brown);
-  background-color: var(--background) !important;
-  padding: 10px !important;
-}
 
 /* switch text color */
 .switch label {

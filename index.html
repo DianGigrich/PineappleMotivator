@@ -29,7 +29,7 @@
       <p class = "skillLevel">Level: 1</p>
     </div>
 
-<body class="pirateBody light-green lighten-2 animate__animated animate__fadeIn">
+<body class="pirateBody lighten-2 animate__animated animate__fadeIn">
   <!-- Title Start -->
   <div class="level">
     <div class="levelFill"></div>
@@ -53,52 +53,6 @@
   <!-- Title End -->
 
 
-  <!-- Modal Stuff Start -->
-  <div class="center-align">
-    <a href="#" class="blue btn z-depth-3" onclick="toggleModal()">Create a task</a>
-  </div>
-
-  <section class="infomodal">
-    <div id="modal3" class="modal lime lighten-5">
-      <div class="modal-content">
-        <h4 class="center-align" id="info-modal-heading"><strong>Create Your Task</strong></h4>
-        <p id="info-modal-content">How many experience points will your task be worth:</p>
-        <ul>Easy: 25 exp points</ul>
-        <ul>Medium: 50 exp points</ul>
-        <ul>Hard: 75 exp points</ul>
-
-        <div class="input-field col s12">
-          <input placeholder="Your Task Name Here" id="taskName" type="text" class="black-text">
-          <label class="white-text" for="task_name"></label>
-        </div>
-
-
-        <div>
-          <select class="browser-default" id="difficultySelect">
-            <option value="">Select Task Difficulty</option>
-            <option value="1">Easy</option>
-            <option value="2">Medium</option>
-            <option value="3">Hard</option>
-          </select>
-        </div>
-        <br>
-
-        <div>
-          <select class="browser-default" id="subtaskSelect">
-            <option value="">How many subtasks?</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <!-- <div>
-
-    <div>
-      <button id = "easy">Easy EXP</button>
-      <button id = "medium">Medium EXP</button>
-      <button id = "hard">Hard EXP</button>
-    </div>
-<!-- Title End -->
 <!-- Modal Stuff Start -->
 <div class="center-align">
     <a href="#" class="waves-effect waves-light btn z-depth-3" onclick="toggleModal()">Create a task</a></div>
@@ -135,16 +89,15 @@
                       <option value="3">3</option>
                     </select>
                   </div>
-<!-- <div>
-
-                  <label>
+<div>
+                  <label class="hide" id="checkboxHidden">
                     <input type="checkbox" />
                     <span>  
                       <textarea>
                       </textarea>
                     </span>
                   </label>
-</div> -->
+</div>
         <div class="center-align">
           <a href="#" class="blue btn z-depth-3" id="submitTask" onclick="createTask()">Submit task</a>
         </div>
