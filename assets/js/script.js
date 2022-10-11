@@ -173,25 +173,36 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
-
+var motivSec;
 // proof of concept motivational quote api
+function displayMotiv(mwords) {
+    console.log(mwords)
+    motivSec = document.querySelector("#motivating")
+   motivSec.textContent = mwords.quote + ". " + mwords.person
+   motivSec = mwords.quote + ". "
+    console.log(mwords.quote, "1")
+}
 fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then (function (response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log(data)
+.then(function (response) {
+    console.log(response);
+    if (response.ok) {
+        response.json().then(function (data) {
+
+            displayMotiv(data);
+        })
+    }
 })
 
 // proof of concept pirate translator api
 function displayPirate(pwords) {
     console.log(pwords)
-    var pirateSec = document.querySelector("#motivating")
+    var pirateSec = document.querySelector("#demotivating")
     pirateSec.textContent = pwords.contents.translated
     console.log(pwords.contents.translated)
 }
 
-var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+console.log(pirateURL)
 fetch(pirateURL)
     .then(function (response) {
         console.log(response);

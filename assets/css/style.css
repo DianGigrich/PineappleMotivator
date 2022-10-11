@@ -11,12 +11,12 @@
 }
 /* pirate changes */
 .pirateBody {
-  font-family: 'Homemade Apple';
-  background-color: #050404 !important;
+  /* font-family: 'Homemade Apple';
+  background-color: #050404 !important; */
 }
 
 h1 {
-  color: white;
+  /* color: white; */
 }
 
 .tasks {
