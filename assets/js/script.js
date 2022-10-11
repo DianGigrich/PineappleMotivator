@@ -157,25 +157,27 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 })
 
 
-// // proof of concept Pirate API fetch
-// fetch("https://pirate.monkeyness.com/api/insult")
-// .then(function(response)
-// {console.log(response);
-//     //return response.json();
-//     }).then(function(data){
-//     console.log(data)
-//     })
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
 
-// proof of concept Pirate API fetch
-// fetch (`https://api.pirate.monkeyness.com`)
-// .then (function (response) {
-//     return response.json()
-// })
-// .then (function (data) {
-//     console.log(data, "1")
-// })
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
 
+                displayPirate(data);
+            })
+        }
+    })
 
+    // ======================================================================== 
 function updateEasy()
 {
     exp += 25;
