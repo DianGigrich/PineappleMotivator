@@ -41,21 +41,19 @@ loadUserData();
 // Turns numeric values from dropdown input into words
 function dropdownTranslate2() {
     let storedTasks = JSON.parse(localStorage.getItem("Task"));
+    let div = document.querySelector("#taskDiv");
+    let checkbox = document.querySelector('#checkboxHidden');
+    let clonedCheckbox = checkbox.cloneNode(true);
 
-    let label = document.createElement("label");
-    let createInput = document.createElement("input");
-    createInput.setAttribute("type", "checkbox");
-    
-
-
+    clonedCheckbox.id = 'subtaskCheckbox';
+    clonedCheckbox.classList.remove("hide");
+  
     if (storedTasks.subtasks == 1) {
-        return div.append(label), label.append(createInput);
+        div.append(clonedCheckbox);
     } else if (storedTasks.subtasks == 2) {
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
+        div.append(clonedCheckbox), div.append(clonedCheckbox);
     } else (storedTasks.subtasks == 3) 
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    
-
+        div.append(clonedCheckbox), div.append(clonedCheckbox), div.append(clonedCheckbox);
 };
 
 function dropdownTranslate1() {
@@ -89,6 +87,7 @@ function createCard() {
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
+    div.id = "taskDiv";
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
     clonedCheckbox.id = 'subtaskCheckbox';
@@ -99,7 +98,7 @@ function createCard() {
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(clonedCheckbox);
+    dropdownTranslate2();
  
 };
 
