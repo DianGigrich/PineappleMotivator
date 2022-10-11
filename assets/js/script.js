@@ -30,7 +30,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
+    window.location.assign("./../index.html");
 
 });
 
@@ -141,7 +141,7 @@ function createTask() {
 
 
 // proof of concept youtube API fetch
-fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
 .then (function(response) {
     return response.json()
 })
