@@ -56,13 +56,28 @@
                   <br>
     
                 <div>
-                    <select class="browser-default" id="subtaskSelect">
-                      <option value="">How many subtasks?</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
+                  <select class="browser-default" id="subtaskSelect">
+                    <option value="">How many subtasks?</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+                <div>
+                  <ul>If you'd like to upload an image for your task, do so here</ul>
+                  <form action="#">
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>File</span>
+                        <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" placeholder="Insert picture here" type="text">
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+ <!-- checkbox html to be cloned through JS  -->
 <div>
                   <label class="hide" id="checkboxHidden">
                     <input type="checkbox" />
@@ -72,6 +87,7 @@
                     </span>
                   </label>
 </div>
+<!-- end checkbox html -->
                   <div class="center-align">
                     <a href="#" class="waves-effect waves-light btn z-depth-3" id="submitTask" onclick="createTask()">Submit task</a>
                 </div>
