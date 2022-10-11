@@ -137,24 +137,47 @@ function createTask() {
 };
 
 
-// // proof of concept youtube API fetch
-// fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
-// .then (function(response) {
-//     return response.json()
-// })
-// .then (function (data) {
-//     console.log (data)
-// })
+// proof of concept youtube API fetch
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+.then (function(response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log (data)
+})
 
 
-// // proof of concept motivational quote api
-// fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-// .then(function(response)
-// {console.log(response);
-//     //return response.json();
-//     }).then(function(data){
-//     console.log(data)
-//     })
+// proof of concept motivational quote api
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data)
+})
+
+
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+
+    // ======================================================================== 
 
 function updateEasy()
 {
