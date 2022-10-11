@@ -67,6 +67,7 @@
           <label class="white-text" for="task_name"></label>
         </div>
 
+
         <div>
           <select class="browser-default" id="difficultySelect">
             <option value="">Select Task Difficulty</option>
@@ -86,6 +87,60 @@
           </select>
         </div>
         <!-- <div>
+
+    <div>
+      <button id = "easy">Easy EXP</button>
+      <button id = "medium">Medium EXP</button>
+      <button id = "hard">Hard EXP</button>
+    </div>
+<!-- Title End -->
+<!-- Dark Mode toggle -->
+<div class="switch">
+    <label>
+      Light
+      <input type="checkbox">
+      <span class="lever"></span>
+      Dark
+    </label>
+  </div>
+<!-- Modal Stuff Start -->
+<div class="center-align">
+    <a href="#" class="waves-effect waves-light btn z-depth-3" onclick="toggleModal()">Create a task</a></div>
+    
+    <section class="infomodal">
+        <div id="modal3" class="modal">
+            <div class="modal-content light-blue lighten-4">
+                <h4 id="info-modal-heading">Create Your Task</h4>
+                <p id="info-modal-content">Decide how many experience points your task will be worth:</p>
+                    <ul>Easy: 25 exp points</ul>
+                    <ul>Medium: 50 exp points</ul>
+                    <ul>Hard: 75 exp points</ul>
+
+                    <div class="input-field col s12">
+                      <input placeholder="Your Task Name Here" id="taskName" type="text" class="black-text">
+                      <label class="white-text" for="task_name"></label>
+                    </div>
+
+                <div>
+                    <select class="browser-default" id="difficultySelect">
+                      <option value="">Select Task Difficulty</option>
+                      <option value="1">Easy</option>
+                      <option value="2">Medium</option>
+                      <option value="3">Hard</option>
+                    </select>
+                  </div>
+                  <br>
+    
+                <div>
+                    <select class="browser-default" id="subtaskSelect">
+                      <option value="">How many subtasks?</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+<!-- <div>
+
                   <label>
                     <input type="checkbox" />
                     <span>  

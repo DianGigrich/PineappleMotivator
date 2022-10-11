@@ -103,5 +103,14 @@ h1 {
   color: #000 !important;
 }
 
+.task {
+  border: 2px solid var(--brown);
+  background-color: var(--background) !important;
+  padding: 10px !important;
+}
 
-;
+/* switch text color */
+.switch label {
+  color: black !important;
+}
+
