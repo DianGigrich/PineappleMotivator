@@ -10,7 +10,9 @@ let level = 1;
 var easyEXP = document.querySelector("#easy");
 var mediumEXP = document.querySelector("#medium");
 var hardEXP = document.querySelector("#hard");
-
+var lvlNotify = document.querySelector(".levelNotify");
+var lvlPercentage = document.querySelector(".levelPrcnt");
+var levelText = document.querySelector(".skillLevel");
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
@@ -212,8 +214,21 @@ function updateEasy()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
+
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
   document.querySelector(".levelFill").style.width = `${exp}%`;
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
@@ -227,8 +242,22 @@ function updateMedium()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
+
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
@@ -243,8 +272,22 @@ function updateHard()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
+
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
