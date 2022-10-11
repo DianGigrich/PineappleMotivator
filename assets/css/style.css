@@ -78,6 +78,13 @@ h1 {
   color: var(--whyte);
 }
 
+.levelNotify {
+  position: absolute;
+  font: bold 25px 'Quicksand', sans-serif;
+  color: yellow;
+  opacity: 0;
+}
+
 .skillLevel {
   position: absolute;
   font: bold 20px 'Quicksand', sans-serif;
