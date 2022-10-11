@@ -28,7 +28,6 @@ submitButton.on('click', function() {
 
 
     localStorage.setItem("User", JSON.stringify(userInfo));
-    localStorage.setItem("LocalStoredTasks", JSON.stringify(localStoredTaskList));
 
     window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
 
@@ -48,19 +47,21 @@ loadUserData();
 // Turns numeric values from dropdown input into words
 function dropdownTranslate2() {
     let storedTasks = JSON.parse(localStorage.getItem("Task"));
-    let div = document.querySelector("#taskDiv");
-    let checkbox = document.querySelector('#checkboxHidden');
-    let clonedCheckbox = checkbox.cloneNode(true);
 
-    clonedCheckbox.id = 'subtaskCheckbox';
-    clonedCheckbox.classList.remove("hide");
-  
+    let label = document.createElement("label");
+    let createInput = document.createElement("input");
+    createInput.setAttribute("type", "checkbox");
+    
+
+
     if (storedTasks.subtasks == 1) {
-        div.append(clonedCheckbox);
+        return div.append(label), label.append(createInput);
     } else if (storedTasks.subtasks == 2) {
-        div.append(clonedCheckbox), div.append(clonedCheckbox);
+        return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
     } else (storedTasks.subtasks == 3) 
-        div.append(clonedCheckbox), div.append(clonedCheckbox), div.append(clonedCheckbox);
+        return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
+    
+
 };
 
 function dropdownTranslate1() {
@@ -88,24 +89,23 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
-    let checkbox = document.querySelector('#checkboxHidden');
-    let clonedCheckbox = checkbox.cloneNode(true);
-
+    let textarea = document.createElement("textarea");
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
-    div.id = "taskDiv";
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
-    clonedCheckbox.id = 'subtaskCheckbox';
-    clonedCheckbox.classList.remove("hide");
+    textarea.innerText = "Notes go here!";
+    textarea.setAttribute("class", "white");
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(clonedCheckbox);
+    div.append(textarea);
+
+
 };
 
 // Modal function
