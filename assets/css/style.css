@@ -100,4 +100,7 @@ h1 {
   padding: 10px !important;
 }
 
-;
+/* switch text color */
+.switch label {
+  color: black !important;
+}
