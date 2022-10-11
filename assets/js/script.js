@@ -8,11 +8,14 @@ let level = 1;
 var easyEXP = document.querySelector("#easy");
 var mediumEXP = document.querySelector("#medium");
 var hardEXP = document.querySelector("#hard");
+let lightMode = true;
+let darkMode = false;
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
-let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let modeToggle = $(`input:checkbox`);
+let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -27,7 +30,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
+    window.location.assign("./../index.html");
 
 });
 
@@ -87,28 +90,22 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
-    let label = document.createElement("label");
-    let checkbox = document.createElement('input');
-    let span = document.createElement('span');
-    let textarea = document.createElement('textarea');
-
-    checkbox.type = 'checkbox';
-    checkbox.id = 'subtask';
-    checkbox.name = 'subtask';
+    let textarea = document.createElement("textarea");
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
-    h4.innerText= dropdownTranslate1();
-    span.innerText="Red";
+    h4.innerText = dropdownTranslate1();
+    textarea.innerText = "Notes go here!";
+    textarea.setAttribute("class", "white");
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(label);
-    label.append(createInput);
+    div.append(textarea);
+
 
 };
 
@@ -119,9 +116,12 @@ $(document).ready(function() {
 });
 
 
+// Launches the modal window
+function toggleModal() {
+    var instance = M.Modal.getInstance($('#modal3'))
+    instance.open();
+};
 
-
-// TODO: grabbing an option from the modal
 
 // Creates an object that CURRENTLY locally stores the most recent input value
 function createTask() {
@@ -141,7 +141,7 @@ function createTask() {
 
 
 // proof of concept youtube API fetch
-fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
+fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=dogs&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
 .then (function(response) {
     return response.json()
 })
@@ -159,17 +159,28 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     console.log(data)
 })
 
-// proof of concept Pirate API fetch
-fetch("https://pirate.monkeyness.com/api/insult")
-.then(function(response)
-{console.log(response);
-    //return response.json();
-    }).then(function(data){
-    console.log(data)
-    })
-// var pirate = src="https://pirate.monkeyness.com/api/insult"
-// console.log(pirate)
 
+// proof of concept pirate translator api
+function displayPirate(pwords) {
+    console.log(pwords)
+    var pirateSec = document.querySelector("#motivating")
+    pirateSec.textContent = pwords.contents.translated
+    console.log(pwords.contents.translated)
+}
+
+var pirateURL = "https://api.funtranslations.com/translate/pirate.json?text=Hello%20sir%21%20my%20mother%20goes%20with%20me%20to%20the%20ocean"
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+
+    // ======================================================================== 
 
 function updateEasy()
 {
@@ -179,7 +190,8 @@ function updateEasy()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".levelPrcnt").textContent = "LEVELED UP!";
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
   document.querySelector(".levelFill").style.width = `${exp}%`;
@@ -194,7 +206,7 @@ function updateMedium()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
 
@@ -210,9 +222,10 @@ function updateHard()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
+
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
@@ -222,3 +235,24 @@ function updateHard()
   mediumEXP.addEventListener("click", updateMedium);
   hardEXP.addEventListener("click", updateHard);
 
+//   dark mode/light mode functions
+function changeDark () {
+    console.log(`I will change to dark mode`)
+}
+function changeLight () {
+    console.log(`I will change to light mode`)
+}
+
+
+// dark mode toggle
+modeToggle.on(`change`, function () {
+    if (lightMode === true) {
+        lightMode = false;
+        darkMode = true;
+        changeDark();
+    } else {
+        lightMode = true;
+        darkMode = false;
+        changeLight();
+    }
+})
