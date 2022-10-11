@@ -15,6 +15,7 @@ var hardEXP = document.querySelector("#hard");
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
+let subtaskBtn = document.createElement("button");
 let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 
 
@@ -36,7 +37,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
+    window.location.assign("C:\Users\krist\code\bootcamp\challenges\PineappleMotivator\index.html");
 
 });
 
@@ -95,13 +96,13 @@ function createCard() {
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
-    let p = document.createElement("p");
     let textarea = document.createElement("textarea");
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
+    subtaskBtn.innerText = `Create Subtask`;
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
            
@@ -109,11 +110,14 @@ function createCard() {
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
-    div.append(p);
+    div.append(subtaskBtn);
     div.append(textarea);
-
-
 };
+
+// create subtasks button
+subtaskBtn.click(function () {
+    console.log(`clicked`)
+})
 
 // Modal function
 $(document).ready(function() {
