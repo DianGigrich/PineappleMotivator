@@ -187,7 +187,8 @@ function updateEasy()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".levelPrcnt").textContent = "LEVELED UP!";
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
   document.querySelector(".levelFill").style.width = `${exp}%`;
@@ -202,7 +203,7 @@ function updateMedium()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
 
@@ -218,9 +219,10 @@ function updateHard()
     {
         level += 1;
         //add a level up
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
     }
+
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
