@@ -14,14 +14,21 @@ let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
 // Stores the user's info locally and then changes the page to the main hobby tracker page
 submitButton.on('click', function() {
     console.log("clicked");
-
+    
+    let localStoredTaskList = [];
+    console.log(localStoredTaskList);
 
     let userInfo ={
         name: firstName.val(),
         motivator: userMotivator.val()
     };
 
+    localStoredTaskList.push(userInfo);
+    console.log(localStoredTaskList);
+
+
     localStorage.setItem("User", JSON.stringify(userInfo));
+    localStorage.setItem("LocalStoredTasks", JSON.stringify(localStoredTaskList));
 
     window.location.assign("file:///C:/Users/Erik/code/PineappleMotivator/index.html");
 
@@ -98,7 +105,7 @@ function createCard() {
     div.append(h3);
     div.append(h4);
     div.append(p);
-    dropdownTranslate2();
+    div.append(clonedCheckbox);
  
 };
 
