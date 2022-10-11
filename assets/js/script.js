@@ -96,6 +96,8 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
+    let checkbox = document.querySelector("#hiddenCheckbox");
+    let clonedCheckbox = checkbox.cloneNode(true);
     let textarea = document.createElement("textarea");
     
     
@@ -104,14 +106,17 @@ function createCard() {
     h4.innerText = dropdownTranslate1();
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
+    clonedCheckbox.classList.remove("hide");
+
+
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
+    div.append(clonedCheckbox);
     div.append(textarea);
-
 
 };
 
