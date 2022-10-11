@@ -21,14 +21,21 @@ let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 // Stores the user's info locally and then changes the page to the main hobby tracker page
 submitButton.on('click', function() {
     console.log("clicked");
-
+    
+    let localStoredTaskList = [];
+    console.log(localStoredTaskList);
 
     let userInfo ={
         name: firstName.val(),
         motivator: userMotivator.val()
     };
 
+    localStoredTaskList.push(userInfo);
+    console.log(localStoredTaskList);
+
+
     localStorage.setItem("User", JSON.stringify(userInfo));
+    localStorage.setItem("LocalStoredTasks", JSON.stringify(localStoredTaskList));
 
     window.location.assign("./../index.html");
 
@@ -48,21 +55,19 @@ loadUserData();
 // Turns numeric values from dropdown input into words
 function dropdownTranslate2() {
     let storedTasks = JSON.parse(localStorage.getItem("Task"));
+    let div = document.querySelector("#taskDiv");
+    let checkbox = document.querySelector('#checkboxHidden');
+    let clonedCheckbox = checkbox.cloneNode(true);
 
-    let label = document.createElement("label");
-    let createInput = document.createElement("input");
-    createInput.setAttribute("type", "checkbox");
-    
-
-
+    clonedCheckbox.id = 'subtaskCheckbox';
+    clonedCheckbox.classList.remove("hide");
+  
     if (storedTasks.subtasks == 1) {
-        return div.append(label), label.append(createInput);
+        div.append(clonedCheckbox);
     } else if (storedTasks.subtasks == 2) {
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
+        div.append(clonedCheckbox), div.append(clonedCheckbox);
     } else (storedTasks.subtasks == 3) 
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    
-
+        div.append(clonedCheckbox), div.append(clonedCheckbox), div.append(clonedCheckbox);
 };
 
 function dropdownTranslate1() {
@@ -90,23 +95,25 @@ function createCard() {
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
-    let textarea = document.createElement("textarea");
+    let checkbox = document.querySelector('#checkboxHidden');
+    let clonedCheckbox = checkbox.cloneNode(true);
+
     
     
     div.setAttribute("class", "task container z-depth-3 p-2");
+    div.id = "taskDiv";
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
-    textarea.innerText = "Notes go here!";
-    textarea.setAttribute("class", "white");
+    clonedCheckbox.id = 'subtaskCheckbox';
+    clonedCheckbox.classList.remove("hide");
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
     div.append(p);
-    div.append(textarea);
-
-
+    div.append(clonedCheckbox);
+ 
 };
 
 // Modal function
