@@ -12,58 +12,77 @@
   --red: #eb2d28;
   --brown: #5e2a0e;
   --wood: #A47449;
-  --yellow: #ddd417;
 }
+
  .bts {
   background-color: var(--red);
+  margin:2% !important;
  }
+ 
 body {
   background-color: #CCC5B9;
 }
 
 .headerClr {
-  color: #EB5E28;
+  color: var(--red);
 }
+
 .txtColor{
-  color: #252422;
+  color: var(--dkgray);
+}
+
+.motivationals {
+background:var(--mdgray);
+border: 2px solid var(--brown);
+border-radius: 15px !important;
+padding:2%;
+color:var(--whyte);
+font-size: x-large;
 }
 
 /* pirate changes */
-.pirateBody {
-  
-  /* background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") !important;
-  background-size: cover !important;
-
-  background-attachment: fixed !important; */
-}
-
-body { 
+/* .pirateBody { 
   font-family: 'Satisfy';
-  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed; 
+  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: fixed;
+}
+.pirateMotivationals {
+  background-image: url("/assets/Images/981.jpg");
+  background-size: cover;
+  border: 3px solid var(--brown);
+  background-position: fixed;
+
+
+} */
+
+/* quoteBox */
+/* .motivationals {
+  background-color: var(--whyte) !important;
+  padding: 10px;
+  border: 3px solid var(--brown);
+} */
+
+#motivating {
 }
 
-h1 {
-  /* color: white; */
-}
 
-.tasks {
- 
-}
 
-.modal {
-  background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg");
-
+.modal-content {
+  background: var(--ltgray);
+  border: 2px solid var(--brown);
+  
 }
 
 .task {
-  border: 2px solid var(--brown2) !important;
-  border-radius: 2% !important;
+  border-radius: 2px !important;
   background-color: #A47449 !important;
   padding: 10px !important;
+  border: 2px solid var(--brown);
 }
 
 
@@ -146,18 +165,8 @@ h1 {
 
 /* switch text color */
 .switch label {
-  color: black !important;
-}
-
-/* quoteBox */
-.motivationals {
-  background-color: var(--whyte) !important;
-  padding: 10px;
-  border: 3px solid var(--brown);
-}
-
-#motivating {
-  font-size:larger;
+  color: var(--whyte) !important;
+  font-size:large;
 }
 
 

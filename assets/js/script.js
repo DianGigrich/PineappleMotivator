@@ -1,7 +1,7 @@
 // Main Page Variables
-let submitButton = $('#submitBtn');
-let firstName = $('#first_name');
-let userMotivator = $('#motivator');
+// let submitButton = $('#submitBtn');
+// let firstName = $('#first_name');
+// let userMotivator = $('#motivator');
 let userInfo = {};
 
 // exp bar
@@ -19,44 +19,24 @@ let listedTasks = $('#taskList');
 let youtubeAPIKey1 = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 let youtubeAPIKey2 = `AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`;
 let youtubeSearch = ``;
+let storedMultipleTasks
 
 
-// Stores the user's info locally and then changes the page to the main hobby tracker page
-submitButton.on('click', function() {
-    console.log("clicked");
-    
-    let localStoredTaskList = [];
-    console.log(localStoredTaskList);
 
-    let userInfo ={
-        name: firstName.val(),
-        motivator: userMotivator.val()
-    };
-
-    localStoredTaskList.push(userInfo);
-    console.log(localStoredTaskList);
-
-
-    localStorage.setItem("User", JSON.stringify(userInfo));
-
-    window.location.assign("./../index.html");
-
-});
-
-
+// Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
     let loadUser = JSON.parse(localStorage.getItem("User"));
     if (loadUser == null) {
-        window.location.href="./pages/userForm.html";
+        window.location.href = "./pages/userForm.html";
         return
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
+    checkTasks();
     youtubeSearch = loadUser.motivator
 };
 
-// Launches welcome statement
-loadUserData();
+
 
 // Turns numeric values from dropdown input into words
 function dropdownTranslate2() {
@@ -65,38 +45,46 @@ function dropdownTranslate2() {
     let label = document.createElement("label");
     let createInput = document.createElement("input");
     createInput.setAttribute("type", "checkbox");
-    
-
 
     if (storedTasks.subtasks == 1) {
         return div.append(label), label.append(createInput);
     } else if (storedTasks.subtasks == 2) {
         return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else (storedTasks.subtasks == 3) 
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    
+    } else (storedTasks.subtasks == 3)
+    return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
+
 
 };
 
-function dropdownTranslate1() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
 
-    if (storedTasks.exp == 1) {
+// takes the exp value from the task object and returns a string equivalent to the exp level.
+function dropdownTranslate1(exp) {
+    if (exp == 1) {
         return "Easy";
-    } else if (storedTasks.exp == 2) {
-        return "Medium"; 
-    } else    {
+    } else if (exp == 2) {
+        return "Medium";
+    } else {
         return "Hard";
-        }
+    }
 };
 
-
-
+// Checks if there are stored tasks in local storage, if there are none then it changes a global variable (storedMultipleTasks) to an empty array
+// For each item in the array, run a for loop that runs createCard on that task
+function checkTasks() {
+    storedMultipleTasks = JSON.parse(localStorage.getItem("MultiTask"));
+    console.log(storedMultipleTasks);
+    if (storedMultipleTasks == null) {
+        storedMultipleTasks = [];
+    }
+    console.log(storedMultipleTasks);
+    for (let i = 0; i < storedMultipleTasks.length; i++) {
+        createCard(storedMultipleTasks[i]);
+    }
+};
 
 
 // TODO: Create a card for task(s)
-function createCard() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
+function createCard(task) {
 
     console.log("taskbutton clicked");
     let div = document.createElement("div");
@@ -106,30 +94,19 @@ function createCard() {
     let img = document.createElement("img");
     let subtaskBtn = document.createElement("button");
     let textarea = document.createElement("textarea");
-    
-    
+
+
     div.setAttribute("class", "task container z-depth-3 p-2");
-    h3.innerText = storedTasks.taskName;
-    h4.innerText = dropdownTranslate1();
+    h3.innerText = task.taskName;
+    h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
     subtaskBtn.setAttribute(`class`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
 
-    img.id = "output";
-    img.setAttribute("width", "200")
-    console.log($("#imgfile"));
-    img.setAttribute("src", $("#imgfile").value);
-    
     listedTasks.append(div);
-    div.append(h3);
-    div.append(h4);
-    div.append(p);
+    div.append(h3, h4, p, textarea, subtaskBtn, textarea);
     p.append(img);
-    div.append(textarea);
-    div.append(subtaskBtn);
-    div.append(textarea);
-
 };
 
 // create subtasks button
@@ -151,12 +128,6 @@ $(document).click(function (event) {
     }
 })
 
-// Modal function
-$(document).ready(function() {
-    $('.modal').modal();
-    $('.parallax').parallax();
-});
-
 
 // Launches the modal window
 function toggleModal() {
@@ -173,20 +144,19 @@ function toggleYoutubeModal() {
 }
 
 
-// Creates an object that CURRENTLY locally stores the most recent input value
+// Creates an object that locally stores the most recent input value
+// Adds that object to the global variable (which is an array) storedMultipleTasks
+// Makes a new card with the most recent taskDetails
 function createTask() {
-    
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
         // subtasks: document.querySelector('#subtaskSelect').value
     };
-    
-    localStorage.setItem("Task", JSON.stringify(taskDetails));
-    
-    console.log(taskDetails);
 
-    createCard();
+    storedMultipleTasks.push(taskDetails);
+    localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
+    createCard(taskDetails);
 };
 
 // proof of concept youtube API fetch
@@ -203,81 +173,78 @@ var motivSec = ("");
 function displayMotiv(mwords) {
     console.log(mwords)
     motivSec = document.querySelector("#motivating")
-   motivSec.textContent = mwords.quote + ". " + mwords.person
-   motivSec = mwords.quote + ". " + mwords.person
+    motivSec.textContent = mwords.quote + ". " + mwords.person
+    motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
-    // pirate translator api
-function displayPirate(pwords) {
-    console.log(pwords)
-    var pirateSec = document.querySelector("#demotivating")
-    pirateSec.textContent = pwords.contents.translated
-    console.log(pwords.contents.translated)
-}
+    // pirate translator api==================================================
+    // function displayPirate(pwords) {
+    //     console.log(pwords)
+    //     var pirateSec = document.querySelector("#demotivating")
+    //     pirateSec.textContent = pwords.contents.translated
+    //     console.log(pwords.contents.translated)
+    // }
 
-var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
-console.log(pirateURL)
-fetch(pirateURL)
+    // var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+    // console.log(pirateURL)
+    // fetch(pirateURL)
+    //     .then(function (response) {
+    //         console.log(response);
+    //         if (response.ok) {
+    //             response.json().then(function (data) {
+
+    //                 displayPirate(data);
+    //             })
+    //         }
+    //     })
+    // return motivSec
+
+}
+fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
     .then(function (response) {
         console.log(response);
         if (response.ok) {
             response.json().then(function (data) {
 
-                displayPirate(data);
+                displayMotiv(data);
             })
         }
     })
-return motivSec
-    
-}
-fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then(function (response) {
-    console.log(response);
-    if (response.ok) {
-        response.json().then(function (data) {
-
-            displayMotiv(data);
-        })
-    }
-})
 console.log(motivSec, "after return")
+
 
 // ========================================================
 
-function updateEasy()
-{
+function updateEasy() {
     exp += 25;
-    
-    if(exp >= 100)
-    {
+
+    if (exp >= 100) {
         level += 1;
         //add a level up
         toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
-         //remove the percentage then show again
-         lvlPercentage.style.visibility = "hidden";
-         setTimeout(() => {
-             lvlPercentage.style.visibility = "visible";
-         }, 4000);
-         //notify the user that they lvled up
-         lvlNotify.style.transition = 'none';
-         lvlNotify.style.opacity = '1';
-         void lvlNotify.offsetWidth;
- 
-         lvlNotify.style.transition = 'opacity 5s';
-         lvlNotify.style.opacity = '0';
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
-  document.querySelector(".levelFill").style.width = `${exp}%`;
-  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
-function updateMedium()
-{
+function updateMedium() {
     exp += 50;
 
-    if(exp >= 100)
-    {
+    if (exp >= 100) {
         level += 1;
         //add a level up
         toggleYoutubeModal()
@@ -298,16 +265,14 @@ function updateMedium()
         lvlNotify.style.opacity = '0';
     }
 
-  document.querySelector(".levelFill").style.width = `${exp}%`;
-  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
-function updateHard()
-{
+function updateHard() {
     exp += 75;
 
-    if(exp >= 100)
-    {
+    if (exp >= 100) {
         level += 1;
         //add a level up
         toggleYoutubeModal()
@@ -328,10 +293,24 @@ function updateHard()
         lvlNotify.style.opacity = '0';
     }
 
-  document.querySelector(".levelFill").style.width = `${exp}%`;
-  document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
+// easyEXP.addEventListener("click", () => updateEasy(25));
+// completebtn.addEventListener("click", function(event) {
+// figure out exp diffculty of completede task 
+// updateexp(expvalue)
+// })
 easyEXP.addEventListener("click", updateEasy);
 mediumEXP.addEventListener("click", updateMedium);
 hardEXP.addEventListener("click", updateHard);
+
+// Launches welcome statement
+loadUserData();
+
+// Modal function
+$(document).ready(function () {
+    $('.modal').modal();
+    $('.parallax').parallax();
+});
