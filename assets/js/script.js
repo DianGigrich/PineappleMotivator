@@ -38,7 +38,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("../");
+    window.location.assign("./../index.html");
 
 });
 
@@ -100,44 +100,48 @@ function createCard() {
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
-    let img = document.createElement("img");
     let p = document.createElement("p");
-    let checkbox = document.querySelector("#hiddenCheckbox");
-    let clonedCheckbox = checkbox.cloneNode(true);
-
+    let img = document.createElement("img");
     let textarea = document.createElement("textarea");
     
     div.setAttribute("class", "task container z-depth-3 p-2");
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
     subtaskBtn.innerText = `Create Subtask`;
+    subtaskBtn.setAttribute(`id`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
-    clonedCheckbox.classList.remove("hide");
+
     img.id = "output";
     img.setAttribute("width", "200")
     console.log($("#imgfile"));
     img.setAttribute("src", $("#imgfile").value);
-       
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
-
     div.append(p);
     p.append(img);
-    div.append(clonedCheckbox);
     div.append(textarea);
-
-
     div.append(subtaskBtn);
     div.append(textarea);
 
 };
 
 // create subtasks button
-subtaskBtn.click(function () {
-    console.log(`clicked`)
+$(document).click(function (event) {
+    if (event.target.id ===`subtask-btn`) {
+        console.log(`subtask button clicked`);
+        var checkboxContainer = $(`<form><p>
+        <label>
+          <input type="checkbox" />
+          <span><input type="text"</span>
+        </label>
+      </p></form>`)
+        $(`textarea`).after(checkboxContainer)
+    } else {
+        return;
+    }
 })
 
 // Modal function
