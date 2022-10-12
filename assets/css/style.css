@@ -12,12 +12,11 @@
   --red: #eb2d28;
   --brown: #5e2a0e;
   --wood: #A47449;
-  --yellow: #ddd417;
 }
 
  .bts {
   background-color: var(--red);
-  margin:2%;
+  margin:2% !important;
  }
  
 body {
@@ -25,19 +24,22 @@ body {
 }
 
 .headerClr {
-  color: #EB5E28;
+  color: var(--red);
 }
+
 .txtColor{
-  color: #252422;
+  color: var(--dkgray);
 }
 
 .motivationals {
 background:var(--mdgray);
 border: 2px solid var(--brown);
+border-radius: 15px !important;
 padding:2%;
 color:var(--whyte);
 font-size: x-large;
 }
+
 /* pirate changes */
 /* .pirateBody { 
   font-family: 'Satisfy';
@@ -66,22 +68,21 @@ font-size: x-large;
 } */
 
 #motivating {
-
-}
-.tasks {
- 
 }
 
-.modal {
+
+
+.modal-content {
+  background: var(--ltgray);
+  border: 2px solid var(--brown);
   
-
 }
 
 .task {
-  border: 2px solid var(--brown2) !important;
-  border-radius: 2% !important;
+  border-radius: 2px !important;
   background-color: #A47449 !important;
   padding: 10px !important;
+  border: 2px solid var(--brown);
 }
 
 
