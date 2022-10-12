@@ -160,13 +160,17 @@ function createTask() {
 };
 
 // proof of concept youtube API fetch
-// fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
-// .then (function(response) {
-//     return response.json()
-// })
-// .then (function (data) {
-//     console.log (data)
-// })
+function fetchYoutube () {
+    fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+    .then (function(response) {
+        return response.json()
+    })
+    .then (function (data) {
+        console.log (data)
+        
+    })  
+}
+
 
 var motivSec = ("");
 // proof of concept motivational quote api
