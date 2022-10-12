@@ -16,8 +16,10 @@ var lvlPercentage = document.querySelector(".levelPrcnt");
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
-let subtaskBtn = document.createElement("button");
-let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let youtubeAPIKey1 = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
+let youtubeAPIKey2 = `AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`;
+let youtubeSearch = ``;
+let youtubeFetchBtn = $(`#youtube-fetch-btn`)
 let storedMultipleTasks
 
 
@@ -34,6 +36,7 @@ function loadUserData() {
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
     checkTasks();
+    youtubeSearch = loadUser.motivator
 };
 
 
@@ -92,25 +95,35 @@ function createCard(task) {
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
     let img = document.createElement("img");
+    let subtaskBtn = document.createElement("button");
+    let completeBtn = document.createElement("button");
+    let removeBtn = document.createElement("button");
     let textarea = document.createElement("textarea");
 
 
     div.setAttribute("class", "task container z-depth-3 p-2");
+    completeBtn.innerText = `Project Completed!`;
+    completeBtn.setAttribute(`class`,`complete-project`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`id`, `subtask-btn`)
+    subtaskBtn.setAttribute(`class`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
+    removeBtn.innerText = `Delete Project`;
+    removeBtn.setAttribute(`class`,`delete-project`)
+    
 
     listedTasks.append(div);
-    div.append(h3, h4, p, textarea, subtaskBtn, textarea);
+    div.append(completeBtn,h3, h4, p, textarea, subtaskBtn, textarea, removeBtn);
     p.append(img);
 };
 
-// create subtasks button
+// create subtasks, complete project, delete project
 $(document).click(function (event) {
-    if (event.target.id === `subtask-btn`) {
+    var clicked = event.target;
+    console.log(clicked)
+    if (clicked.className ===`subtask-btn`) {
         console.log(`subtask button clicked`);
         var checkboxContainer = $(`<form><p>
         <label>
@@ -118,8 +131,14 @@ $(document).click(function (event) {
           <span><input type="text"</span>
         </label>
       </p></form>`)
-        $(`textarea`).after(checkboxContainer)
-    } else {
+        $(clicked).parent(`div`).append(checkboxContainer)
+        // clicked.after(checkboxContainer)
+    } else if (clicked.className === `complete-project`){
+        // run exp function
+        $(clicked).parent(`div`).hide()
+    } else if (clicked.className === `delete-project`) {
+        $(clicked).parent(`div`).hide()
+    }else {
         return;
     }
 })
@@ -130,6 +149,14 @@ function toggleModal() {
     var instance = M.Modal.getInstance($('#modal3'))
     instance.open();
 };
+
+function toggleYoutubeModal() {
+    $(document).ready(function() {
+        $('#modal4').modal();
+        $('#modal4').modal(`open`);
+        // $('.parallax').parallax();
+    }); 
+}
 
 
 // Creates an object that locally stores the most recent input value
@@ -148,13 +175,21 @@ function createTask() {
 };
 
 // proof of concept youtube API fetch
-fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
-    .then(function (response) {
+function fetchYoutube () {
+    fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+    .then (function(response) {
         return response.json()
     })
-    .then(function (data) {
-        console.log(data)
-    })
+    .then (function (data) {
+        console.log (data)
+        for (let i=0; i<5;i++) {
+            $(`#url-${i+1}`).attr(`href`,`https://www.youtube.com/watch?v=${data.items[i].id.videoId}`)
+            $(`#thumbnail-${i+1}`).attr(`src`,`${data.items[i].snippet.thumbnails.default.url}`)
+            $(`#title-${i+1}`).text(`${data.items[i].snippet.title}`)
+        }
+    })  
+}
+
 
 var motivSec = ("");
 // proof of concept motivational quote api
@@ -211,6 +246,7 @@ function updateEasy() {
     if (exp >= 100) {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
@@ -237,6 +273,7 @@ function updateMedium() {
     if (exp >= 100) {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
@@ -264,6 +301,7 @@ function updateHard() {
     if (exp >= 100) {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
@@ -334,3 +372,5 @@ modeToggle.on(`change`, function () {
        motivationalsChange.setAttribute("class", "motivationals")
     }
 })
+// fetches youtube data on button click
+youtubeFetchBtn.on(`click`, fetchYoutube)
