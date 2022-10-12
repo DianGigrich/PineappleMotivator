@@ -26,7 +26,7 @@
 
 
 
-<body class="pirateBody animate__animated animate__fadeIn">
+<body class="animate__animated animate__fadeIn">
   <!-- Title Start -->
   <div class="level">
     <div class="levelFill"></div>
@@ -44,9 +44,9 @@
   </div>
 
   <div>
-    <button id="easy">Easy EXP</button>
-    <button id="medium">Medium EXP</button>
-    <button id="hard">Hard EXP</button>
+    <p class="easy"></p>
+    <p class="medium"></p>
+    <p class="hard"></p>
   </div>
   <!-- Title End -->
 
@@ -80,7 +80,7 @@
         </div>
         <br>
 
-        <!-- <div>
+         <div>
 
                   <select class="browser-default" id="subtaskSelect">
                     <option value="">How many subtasks?</option>
@@ -88,13 +88,13 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                   </select>
-                </div> -->
+                </div>
         <div>
           <ul>If you'd like to upload an image for your task, do so here</ul>
           <form action="#">
             <div class="file-field input-field">
               <div class="btn">
-                <span>File</span>
+                <span>file</span>
                 <input type="file">
               </div>
               <div class="file-path-wrapper">
@@ -111,7 +111,7 @@
         </div>
         <!-- footer button that closes modal -->
         <div class="right-align">
-          <a href="#" class="modal-close pulse btn-flat">Close</a>
+          <a href="#" class="modal-close hoverable pulse btn-flat">Close</a>
 
         </div>
         <!-- footer button end -->
@@ -122,6 +122,7 @@
 <!-- youtube modal start -->
   <section class="infomodal">
     <div id="modal4" class="modal">
+      <button id="youtube-fetch-btn">Reward yourself with a youtube video!</button>
       <div class="modal-content light-blue lighten-4">
         <a class="youtube-url" id="url-1">
           <img class="thumbail" id="thumbnail-1">
@@ -153,13 +154,14 @@
   </section> 
 <!-- youtube Modal end -->
   <!-- de/motivational quote section-->
-  <section class="row motivationals pirateMotivationals container col .m">
+  <section class="row  container col .m">
+    <article class="motivationals" >
     <!-- mode toggle -->
     <div class="switch">
       <label>
         Off
         <input type="checkbox">
-        <span class="lever orange darken-4"></span>
+        <span class="lever orange darken-4" id="pirateLever"></span>
         Pirate
       </label>
     </div>
@@ -168,6 +170,7 @@
     <div id="demotivating">
 
     </div>
+  </article>
   </section>
 
   <!-- Modal Stuff End -->
@@ -175,8 +178,12 @@
 
 
   <!-- task list -->
-  <div class="tasks" id="taskList">Tasks Go Here
+  <div class="tasks" id="taskList">
   </div>
+  <footer>Picture Credits:<a href="http://www.freepik.com">Designed by dgim-studio / Freepik</a>
+
+    <a href="https://www.pexels.com/photo/photo-of-sea-waves-1802266/">Photo by Ricardo Esquivel</a>
+  </footer>
 
   <!-- <script src="lc_switch.js"></script> -->
 
