@@ -1,7 +1,4 @@
 // Main Page Variables
-// let submitButton = $('#submitBtn');
-// let firstName = $('#first_name');
-// let userMotivator = $('#motivator');
 let userInfo = {};
 
 // exp bar
@@ -40,26 +37,6 @@ function loadUserData() {
 };
 
 
-
-// Turns numeric values from dropdown input into words
-function dropdownTranslate2() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
-
-    let label = document.createElement("label");
-    let createInput = document.createElement("input");
-    createInput.setAttribute("type", "checkbox");
-
-    if (storedTasks.subtasks == 1) {
-        return div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks == 2) {
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else (storedTasks.subtasks == 3)
-    return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-
-
-};
-
-
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
     if (exp == 1) {
@@ -86,7 +63,9 @@ function checkTasks() {
 };
 
 
-// TODO: Create a card for task(s)
+// Create a card for task(s)
+// list of variables that create elements 
+// call on said variables in a specific order to create task cards
 function createCard(task) {
 
     console.log("taskbutton clicked");
@@ -96,19 +75,24 @@ function createCard(task) {
     let p = document.createElement("p");
     let img = document.createElement("img");
     let subtaskBtn = document.createElement("button");
+    let saveBtn = document.createElement("button");
     let completeBtn = document.createElement("button");
     let removeBtn = document.createElement("button");
     let textarea = document.createElement("textarea");
 
 
     div.setAttribute("class", "task container z-depth-3 p-2");
+    div.id = task.taskName;
     completeBtn.innerText = `Project Completed!`;
     //completeBtn.setAttribute(`class`,`complete-project`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
     subtaskBtn.setAttribute(`class`,`subtask-btn`)
-    textarea.innerText = "Notes go here!";
+    saveBtn.innerText = "Save changes!";
+    saveBtn.setAttribute("class", "saveBtn");
+    textarea.innerText = task.savedNote || "Notes go here!";
+    textarea.id = "textarea-" + task.taskName;  
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
     removeBtn.setAttribute(`class`,`delete-project`)
@@ -131,14 +115,38 @@ function createCard(task) {
 
 
     listedTasks.append(div);
-    div.append(h3, h4, p, textarea, subtaskBtn, textarea, removeBtn);
+    // create subtasks button
+    div.append(h3, h4, p, textarea, subtaskBtn, textarea, saveBtn, removeBtn);
     p.append(img);
+
+};
+
+listedTasks.on("click", ".saveBtn", function(event) {
+    saveChanges(event.target);
+})
+
+function saveChanges(clicked) {
+    // which task
+    let task = clicked.parentElement.id;
+    let taskObject 
+    let index
+    for (let i = 0; i < storedMultipleTasks.length; i++) {
+        const element = storedMultipleTasks[i];
+        if (element.taskName == task) {
+            taskObject = element;
+            index = i;
+        }        
+    } 
+
+    let newNotes = document.getElementById("textarea-" + taskObject.taskName).value;
+    storedMultipleTasks[index].savedNote = newNotes;
+    localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
+    
 };
 
 // create subtasks, complete project, delete project
 $(document).click(function (event) {
     var clicked = event.target;
-    console.log(clicked)
     if (clicked.className ===`subtask-btn`) {
         console.log(`subtask button clicked`);
         var checkboxContainer = $(`<form><p>
@@ -196,6 +204,23 @@ function toggleYoutubeModal() {
     }); 
 }
 
+// textarea local storage pseudo-code
+// get the array
+// get the specific object (event.target probs?) based on the click
+// add another element to that object
+//
+
+// what if user creates new subtasks?
+
+
+// load textarea local storage pseudo-code
+// get the array
+// get the specific objects
+// return them in the same order as they get grabbed? into the corresponding text areas
+
+
+
+
 
 // Creates an object that locally stores the most recent input value
 // Adds that object to the global variable (which is an array) storedMultipleTasks
@@ -204,8 +229,20 @@ function createTask() {
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
+        savedNote: "",
+        subtaskArray: []
         // subtasks: document.querySelector('#subtaskSelect').value
     };
+
+    // checks to see if there are any other tasks with the same name, if there are then a message is displayed
+    let taskNames = storedMultipleTasks.map(function(element) {
+        return element.taskName;    
+    })
+
+    if (taskNames.includes(taskDetails.taskName)) {
+        $('#taskName').after("You already have a task created with this name");
+        return;
+    }
 
     storedMultipleTasks.push(taskDetails);
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
