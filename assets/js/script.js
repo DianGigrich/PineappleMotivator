@@ -7,9 +7,9 @@ let userInfo = {};
 // exp bar
 let exp = 0;
 let level = 1;
-var easyEXP = document.querySelector("#easy");
-var mediumEXP = document.querySelector("#medium");
-var hardEXP = document.querySelector("#hard");
+var easyEXP = document.querySelector(".easy");
+var mediumEXP = document.querySelector(".medium");
+var hardEXP = document.querySelector(".hard");
 var lvlNotify = document.querySelector(".levelNotify");
 var lvlPercentage = document.querySelector(".levelPrcnt");
 // Hobby Page Variables
@@ -101,7 +101,7 @@ function createCard(task) {
 
     div.setAttribute("class", "task container z-depth-3 p-2");
     completeBtn.innerText = `Project Completed!`;
-    completeBtn.setAttribute(`class`,`complete-project`);
+    //completeBtn.setAttribute(`class`,`complete-project`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
@@ -111,9 +111,25 @@ function createCard(task) {
     removeBtn.innerText = `Delete Project`;
     removeBtn.setAttribute(`class`,`delete-project`)
     
+    if (task.exp == 1)
+    {
+        completeBtn.setAttribute('class', 'easy');
+        div.append(completeBtn);
+    }
+    else if (task.exp == 2)
+    {
+        completeBtn.setAttribute('class', 'medium');
+        div.append(completeBtn);
+    }
+    else
+    {
+        completeBtn.setAttribute('class', 'hard');
+        div.append(completeBtn);
+    }
+
 
     listedTasks.append(div);
-    div.append(completeBtn,h3, h4, p, textarea, subtaskBtn, textarea, removeBtn);
+    div.append(h3, h4, p, textarea, subtaskBtn, textarea, removeBtn);
     p.append(img);
 };
 
@@ -131,12 +147,34 @@ $(document).click(function (event) {
       </p></form>`)
         $(clicked).parent(`div`).append(checkboxContainer)
         // clicked.after(checkboxContainer)
-    } else if (clicked.className === `complete-project`){
+    } 
+    else if (clicked.className === `easy`)
+    {
         // run exp function
+        updateEasy();
         $(clicked).parent(`div`).hide()
-    } else if (clicked.className === `delete-project`) {
+    }
+    
+    else if (clicked.className === `medium`)
+    {
+        // run exp function
+        updateMedium();
         $(clicked).parent(`div`).hide()
-    }else {
+    } 
+
+    else if (clicked.className === `hard`)
+    {
+        // run exp function
+        updateHard();
+        $(clicked).parent(`div`).hide()
+    } 
+
+    else if (clicked.className === `delete-project`) 
+    {
+        $(clicked).parent(`div`).hide()
+    }
+    else 
+    {
         return;
     }
 })
@@ -251,14 +289,12 @@ console.log(motivSec, "after return")
 
 // ========================================================
 
-function updateEasy() {
-    exp += 25;
-
-    if (exp >= 100) {
-        level += 1;
+function updateEXP()
+{
+    level += 1;
         //add a level up
         toggleYoutubeModal()
-        document.querySelector(".skillLevel").textContent = `${level}`;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
 
         //remove the percentage then show again
@@ -273,6 +309,15 @@ function updateEasy() {
 
         lvlNotify.style.transition = 'opacity 5s';
         lvlNotify.style.opacity = '0';
+}
+
+function updateEasy() 
+{
+    exp += 25;
+
+    if (exp >= 100) 
+    {
+        updateEXP();
     }
     document.querySelector(".levelFill").style.width = `${exp}%`;
     document.querySelector(".levelPrcnt").textContent = `${exp}%`;
@@ -282,53 +327,22 @@ function updateMedium()
 {
     exp += 50;
 
-    if (exp >= 100) {
-        level += 1;
-        //add a level up
-        toggleYoutubeModal()
-        document.querySelector(".skillLevel").textContent = `${level}`;
-        exp -= 100;
-
-        //remove the percentage then show again
-        lvlPercentage.style.visibility = "hidden";
-        setTimeout(() => {
-            lvlPercentage.style.visibility = "visible";
-        }, 4000);
-        //notify the user that they lvled up
-        lvlNotify.style.transition = 'none';
-        lvlNotify.style.opacity = '1';
-        void lvlNotify.offsetWidth;
-
-        lvlNotify.style.transition = 'opacity 5s';
-        lvlNotify.style.opacity = '0';
+    if (exp >= 100) 
+    {
+        updateEXP();
     }
 
     document.querySelector(".levelFill").style.width = `${exp}%`;
     document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
-function updateHard() {
+function updateHard() 
+{
     exp += 75;
 
-    if (exp >= 100) {
-        level += 1;
-        //add a level up
-        toggleYoutubeModal()
-        document.querySelector(".skillLevel").textContent = `${level}`;
-        exp -= 100;
-
-        //remove the percentage then show again
-        lvlPercentage.style.visibility = "hidden";
-        setTimeout(() => {
-            lvlPercentage.style.visibility = "visible";
-        }, 4000);
-        //notify the user that they lvled up
-        lvlNotify.style.transition = 'none';
-        lvlNotify.style.opacity = '1';
-        void lvlNotify.offsetWidth;
-
-        lvlNotify.style.transition = 'opacity 5s';
-        lvlNotify.style.opacity = '0';
+    if (exp >= 100) 
+    {
+        updateEXP();
     }
 
     document.querySelector(".levelFill").style.width = `${exp}%`;
@@ -340,9 +354,6 @@ function updateHard() {
 // figure out exp diffculty of completede task 
 // updateexp(expvalue)
 // })
-easyEXP.addEventListener("click", updateEasy);
-mediumEXP.addEventListener("click", updateMedium);
-hardEXP.addEventListener("click", updateHard);
 
 // Launches welcome statement
 loadUserData();
