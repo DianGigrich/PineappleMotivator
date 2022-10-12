@@ -1,10 +1,12 @@
-let submitButton = $('#submitBtn');
+let submitUserInfoForm = $('#userInfoSubmitForm');
 let firstName = $('#first_name');
 let userMotivator = $('#motivator');
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
-submitButton.on('click', function() {
+submitUserInfoForm.submit(function(event) {
+    event.preventDefault();
     console.log("clicked");
+
     
     let localStoredTaskList = [];
     console.log(localStoredTaskList);
