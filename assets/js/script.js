@@ -180,7 +180,7 @@ function displayMotiv(mwords) {
     console.log(mwords)
     motivSec = document.querySelector("#motivating")
    motivSec.textContent = mwords.quote + ". " + mwords.person
-   motivSec = mwords.quote + ". "
+   motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
     // pirate translator api
 function displayPirate(pwords) {
@@ -216,27 +216,7 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
     }
 })
 console.log(motivSec, "after return")
-// ======================================ran out of times to do it, but it worked!
-// proof of concept pirate translator api
-// function displayPirate(pwords) {
-//     console.log(pwords)
-//     var pirateSec = document.querySelector("#demotivating")
-//     pirateSec.textContent = pwords.contents.translated
-//     console.log(pwords.contents.translated)
-// }
 
-// var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
-// console.log(pirateURL)
-// fetch(pirateURL)
-//     .then(function (response) {
-//         console.log(response);
-//         if (response.ok) {
-//             response.json().then(function (data) {
-
-//                 displayPirate(data);
-//             })
-//         }
-//     })
 // ========================================================
 
 function updateEasy()
