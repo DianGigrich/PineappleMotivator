@@ -122,6 +122,23 @@ function toggleYoutubeModal() {
     }); 
 }
 
+// textarea local storage pseudo-code
+// get the array
+// get the specific object (event.target probs?)
+// add another element to that object
+//
+
+// what if user creates new subtasks?
+
+
+// load textarea local storage pseudo-code
+// get the array
+// get the specific objects
+// return them in the same order as they get grabbed? into the corresponding text areas
+
+
+
+
 
 // Creates an object that locally stores the most recent input value
 // Adds that object to the global variable (which is an array) storedMultipleTasks
