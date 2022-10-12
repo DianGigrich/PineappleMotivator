@@ -22,6 +22,8 @@ let storedMultipleTasks
 
 
 
+
+
 // Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
@@ -163,28 +165,31 @@ function displayMotiv(mwords) {
     motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
     // pirate translator api==================================================
-    // function displayPirate(pwords) {
-    //     console.log(pwords)
-    //     var pirateSec = document.querySelector("#demotivating")
-    //     pirateSec.textContent = pwords.contents.translated
-    //     console.log(pwords.contents.translated)
-    // }
+    function displayPirate(pwords) {
+        console.log(pwords)
+        var pirateSec = document.querySelector("#demotivating")
+        pirateSec.textContent = pwords.contents.translated
+        console.log(pwords.contents.translated)
 
-    // var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
-    // console.log(pirateURL)
-    // fetch(pirateURL)
-    //     .then(function (response) {
-    //         console.log(response);
-    //         if (response.ok) {
-    //             response.json().then(function (data) {
+        
+    }
 
-    //                 displayPirate(data);
-    //             })
-    //         }
-    //     })
-    // return motivSec
+    var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+    console.log(pirateURL)
+    fetch(pirateURL)
+        .then(function (response) {
+            console.log(response);
+            if (response.ok) {
+                response.json().then(function (data) {
+                 
+                   displayPirate()
+                })
+            }
+        })
+    return motivSec
 
 }
+
 fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
     .then(function (response) {
         console.log(response);
@@ -297,3 +302,35 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.parallax').parallax();
 });
+
+// pirate mode
+var motivationalsChange = document.querySelector("article")
+
+let modeToggle = $(`input:checkbox`);
+
+// default mode to light
+var mode = "light"
+
+function toPirate () {
+    console.log(`I will change to dark mode`)
+    $(body).setAttrube("pirateBody")
+}
+function removePirate () {
+    console.log(`I will change to light mode`)
+}
+
+// dark mode toggle
+modeToggle.on(`change`, function () {
+    if (mode === "light") {
+        mode = "pirate"
+       $('body').addClass("pirateBody")
+       motivationalsChange.setAttribute("class", "pirateMotivationals")
+     } 
+    // remove pirate mode
+    else {
+        mode = "pirate";
+       $('body').removeClass("pirateBody")
+       motivationalsChange.removeAttribute("class", "pirateMotivationals")
+       motivationalsChange.setAttribute("class", "motivationals")
+    }
+})

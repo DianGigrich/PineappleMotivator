@@ -11,7 +11,7 @@
   --orange:#EB5E28;
   --red: #eb2d28;
   --brown: #5e2a0e;
-  --wood: #A47449;
+  --wood: #a14818;
 }
 
  .bts {
@@ -41,36 +41,27 @@ font-size: x-large;
 }
 
 /* pirate changes */
-/* .pirateBody { 
+.pirateBody { 
   font-family: 'Satisfy';
   background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
-
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-position: fixed;
 }
+
 .pirateMotivationals {
+  color: var(--black);
   background-image: url("/assets/Images/981.jpg");
   background-size: cover;
   border: 3px solid var(--brown);
   background-position: fixed;
+  border-radius: 15px !important;
+padding:2%;
+font-size: x-large;
 
-
-} */
-
-/* quoteBox */
-/* .motivationals {
-  background-color: var(--whyte) !important;
-  padding: 10px;
-  border: 3px solid var(--brown);
-} */
-
-#motivating {
 }
-
-
 
 .modal-content {
   background: var(--ltgray);
@@ -80,7 +71,7 @@ font-size: x-large;
 
 .task {
   border-radius: 2px !important;
-  background-color: #A47449 !important;
+  background-color: var(--wood) !important;
   padding: 10px !important;
   border: 2px solid var(--brown);
 }
@@ -98,7 +89,7 @@ font-size: x-large;
 .levelFill {
   width: 0%;
   height: 100%;
-  background: #EB5E28;
+  background: var(--wood);
   transition: all 3s;
 }
 
