@@ -13,7 +13,7 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Import Google Font for Pirate -->
-  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="./assets/materialize/css/materialize.min.css"
     media="screen,projection" />
@@ -26,11 +26,12 @@
 
 
 
-<body class="pirateBody lighten-2 animate__animated animate__fadeIn">
+<body class="pirateBody animate__animated animate__fadeIn">
   <!-- Title Start -->
   <div class="level">
     <div class="levelFill"></div>
     <span class="levelPrcnt">0%</span>
+    <span class="levelNotify">LEVELED UP!</span>
   </div>
 
   <div>
@@ -48,45 +49,38 @@
     <button id="hard">Hard EXP</button>
   </div>
   <!-- Title End -->
-<!-- mode toggle -->
-<div class="switch">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
+
+
+  <!-- Modal Stuff Start -->
+  <div class="center-align">
+    <a href="#" class="bts btn z-depth-3" onclick="toggleModal()">Create a task</a>
   </div>
 
-<!-- Modal Stuff Start -->
-<div class="center-align">
-    <a href="#" class="waves-effect waves-light btn z-depth-3" onclick="toggleModal()">Create a task</a></div>
-    
-    <section class="infomodal">
-        <div id="modal3" class="modal">
-            <div class="modal-content light-blue lighten-4">
-                <h4 id="info-modal-heading">Create Your Task</h4>
-                <p id="info-modal-content">Decide how many experience points your task will be worth:</p>
-                    <ul>Easy: 25 exp points</ul>
-                    <ul>Medium: 50 exp points</ul>
-                    <ul>Hard: 75 exp points</ul>
+  <section class="infomodal">
+    <div id="modal3" class="modal">
+      <div class="modal-content light-blue lighten-4">
+        <h4 id="info-modal-heading">Create Your Task</h4>
+        <p id="info-modal-content">Decide how many experience points your task will be worth:</p>
+        <ul>Easy: 25 exp points</ul>
+        <ul>Medium: 50 exp points</ul>
+        <ul>Hard: 75 exp points</ul>
 
-                    <div class="input-field col s12">
-                      <input placeholder="Your Task Name Here" id="taskName" type="text" class="black-text">
-                      <label class="white-text" for="task_name"></label>
-                    </div>
+        <div class="input-field col s12">
+          <input placeholder="Your Task Name Here" id="taskName" type="text" class="black-text">
+          <label class="white-text" for="task_name"></label>
+        </div>
 
-                <div>
-                    <select class="browser-default" id="difficultySelect">
-                      <option value="">Select Task Difficulty</option>
-                      <option value="1">Easy</option>
-                      <option value="2">Medium</option>
-                      <option value="3">Hard</option>
-                    </select>
-                  </div>
-                  <br>
-    
-                <!-- <div>
+        <div>
+          <select class="browser-default" id="difficultySelect">
+            <option value="">Select Task Difficulty</option>
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Hard</option>
+          </select>
+        </div>
+        <br>
+
+        <!-- <div>
 
                   <select class="browser-default" id="subtaskSelect">
                     <option value="">How many subtasks?</option>
@@ -95,71 +89,68 @@
                     <option value="3">3</option>
                   </select>
                 </div> -->
-                <div>
-                  <ul>If you'd like to upload an image for your task, do so here</ul>
-                  <form action="#">
-                    <div class="file-field input-field">
-                      <div class="btn">
-                        <span>File</span>
-                        <input type="file">
-                      </div>
-                      <div class="file-path-wrapper">
-                        <input class="file-path validate" placeholder="Insert picture here" type="text">
-                      </div>
-                    </div>
-                  </form>
-                </div>  
- <!-- checkbox html to be cloned through JS  -->
+        <div>
+          <ul>If you'd like to upload an image for your task, do so here</ul>
+          <form action="#">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>File</span>
+                <input type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" placeholder="Insert picture here" type="text">
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- checkbox html to be cloned through JS  -->
 
-                  <div>
-                    <p>
-                      <label class="hide" id="hiddenCheckbox">
-                        <input type="checkbox" />
-                        <span>
-                          <textarea>
+        <div>
+          <p>
+            <label class="hide" id="hiddenCheckbox">
+              <input type="checkbox" />
+              <span>
+                <textarea>
                           </textarea>
-                        </span>
-                      </label>
-                    </p>
-                  </div>
+              </span>
+            </label>
+          </p>
+        </div>
 
-<!-- end checkbox stuff -->
+        <!-- end checkbox stuff -->
 
         <div class="center-align">
-          <a href="#" class="blue btn z-depth-3" id="submitTask" onclick="createTask()">Submit task</a>
+          <a href="#" class="btns btn z-depth-3" id="submitTask" onclick="createTask()">Submit task</a>
         </div>
-<!-- footer button that closes modal -->
-<div class="modal-footer light-blue lighten-4">
-  <a href="#" class="modal-close waves-effect btn-flat">Close</a>
+        <!-- footer button that closes modal -->
+        <div class="modal-footer light-blue lighten-4">
+          <a href="#" class="modal-close waves-effect btn-flat">Close</a>
 
-</div>
-<!-- footer button end -->
-    </section>
-   
-    <!-- Modal Stuff End -->
-
-    <!-- de/motivational quote section-->
-    <section>
-      <div id="motivating">
-         </div>
-         <div id="demotivating">
-          
-         </div>
+        </div>
+        <!-- footer button end -->
   </section>
 
   <!-- Modal Stuff End -->
 
   <!-- de/motivational quote section-->
-  <section>
-    <div>
-      <!-- mode toggle -->
+  <section class="motivationals">
+    <!-- mode toggle -->
+    <div class="switch">
+      <label>
+        Off
+        <input type="checkbox">
+        <span class="lever"></span>
+        On
+      </label>
+    </div>
+    <div class="center-align" id="motivating">
+    </div>
+    <div id="demotivating">
 
     </div>
-    <article>
-      <!-- de/motivational quote -->
-    </article>
   </section>
 
+  <!-- Modal Stuff End -->
 
 
 

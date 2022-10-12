@@ -10,7 +10,8 @@ let level = 1;
 var easyEXP = document.querySelector("#easy");
 var mediumEXP = document.querySelector("#medium");
 var hardEXP = document.querySelector("#hard");
-
+var lvlNotify = document.querySelector(".levelNotify");
+var lvlPercentage = document.querySelector(".levelPrcnt");
 // Hobby Page Variables
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
@@ -179,27 +180,15 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
-var motivSec;
+var motivSec = ("");
 // proof of concept motivational quote api
 function displayMotiv(mwords) {
     console.log(mwords)
     motivSec = document.querySelector("#motivating")
    motivSec.textContent = mwords.quote + ". " + mwords.person
-   motivSec = mwords.quote + ". "
+   motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
-}
-fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then(function (response) {
-    console.log(response);
-    if (response.ok) {
-        response.json().then(function (data) {
-
-            displayMotiv(data);
-        })
-    }
-})
-
-// proof of concept pirate translator api
+    // pirate translator api
 function displayPirate(pwords) {
     console.log(pwords)
     var pirateSec = document.querySelector("#demotivating")
@@ -219,6 +208,21 @@ fetch(pirateURL)
             })
         }
     })
+return motivSec
+    
+}
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then(function (response) {
+    console.log(response);
+    if (response.ok) {
+        response.json().then(function (data) {
+
+            displayMotiv(data);
+        })
+    }
+})
+console.log(motivSec, "after return")
+
 // ========================================================
 
 function updateEasy()
@@ -231,6 +235,19 @@ function updateEasy()
         //add a level up
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
+
+         //remove the percentage then show again
+         lvlPercentage.style.visibility = "hidden";
+         setTimeout(() => {
+             lvlPercentage.style.visibility = "visible";
+         }, 4000);
+         //notify the user that they lvled up
+         lvlNotify.style.transition = 'none';
+         lvlNotify.style.opacity = '1';
+         void lvlNotify.offsetWidth;
+ 
+         lvlNotify.style.transition = 'opacity 5s';
+         lvlNotify.style.opacity = '0';
     }
   document.querySelector(".levelFill").style.width = `${exp}%`;
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
@@ -246,6 +263,19 @@ function updateMedium()
         //add a level up
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
+
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
@@ -262,6 +292,19 @@ function updateHard()
         //add a level up
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
+
+        //remove the percentage then show again
+        lvlPercentage.style.visibility = "hidden";
+        setTimeout(() => {
+            lvlPercentage.style.visibility = "visible";
+        }, 4000);
+        //notify the user that they lvled up
+        lvlNotify.style.transition = 'none';
+        lvlNotify.style.opacity = '1';
+        void lvlNotify.offsetWidth;
+
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
     }
 
   document.querySelector(".levelFill").style.width = `${exp}%`;
