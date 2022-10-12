@@ -14,9 +14,12 @@
   --wood: #A47449;
   --yellow: #ddd417;
 }
+
  .bts {
   background-color: var(--red);
+  margin:2%;
  }
+ 
 body {
   background-color: #CCC5B9;
 }
@@ -31,7 +34,8 @@ body {
 /* pirate changes */
 .pirateBody { 
   font-family: 'Satisfy';
-  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed; 
+  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -41,8 +45,9 @@ body {
 .motivationals {
   background-image: url("/assets/Images/981.jpg");
   background-size: cover;
+  border: 3px solid var(--brown);
   background-position: fixed;
-  font-size:xx-large;
+  font-size:x-large;
   padding:3%;
 }
 
@@ -153,6 +158,7 @@ body {
 /* switch text color */
 .switch label {
   color: black !important;
+  font-size:large;
 }
 
 

@@ -19,7 +19,7 @@
     
     // default options
     const def_options = {
-        on_txt      : 'ON',
+        on_txt      : 'pirate',
         off_txt     : 'OFF',
         on_color    : false,
         compact_mode: false,
