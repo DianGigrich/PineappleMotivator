@@ -53,13 +53,13 @@
 
   <!-- Modal Stuff Start -->
   <div class="center-align">
-    <a href="#" class="bts btn z-depth-3" onclick="toggleModal()">Create a task</a>
+    <a href="#" class="bts btn waves-effect waves-light red z-depth-3" onclick="toggleModal()">Create a task</a>
   </div>
 
   <section class="infomodal">
     <div id="modal3" class="modal">
-      <div class="modal-content light-blue lighten-4">
-        <h4 id="info-modal-heading">Create Your Task</h4>
+      <div class="modal-content">
+        <h4 id="center-align info-modal-heading">Create Your Task</h4>
         <p id="info-modal-content">Decide how many experience points your task will be worth:</p>
         <ul>Easy: 25 exp points</ul>
         <ul>Medium: 50 exp points</ul>
@@ -103,47 +103,67 @@
             </div>
           </form>
         </div>
-        <!-- checkbox html to be cloned through JS  -->
-
-        <div>
-          <p>
-            <label class="hide" id="hiddenCheckbox">
-              <input type="checkbox" />
-              <span>
-                <textarea>
-                          </textarea>
-              </span>
-            </label>
-          </p>
-        </div>
-
-        <!-- end checkbox stuff -->
+    
 
         <div class="center-align">
-          <a href="#" class="btns btn z-depth-3" id="submitTask" onclick="createTask()">Submit task</a>
+          <a href="#" class="btns btn waves-effect waves-light red z-depth-3" id="submitTask"
+            onclick="createTask()">Submit task</a>
         </div>
         <!-- footer button that closes modal -->
-        <div class="modal-footer light-blue lighten-4">
-          <a href="#" class="modal-close waves-effect btn-flat">Close</a>
+        <div class="right-align">
+          <a href="#" class="modal-close pulse btn-flat">Close</a>
 
         </div>
         <!-- footer button end -->
   </section>
 
-  <!-- Modal Stuff End -->
 
+  <!-- Modal Stuff End -->
+<!-- youtube modal start -->
+  <section class="infomodal">
+    <div id="modal4" class="modal">
+      <div class="modal-content light-blue lighten-4">
+        <a class="youtube-url" id="url-1">
+          <img class="thumbail" id="thumbnail-1">
+          <p class="youtube-title" id="title-1"></p>
+        </a>
+        <a class="youtube-url"id="url-2">
+          <img class="thumbail" id="thumbnail-2">
+          <p class="youtube-title" id="title-2"></p>
+        </a>
+        <a class="youtube-url"id="url-3">
+          <img class="thumbail" id="thumbnail-3">
+          <p class="youtube-title" id="title-3"></p>
+        </a>
+        <a class="youtube-url"id="url-4">
+          <img class="thumbail" id="thumbnail-4">
+          <p class="youtube-title" id="title-4"></p>
+        </a>
+        <a class="youtube-url"id="url-5">
+          <img class="thumbail" id="thumbnail-5">
+          <p class="youtube-title" id="title-5"></p>
+        </a>
+      </div>
+      <!-- close button for modal -->
+      <div class="modal-footer light-blue lighten-4">
+        <a href="#" class="modal-close waves-effect btn-flat">Close</a>
+
+      </div>
+    </div>
+  </section> 
+<!-- youtube Modal end -->
   <!-- de/motivational quote section-->
-  <section class="motivationals">
+  <section class="row motivationals pirateMotivationals container col .m">
     <!-- mode toggle -->
     <div class="switch">
       <label>
         Off
         <input type="checkbox">
-        <span class="lever"></span>
-        On
+        <span class="lever orange darken-4"></span>
+        Pirate
       </label>
     </div>
-    <div class="center-align" id="motivating">
+    <div class="center-align " id="motivating">
     </div>
     <div id="demotivating">
 
