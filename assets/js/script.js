@@ -1,7 +1,4 @@
 // Main Page Variables
-// let submitButton = $('#submitBtn');
-// let firstName = $('#first_name');
-// let userMotivator = $('#motivator');
 let userInfo = {};
 
 // exp bar
@@ -37,26 +34,6 @@ function loadUserData() {
 };
 
 
-
-// Turns numeric values from dropdown input into words
-function dropdownTranslate2() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
-
-    let label = document.createElement("label");
-    let createInput = document.createElement("input");
-    createInput.setAttribute("type", "checkbox");
-
-    if (storedTasks.subtasks == 1) {
-        return div.append(label), label.append(createInput);
-    } else if (storedTasks.subtasks == 2) {
-        return div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-    } else (storedTasks.subtasks == 3)
-    return div.append(label), label.append(createInput), div.append(label), label.append(createInput), div.append(label), label.append(createInput);
-
-
-};
-
-
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
     if (exp == 1) {
@@ -83,7 +60,9 @@ function checkTasks() {
 };
 
 
-// TODO: Create a card for task(s)
+// Create a card for task(s)
+// list of variables that create elements 
+// call on said variables in a specific order to create task cards
 function createCard(task) {
 
     console.log("taskbutton clicked");
