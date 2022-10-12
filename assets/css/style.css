@@ -30,8 +30,20 @@ body {
 
 /* pirate changes */
 .pirateBody {
-  /* font-family: 'Homemade Apple', cursive;
-  background-color: #050404 !important; */
+  
+  /* background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") !important;
+  background-size: cover !important;
+
+  background-attachment: fixed !important; */
+}
+
+body { 
+  font-family: 'Satisfy';
+  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h1 {
@@ -43,9 +55,8 @@ h1 {
 }
 
 .modal {
-  /* background-image: url("/assets/Images/981.jpg");
-  background-size: cover;
-  background-attachment: fixed; */
+  background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg");
+
 }
 
 .task {

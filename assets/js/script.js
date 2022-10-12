@@ -38,7 +38,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("C:\Users\krist\code\bootcamp\challenges\PineappleMotivator\index.html");
+    window.location.assign("../");
 
 });
 
@@ -46,7 +46,10 @@ submitButton.on('click', function() {
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
     let loadUser = JSON.parse(localStorage.getItem("User"));
-    console.log(loadUser.name);
+    if (loadUser == null) {
+        window.location.href="./pages/userForm.html";
+        return
+    }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
 };
 
@@ -97,7 +100,7 @@ function createCard() {
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
-
+    let img = document.createElement("img");
     let p = document.createElement("p");
     let checkbox = document.querySelector("#hiddenCheckbox");
     let clonedCheckbox = checkbox.cloneNode(true);
@@ -111,16 +114,18 @@ function createCard() {
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
     clonedCheckbox.classList.remove("hide");
-
-
-
-           
+    img.id = "output";
+    img.setAttribute("width", "200")
+    console.log($("#imgfile"));
+    img.setAttribute("src", $("#imgfile").value);
+       
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
 
     div.append(p);
+    p.append(img);
     div.append(clonedCheckbox);
     div.append(textarea);
 
@@ -155,7 +160,7 @@ function createTask() {
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
-        subtasks: document.querySelector('#subtaskSelect').value
+        // subtasks: document.querySelector('#subtaskSelect').value
     };
     
     localStorage.setItem("Task", JSON.stringify(taskDetails));
@@ -180,7 +185,7 @@ function displayMotiv(mwords) {
     console.log(mwords)
     motivSec = document.querySelector("#motivating")
    motivSec.textContent = mwords.quote + ". " + mwords.person
-   motivSec = mwords.quote + ". "
+   motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
 }
 fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
@@ -193,7 +198,8 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
         })
     }
 })
-
+console.log(motivSec, "after return")
+// ======================================ran out of times to do it, but it worked!
 // proof of concept pirate translator api
 // function displayPirate(pwords) {
 //     console.log(pwords)
@@ -210,10 +216,6 @@ fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 //         if (response.ok) {
 //             response.json().then(function (data) {
 
-//                 displayPirate(data);
-//             })
-//         }
-//     })
 // ========================================================
 
 function updateEasy()
@@ -302,6 +304,6 @@ function updateHard()
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
-  easyEXP.addEventListener("click", updateEasy);
-  mediumEXP.addEventListener("click", updateMedium);
-  hardEXP.addEventListener("click", updateHard);
+easyEXP.addEventListener("click", updateEasy);
+mediumEXP.addEventListener("click", updateMedium);
+hardEXP.addEventListener("click", updateHard);
