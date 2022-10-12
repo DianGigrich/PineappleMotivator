@@ -29,33 +29,39 @@ body {
 }
 
 /* pirate changes */
-.pirateBody {
-  
-  /* background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") !important;
-  background-size: cover !important;
-
-  background-attachment: fixed !important; */
-}
-
-body { 
+.pirateBody { 
   font-family: 'Satisfy';
   background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-position: fixed;
+}
+.motivationals {
+  background-image: url("/assets/Images/981.jpg");
+  background-size: cover;
+  background-position: fixed;
+  font-size:xx-large;
+  padding:3%;
 }
 
-h1 {
-  /* color: white; */
-}
+/* quoteBox */
+/* .motivationals {
+  background-color: var(--whyte) !important;
+  padding: 10px;
+  border: 3px solid var(--brown);
+} */
 
+#motivating {
+
+}
 .tasks {
  
 }
 
 .modal {
-  background-image: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg");
+  ;
 
 }
 
@@ -149,13 +155,4 @@ h1 {
   color: black !important;
 }
 
-/* quoteBox */
-.motivationals {
-  background-color: var(--whyte) !important;
-  padding: 10px;
-  border: 3px solid var(--brown);
-}
 
-#motivating {
-  font-size:larger;
-}
