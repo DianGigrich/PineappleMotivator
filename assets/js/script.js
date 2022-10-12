@@ -1,7 +1,7 @@
 // Main Page Variables
-let submitButton = $('#submitBtn');
-let firstName = $('#first_name');
-let userMotivator = $('#motivator');
+// let submitButton = $('#submitBtn');
+// let firstName = $('#first_name');
+// let userMotivator = $('#motivator');
 let userInfo = {};
 
 // exp bar
@@ -18,29 +18,9 @@ let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
 let subtaskBtn = document.createElement("button");
 let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let storedMultipleTasks 
 
 
-// Stores the user's info locally and then changes the page to the main hobby tracker page
-submitButton.on('click', function() {
-    console.log("clicked");
-    
-    let localStoredTaskList = [];
-    console.log(localStoredTaskList);
-
-    let userInfo ={
-        name: firstName.val(),
-        motivator: userMotivator.val()
-    };
-
-    localStoredTaskList.push(userInfo);
-    console.log(localStoredTaskList);
-
-
-    localStorage.setItem("User", JSON.stringify(userInfo));
-
-    window.location.assign("./../index.html");
-
-});
 
 
 // On page load inserts a welcome message for the user based on the name they stored locally
@@ -51,6 +31,7 @@ function loadUserData() {
         return
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
+    checkTasks();
 };
 
 // Launches welcome statement
@@ -76,12 +57,11 @@ function dropdownTranslate2() {
 
 };
 
-function dropdownTranslate1() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
+function dropdownTranslate1(exp) {;
 
-    if (storedTasks.exp == 1) {
+    if (exp == 1) {
         return "Easy";
-    } else if (storedTasks.exp == 2) {
+    } else if (exp == 2) {
         return "Medium"; 
     } else    {
         return "Hard";
@@ -89,12 +69,21 @@ function dropdownTranslate1() {
 };
 
 
-
+function checkTasks () {
+    storedMultipleTasks = JSON.parse(localStorage.getItem("MultiTask"));
+    console.log(storedMultipleTasks);
+    if (storedMultipleTasks == null) {
+        storedMultipleTasks = [];
+    } 
+    console.log(storedMultipleTasks);
+    for (let i = 0; i < storedMultipleTasks.length; i++) {
+        createCard(storedMultipleTasks[i]);                
+    }
+};
 
 
 // TODO: Create a card for task(s)
-function createCard() {
-    let storedTasks = JSON.parse(localStorage.getItem("Task"));
+function createCard(task) {
 
     console.log("taskbutton clicked");
     let div = document.createElement("div");
@@ -105,8 +94,8 @@ function createCard() {
     let textarea = document.createElement("textarea");
     
     div.setAttribute("class", "task container z-depth-3 p-2");
-    h3.innerText = storedTasks.taskName;
-    h4.innerText = dropdownTranslate1();
+    h3.innerText = task.taskName;
+    h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
     subtaskBtn.setAttribute(`id`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
@@ -160,18 +149,19 @@ function toggleModal() {
 
 // Creates an object that CURRENTLY locally stores the most recent input value
 function createTask() {
-    
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
         // subtasks: document.querySelector('#subtaskSelect').value
     };
     
-    localStorage.setItem("Task", JSON.stringify(taskDetails));
-    
-    console.log(taskDetails);
+    storedMultipleTasks.push(taskDetails);
 
-    createCard();
+    localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
+    console.log(storedMultipleTasks);
+    
+
+    createCard(taskDetails);
 };
 
 // proof of concept youtube API fetch
@@ -191,6 +181,28 @@ function displayMotiv(mwords) {
    motivSec.textContent = mwords.quote + ". " + mwords.person
    motivSec = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
+    // pirate translator api
+    function displayPirate(pwords) {
+        console.log(pwords)
+        var pirateSec = document.querySelector("#demotivating")
+        pirateSec.textContent = pwords.contents.translated
+        console.log(pwords.contents.translated)
+    }
+
+var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+console.log(pirateURL)
+fetch(pirateURL)
+    .then(function (response) {
+        console.log(response);
+        if (response.ok) {
+            response.json().then(function (data) {
+
+                displayPirate(data);
+            })
+        }
+    })
+return motivSec
+    
 }
 fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
 .then(function (response) {
@@ -308,6 +320,11 @@ function updateHard()
   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
+// easyEXP.addEventListener("click", () => updateEasy(25));
+// completebtn.addEventListener("click", function(event) {
+    // figure out exp diffculty of completede task 
+    // updateexp(expvalue)
+// })
 easyEXP.addEventListener("click", updateEasy);
 mediumEXP.addEventListener("click", updateMedium);
 hardEXP.addEventListener("click", updateHard);
