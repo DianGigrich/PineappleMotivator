@@ -22,7 +22,7 @@ let storedMultipleTasks
 
 
 
-
+// Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
     let loadUser = JSON.parse(localStorage.getItem("User"));
@@ -34,8 +34,7 @@ function loadUserData() {
     checkTasks();
 };
 
-// Launches welcome statement
-loadUserData();
+
 
 // Turns numeric values from dropdown input into words
 function dropdownTranslate2() {
@@ -44,8 +43,6 @@ function dropdownTranslate2() {
     let label = document.createElement("label");
     let createInput = document.createElement("input");
     createInput.setAttribute("type", "checkbox");
-
-
 
     if (storedTasks.subtasks == 1) {
         return div.append(label), label.append(createInput);
@@ -57,9 +54,9 @@ function dropdownTranslate2() {
 
 };
 
-function dropdownTranslate1(exp) {
-    ;
 
+// takes the exp value from the task object and returns a string equivalent to the exp level.
+function dropdownTranslate1(exp) {
     if (exp == 1) {
         return "Easy";
     } else if (exp == 2) {
@@ -69,7 +66,8 @@ function dropdownTranslate1(exp) {
     }
 };
 
-
+// Checks if there are stored tasks in local storage, if there are none then it changes a global variable (storedMultipleTasks) to an empty array
+// For each item in the array, run a for loop that runs createCard on that task
 function checkTasks() {
     storedMultipleTasks = JSON.parse(localStorage.getItem("MultiTask"));
     console.log(storedMultipleTasks);
@@ -103,20 +101,9 @@ function createCard(task) {
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
 
-    img.id = "output";
-    img.setAttribute("width", "200")
-    console.log($("#imgfile"));
-    img.setAttribute("src", $("#imgfile").value);
-
     listedTasks.append(div);
-    div.append(h3);
-    div.append(h4);
-    div.append(p);
+    div.append(h3, h4, p, textarea, subtaskBtn, textarea);
     p.append(img);
-    div.append(textarea);
-    div.append(subtaskBtn);
-    div.append(textarea);
-
 };
 
 // create subtasks button
@@ -135,12 +122,6 @@ $(document).click(function (event) {
     }
 })
 
-// Modal function
-$(document).ready(function () {
-    $('.modal').modal();
-    $('.parallax').parallax();
-});
-
 
 // Launches the modal window
 function toggleModal() {
@@ -149,7 +130,9 @@ function toggleModal() {
 };
 
 
-// Creates an object that CURRENTLY locally stores the most recent input value
+// Creates an object that locally stores the most recent input value
+// Adds that object to the global variable (which is an array) storedMultipleTasks
+// Makes a new card with the most recent taskDetails
 function createTask() {
     let taskDetails = {
         taskName: document.querySelector('#taskName').value,
@@ -158,11 +141,7 @@ function createTask() {
     };
 
     storedMultipleTasks.push(taskDetails);
-
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
-    console.log(storedMultipleTasks);
-
-
     createCard(taskDetails);
 };
 
@@ -309,3 +288,12 @@ function updateHard() {
 easyEXP.addEventListener("click", updateEasy);
 mediumEXP.addEventListener("click", updateMedium);
 hardEXP.addEventListener("click", updateHard);
+
+// Launches welcome statement
+loadUserData();
+
+// Modal function
+$(document).ready(function () {
+    $('.modal').modal();
+    $('.parallax').parallax();
+});
