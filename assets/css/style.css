@@ -16,7 +16,7 @@
 
  .bts {
   background-color: var(--red);
-  margin:2% !important;
+  margin:1% !important;
  }
  
 body {
@@ -160,4 +160,12 @@ font-size: x-large;
   font-size:large;
 }
 
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration:none;
+  color: var(--dkgray)
+}
+a { color: var(--dkgray); text-decoration: none; }
+a:hover   { color: var(--red); text-decoration: none; }
 
