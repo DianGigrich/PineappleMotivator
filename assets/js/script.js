@@ -16,8 +16,9 @@ var lvlPercentage = document.querySelector(".levelPrcnt");
 let userNameHere = $('#userNameHere');
 let taskButton = $('#taskBtn');
 let listedTasks = $('#taskList');
-let subtaskBtn = document.createElement("button");
-let youtubeAPIKey = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`
+let youtubeAPIKey1 = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
+let youtubeAPIKey2 = `AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`;
+let youtubeSearch = ``;
 
 
 // Stores the user's info locally and then changes the page to the main hobby tracker page
@@ -51,6 +52,7 @@ function loadUserData() {
         return
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
+    youtubeSearch = loadUser.motivator
 };
 
 // Launches welcome statement
@@ -102,6 +104,7 @@ function createCard() {
     let h4 = document.createElement("h4");
     let p = document.createElement("p");
     let img = document.createElement("img");
+    let subtaskBtn = document.createElement("button");
     let textarea = document.createElement("textarea");
     
     
@@ -109,7 +112,7 @@ function createCard() {
     h3.innerText = storedTasks.taskName;
     h4.innerText = dropdownTranslate1();
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`id`,`subtask-btn`)
+    subtaskBtn.setAttribute(`class`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
 
@@ -131,7 +134,9 @@ function createCard() {
 
 // create subtasks button
 $(document).click(function (event) {
-    if (event.target.id ===`subtask-btn`) {
+    var clicked = event.target;
+    console.log(clicked)
+    if (clicked.className ===`subtask-btn`) {
         console.log(`subtask button clicked`);
         var checkboxContainer = $(`<form><p>
         <label>
@@ -139,7 +144,8 @@ $(document).click(function (event) {
           <span><input type="text"</span>
         </label>
       </p></form>`)
-        $(`textarea`).after(checkboxContainer)
+        $(clicked).parent(`div`).append(checkboxContainer)
+        // clicked.after(checkboxContainer)
     } else {
         return;
     }
@@ -157,6 +163,14 @@ function toggleModal() {
     var instance = M.Modal.getInstance($('#modal3'))
     instance.open();
 };
+
+function toggleYoutubeModal() {
+    $(document).ready(function() {
+        $('#modal4').modal();
+        $('#modal4').modal(`open`);
+        // $('.parallax').parallax();
+    }); 
+}
 
 
 // Creates an object that CURRENTLY locally stores the most recent input value
@@ -176,13 +190,13 @@ function createTask() {
 };
 
 // proof of concept youtube API fetch
-fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`)
-.then (function(response) {
-    return response.json()
-})
-.then (function (data) {
-    console.log (data)
-})
+// fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+// .then (function(response) {
+//     return response.json()
+// })
+// .then (function (data) {
+//     console.log (data)
+// })
 
 var motivSec = ("");
 // proof of concept motivational quote api
@@ -237,6 +251,7 @@ function updateEasy()
     {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
@@ -265,6 +280,7 @@ function updateMedium()
     {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
@@ -294,6 +310,7 @@ function updateHard()
     {
         level += 1;
         //add a level up
+        toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${level}`;
         exp -= 100;
 
