@@ -31,8 +31,15 @@ body {
   color: #252422;
 }
 
+.motivationals {
+background:var(--mdgray);
+border: 2px solid var(--brown);
+padding:2%;
+color:var(--whyte);
+font-size: x-large;
+}
 /* pirate changes */
-.pirateBody { 
+/* .pirateBody { 
   font-family: 'Satisfy';
   background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
 
@@ -42,14 +49,14 @@ body {
   background-size: cover;
   background-position: fixed;
 }
-.motivationals {
+.pirateMotivationals {
   background-image: url("/assets/Images/981.jpg");
   background-size: cover;
   border: 3px solid var(--brown);
   background-position: fixed;
-  font-size:x-large;
-  padding:3%;
-}
+
+
+} */
 
 /* quoteBox */
 /* .motivationals {
@@ -157,16 +164,8 @@ body {
 
 /* switch text color */
 .switch label {
-  color: black !important;
+  color: var(--whyte) !important;
   font-size:large;
 }
 
 
-<<<<<<< HEAD
-=======
-#motivating {
-  font-size:larger;
-}
-
-
->>>>>>> dev
