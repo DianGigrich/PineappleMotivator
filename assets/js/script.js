@@ -37,7 +37,7 @@ submitButton.on('click', function() {
 
     localStorage.setItem("User", JSON.stringify(userInfo));
 
-    window.location.assign("C:\Users\krist\code\bootcamp\challenges\PineappleMotivator\index.html");
+    window.location.assign("./../index.html");
 
 });
 
@@ -96,11 +96,6 @@ function createCard() {
     let div = document.createElement("div");
     let h3 = document.createElement("h3");
     let h4 = document.createElement("h4");
-
-    let p = document.createElement("p");
-    let checkbox = document.querySelector("#hiddenCheckbox");
-    let clonedCheckbox = checkbox.cloneNode(true);
-
     let textarea = document.createElement("textarea");
     
     
@@ -111,23 +106,13 @@ function createCard() {
     subtaskBtn.setAttribute(`id`,`subtask-btn`)
     textarea.innerText = "Notes go here!";
     textarea.setAttribute("class", "white");
-    clonedCheckbox.classList.remove("hide");
-
-
            
     
     listedTasks.append(div);
     div.append(h3);
     div.append(h4);
-
-    div.append(p);
-    div.append(clonedCheckbox);
-    div.append(textarea);
-
-
     div.append(subtaskBtn);
     div.append(textarea);
-
 };
 
 // create subtasks button
@@ -138,11 +123,12 @@ $(document).click(function (event) {
         let p = document.createElement(`p`);
         let label = document.createElement(`label`)
         let inputCheck = document.createElement(`input`);
-        let inputCheckSpan = document.createElement(`span`)
+        let inputCheckSpan = document.createElement(`span`);
         let inputSubtask = document.createElement(`input`);
 
         inputCheck.type = `checkbox`;
         inputSubtask.type = `text`;
+        inputCheckSpan.setAttribute(`class`,`subtask-text`)
         
         inputCheckSpan.append(inputSubtask);
         inputCheck.append(inputCheckSpan);
@@ -153,6 +139,7 @@ $(document).click(function (event) {
     } else {
         return;
     }
+    
     
     
 
@@ -197,47 +184,24 @@ fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=cats&key=AIz
     console.log (data)
 })
 
-var motivSec;
-// proof of concept motivational quote api
-function displayMotiv(mwords) {
-    console.log(mwords)
-    motivSec = document.querySelector("#motivating")
-   motivSec.textContent = mwords.quote + ". " + mwords.person
-   motivSec = mwords.quote + ". "
-    console.log(mwords.quote, "1")
-}
-fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
-.then(function (response) {
-    console.log(response);
-    if (response.ok) {
-        response.json().then(function (data) {
 
-            displayMotiv(data);
-        })
-    }
+// proof of concept motivational quote api
+fetch (`https://motivational-quote-api.herokuapp.com/quotes/random`)
+.then (function (response) {
+    return response.json()
+})
+.then (function (data) {
+    console.log(data)
 })
 
-// proof of concept pirate translator api
-function displayPirate(pwords) {
-    console.log(pwords)
-    var pirateSec = document.querySelector("#demotivating")
-    pirateSec.textContent = pwords.contents.translated
-    console.log(pwords.contents.translated)
-}
-
-var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
-console.log(pirateURL)
-fetch(pirateURL)
-    .then(function (response) {
-        console.log(response);
-        if (response.ok) {
-            response.json().then(function (data) {
-
-                displayPirate(data);
-            })
-        }
-    })
-// ========================================================
+// proof of concept Pirate API fetch
+// fetch("https://pirate.monkeyness.com/api/insult")
+// .then(function(response)
+// {console.log(response);
+//     //return response.json();
+//     }).then(function(data){
+//     console.log(data)
+//     })
 
 function updateEasy()
 {

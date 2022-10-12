@@ -111,3 +111,24 @@ h1 {
   color: black !important;
 }
 
+.subtask-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  z-index: 0;
+  border: 2px solid #5a5a5a;
+  border-radius: 1px;
+  margin-top: 3px;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.subtask-text::after {
+  border: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
