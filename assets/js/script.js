@@ -3,6 +3,7 @@ let userInfo = {};
 
 // exp bar
 let exp = 0;
+let savedLevel;
 let level = 1;
 var easyEXP = document.querySelector(".easy");
 var mediumEXP = document.querySelector(".medium");
@@ -42,6 +43,22 @@ function loadUserData() {
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
     checkTasks();
     youtubeSearch = loadUser.motivator
+   
+    //load the user's level and exp then display it
+   let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
+   document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+   if (loadLevel.level == null || loadLevel.exp == null)
+   {
+    level = 1;
+    exp = 0;
+   }
+   else
+   {
+    level = loadLevel.level;
+    exp = loadLevel.exp;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+   }
 };
 
 
@@ -317,12 +334,22 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 
 // ========================================================
 
+function saveUserLvl()
+{
+    let currentLevel = {
+        exp: exp.valueOf(),
+        level: level.valueOf()
+    }
+        localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
+}
+
 function updateEXP() {
     level += 1;
         //add a level up
         toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
+        saveUserLvl();
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -340,7 +367,7 @@ function updateEXP() {
 
 function updateEasy() {
     exp += 25;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
@@ -350,7 +377,7 @@ function updateEasy() {
 
 function updateMedium() {
     exp += 50;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
@@ -361,7 +388,7 @@ function updateMedium() {
 
 function updateHard() {
     exp += 75;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
