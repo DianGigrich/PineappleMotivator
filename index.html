@@ -38,19 +38,16 @@
   </div>
 
 
-  <div class="container left-align">
+  <header class="container left-align">
     <h1 id="userNameHere"></h1>
-  </div>
+  </header>
   <!-- Title End -->
 
+  <a href="#rewriteMotivator" class="bts btn waves-effect waves-light red modal-trigger">Change
+    motivator</a>
 
-  <nav class="center">
-    <a href="#rewriteMotivator" class="bts btn waves-effect waves-light red modal-trigger" >Change
-      motivator</a>
+  <a href="#" class="bts btn waves-effect waves-light red" onclick="toggleModal()">Create a task</a>
 
-    <a href="#" class="bts btn waves-effect waves-light red" onclick="toggleModal()">Create a task</a>
-
-  </nav>
 
   <!-- rewriteFavorite choice -->
   <div id="rewriteMotivator" class="modal">
@@ -58,8 +55,8 @@
       <h4>Current Motivator:</h4>
       <h2 id="currentMotivator" class="center-align"></h2>
       <h4>My favorite thing today is...</h4>
-      <input id="last_name" type="text" class="validate">
-      <label for="last_name">Favorite Thing</label>
+      <input id="newMotivator" type="text" class="validate">
+      <label for="newMotivator">Favorite Thing</label>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Make it so.</a>

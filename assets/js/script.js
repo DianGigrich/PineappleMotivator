@@ -506,7 +506,9 @@ function changeFavoriteUserData() {
         
     rewriteMotivator.submit(function(event) {
             event.preventDefault();
+            document.getElementById('textbox_id').value
             console.log("100");
+            localStorage.setItem("User", JSON.stringify(""))
         })
     
 }
