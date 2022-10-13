@@ -44,20 +44,22 @@ function loadUserData() {
     checkTasks();
     youtubeSearch = loadUser.motivator
    
-    //load the user's level and exp then display it
+    // load the user's level and exp then display it
+    saveUserLvl();
+
    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
    if (loadLevel.level == null || loadLevel.exp == null)
    {
-    level = 1;
-    exp = 0;
-   }
-   else
-   {
-    level = loadLevel.level;
-    exp = loadLevel.exp;
-    document.querySelector(".levelFill").style.width = `${exp}%`;
-    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+       level = 1;
+       exp = 0;
+    }
+    else
+    {
+        level = loadLevel.level;
+        exp = loadLevel.exp;
+        document.querySelector(".levelFill").style.width = `${exp}%`;
+        document.querySelector(".levelPrcnt").textContent = `${exp}%`;
    }
 };
 
@@ -462,14 +464,6 @@ function updateHard() {
 // updateexp(expvalue)
 // })
 
-// Launches welcome statement
-loadUserData();
-
-// Modal function
-$(document).ready(function () {
-    $('.modal').modal();
-    $('.parallax').parallax();
-});
 
 // pirate mode
 
@@ -492,7 +486,7 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
-
+        
     }
 })
 
@@ -502,18 +496,29 @@ modeToggle.on(`change`, function () {
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
 // rewrite Favorites
-function changeFavoriteUserData() {
-    var currentMotivator = document.getElementById('currentMotivator')
-    let loadUser = JSON.parse(localStorage.getItem("User"));
-    console.log(loadUser.motivator)
-    currentMotivator.textContent = loadUser.motivator
-        
-    rewriteMotivator.submit(function(event) {
-            event.preventDefault();
-            document.getElementById('textbox_id').value
-            console.log("100");
-            localStorage.setItem("User", JSON.stringify(""))
-        })
+// function changeFavoriteUserData() {
+    //     var currentMotivator = document.getElementById('currentMotivator')
+    //     let loadUser = JSON.parse(localStorage.getItem("User"));
+    //     console.log(loadUser.motivator)
+    //     currentMotivator.textContent = loadUser.motivator
     
-}
-changeFavoriteUserData()
+    //     rewriteMotivator.submit(function(event) {
+        //             event.preventDefault();
+        //             document.getElementById('textbox_id').value
+        //             console.log("100");
+        //             localStorage.setItem("User", JSON.stringify(""))
+        //         })
+        
+        // }
+        // changeFavoriteUserData();
+
+
+
+// Launches welcome statement
+loadUserData();
+
+// Modal function
+$(document).ready(function () {
+    $('.modal').modal();
+    $('.parallax').parallax();
+});
