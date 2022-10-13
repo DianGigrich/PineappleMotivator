@@ -44,28 +44,26 @@ function loadUserData() {
     document.getElementById('currentMotivator').textContent = loadUser.motivator;
     checkTasks();
     youtubeSearch = loadUser.motivator
-loadUserData();
-   
+
+
     // load the user's level and exp then display it
     saveUserLvl();
 
-   let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
-   document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
-   if (loadLevel.level == null || loadLevel.exp == null)
-   {
-       level = 1;
-       exp = 0;
+    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
+    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+    if (loadLevel.level == null || loadLevel.exp == null) {
+        level = 1;
+        exp = 0;
     }
-    else
-    {
+    else {
         level = loadLevel.level;
         exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-   }
+    }
 };
 
-
+loadUserData();
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
@@ -139,21 +137,21 @@ function createCard(task) {
         div.append(completeBtn);
     }
 
-    
-    
+
+
     listedTasks.append(div);
     // create subtasks button
     div.append(h3, h4, p, textarea, subtaskBtn, textarea);
 
-    for (let i=0; i < task.subtaskArray.length; i++){
+    for (let i = 0; i < task.subtaskArray.length; i++) {
         var checkboxContainer = $(`<form><p>
         <label>
           <input type="checkbox" class="subtaskCheckbox" />
           <span><textarea id="subtask-${task.taskName}${(i + 1)}">${task.subtaskArray[i]}</textarea></span>
         </label>
       </p></form>`)
-      console.log(checkboxContainer)
-      div.append(checkboxContainer[0]);
+        console.log(checkboxContainer)
+        div.append(checkboxContainer[0]);
     };
 
     div.append(saveBtn, removeBtn);
@@ -183,18 +181,18 @@ function saveChanges(clicked) {
     taskObject.savedNote = newNotes;
 
 
-    for (let i=0; i < taskObject.subtaskArray.length; i++) {
-        let subtaskValue = document.getElementById(`subtask-${task}${i+1}`).value;
+    for (let i = 0; i < taskObject.subtaskArray.length; i++) {
+        let subtaskValue = document.getElementById(`subtask-${task}${i + 1}`).value;
         console.log(subtaskValue);
-        
+
         taskObject.subtaskArray[i] = subtaskValue;
     }
-    
+
     storedMultipleTasks[index] = taskObject;
 
     // let newSubtask = document.getElementsById("" + taskObject.taskName).value;
     // storedMultipleTasks[index].subtaskArray.push(newSubtask);
-    
+
 
 
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
@@ -202,7 +200,7 @@ function saveChanges(clicked) {
 };
 
 // handle completed subtasks
-listedTasks.on("click", ".delete-project", function(event) {
+listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
@@ -260,7 +258,7 @@ listedTasks.on("click", ".subtask-btn", function (event) {
     }
 
     let currentSubtasksAmount = taskObject.subtaskArray.length;
-        
+
     if (clicked.className === `subtask-btn`) {
         var checkboxContainer = $(`<form><p>
         <label>
@@ -396,13 +394,12 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 
 // ========================================================
 
-function saveUserLvl()
-{
+function saveUserLvl() {
     let currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
     }
-        localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
+    localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
 }
 
 function updateEXP() {
@@ -411,7 +408,7 @@ function updateEXP() {
     toggleYoutubeModal()
     document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
     exp -= 100;
-        saveUserLvl();
+    saveUserLvl();
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -495,7 +492,7 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
-        
+
     }
 })
 
@@ -505,12 +502,21 @@ modeToggle.on(`change`, function () {
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
 // rewrite Favorites
-//     rewriteMotivator.submit(function(event) {
-//             event.preventDefault();
-//            var newMotivator = document.getElementById('newMotiavtor').value
-//             console.log();
-//             localStorage.setItem("User", JSON.stringify("newMotivator"))
-//         })
-    
 
-// changeFavoriteUserData()
+var Makeitso = document.getElementById("Makeitso")
+Makeitso.addEventListener('click', function(e){
+    let loadUser = JSON.parse(localStorage.getItem("User"));
+    var newMotivator = document.getElementById('newMotivator').value
+    console.log(newMotivator)
+    var objUser = {
+        user: loadUser.name,
+        motivator: newMotivator
+    }
+    console.log(objUser);
+    console.log('click')
+    console.log(e)
+    localStorage.setItem("User", JSON.stringify(objUser))
+})
+
+
+
