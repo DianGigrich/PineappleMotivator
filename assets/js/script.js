@@ -46,20 +46,22 @@ function loadUserData() {
     youtubeSearch = loadUser.motivator
 loadUserData();
    
-    //load the user's level and exp then display it
+    // load the user's level and exp then display it
+    saveUserLvl();
+
    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
    if (loadLevel.level == null || loadLevel.exp == null)
    {
-    level = 1;
-    exp = 0;
-   }
-   else
-   {
-    level = loadLevel.level;
-    exp = loadLevel.exp;
-    document.querySelector(".levelFill").style.width = `${exp}%`;
-    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+       level = 1;
+       exp = 0;
+    }
+    else
+    {
+        level = loadLevel.level;
+        exp = loadLevel.exp;
+        document.querySelector(".levelFill").style.width = `${exp}%`;
+        document.querySelector(".levelPrcnt").textContent = `${exp}%`;
    }
 };
 
@@ -493,7 +495,7 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
-
+        
     }
 })
 
@@ -503,12 +505,12 @@ modeToggle.on(`change`, function () {
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
 // rewrite Favorites
-    rewriteMotivator.submit(function(event) {
-            event.preventDefault();
-           var newMotivator = document.getElementById('newMotiavtor').value
-            console.log();
-            localStorage.setItem("User", JSON.stringify("newMotivator"))
-        })
+//     rewriteMotivator.submit(function(event) {
+//             event.preventDefault();
+//            var newMotivator = document.getElementById('newMotiavtor').value
+//             console.log();
+//             localStorage.setItem("User", JSON.stringify("newMotivator"))
+//         })
     
 
-changeFavoriteUserData()
+// changeFavoriteUserData()
