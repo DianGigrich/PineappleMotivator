@@ -124,26 +124,37 @@ function createCard(task) {
     removeBtn.setAttribute(`class`, `delete-project`)
 
     if (task.exp == 1) {
-        completeBtn.setAttribute('class', 'easy');
+        completeBtn.setAttribute('class', 'easy completeBtn');
         div.append(completeBtn);
     }
     else if (task.exp == 2) {
-        completeBtn.setAttribute('class', 'medium');
+        completeBtn.setAttribute('class', 'medium completeBtn');
         div.append(completeBtn);
     }
     else {
-        completeBtn.setAttribute('class', 'hard');
+        completeBtn.setAttribute('class', 'hard completeBtn');
         div.append(completeBtn);
     }
-    let loadUser = JSON.parse(localStorage.getItem("User"));
-    if (loadUser == null) {
-                    return
-    }
- 
 
+    
+    
     listedTasks.append(div);
     // create subtasks button
-    div.append(h3, h4, p, textarea, subtaskBtn, textarea, saveBtn, removeBtn);
+    div.append(h3, h4, p, textarea, subtaskBtn, textarea);
+
+    for (let i=0; i < task.subtaskArray.length; i++){
+        var checkboxContainer = $(`<form><p>
+        <label>
+          <input type="checkbox" class="subtaskCheckbox" />
+          <span><textarea id="subtask-${task.taskName}${(i + 1)}">${task.subtaskArray[i]}</textarea></span>
+        </label>
+      </p></form>`)
+      console.log(checkboxContainer)
+      div.append(checkboxContainer[0]);
+    };
+
+    div.append(saveBtn, removeBtn);
+
     p.append(img);
 
 };
@@ -166,49 +177,93 @@ function saveChanges(clicked) {
     }
 
     let newNotes = document.getElementById("textarea-" + taskObject.taskName).value;
-    storedMultipleTasks[index].savedNote = newNotes;
+    taskObject.savedNote = newNotes;
+
+
+    for (let i=0; i < taskObject.subtaskArray.length; i++) {
+        let subtaskValue = document.getElementById(`subtask-${task}${i+1}`).value;
+        console.log(subtaskValue);
+        
+        taskObject.subtaskArray[i] = subtaskValue;
+    }
+    
+    storedMultipleTasks[index] = taskObject;
+
+    // let newSubtask = document.getElementsById("" + taskObject.taskName).value;
+    // storedMultipleTasks[index].subtaskArray.push(newSubtask);
+    
+
+
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
 
 };
 
+// handle completed subtasks
+listedTasks.on("click", ".subtaskCheckbox", function (event) {
+
+})
+
+// completing projects
+listedTasks.on("click", ".completeBtn", function (event) {
+    var clicked = event.target
+    let task = clicked.parentElement.id;
+
+    if (clicked.className === `easy completeBtn`) {
+        // run exp function
+        updateEasy();
+    }
+    else if (clicked.className === `medium completeBtn`) {
+        // run exp function
+        updateMedium();
+    }
+
+    else if (clicked.className === `hard completeBtn`) {
+        // run exp function
+        updateHard();
+    }
+    deleteTask(task);
+})
+
+function deleteTask(task) {
+    storedMultipleTasks = storedMultipleTasks.filter(function (e) {
+        if (e.taskName === task) {
+            return false;
+        } else {
+            return true;
+        }
+    })
+
+    localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
+    window.location.reload();
+}
+
+
 // create subtasks, complete project, delete project
-$(document).click(function (event) {
+listedTasks.on("click", ".subtask-btn", function (event) {
     var clicked = event.target;
+    let task = clicked.parentElement.id;
+    let taskObject
+    let index
+    for (let i = 0; i < storedMultipleTasks.length; i++) {
+        const element = storedMultipleTasks[i];
+        if (element.taskName == task) {
+            taskObject = element;
+            index = i;
+        }
+    }
+
+    let currentSubtasksAmount = taskObject.subtaskArray.length;
+        
     if (clicked.className === `subtask-btn`) {
-        console.log(`subtask button clicked`);
         var checkboxContainer = $(`<form><p>
         <label>
-          <input type="checkbox" />
-          <span><input type="text"</span>
+          <input type="checkbox" class="subtaskCheckbox" />
+          <span><textarea id="subtask-${task}${(currentSubtasksAmount + 1)}"></textarea></span>
         </label>
       </p></form>`)
         $(clicked).parent(`div`).append(checkboxContainer)
         // clicked.after(checkboxContainer)
-    }
-    else if (clicked.className === `easy`) {
-        // run exp function
-        updateEasy();
-        $(clicked).parent(`div`).hide()
-    }
-
-    else if (clicked.className === `medium`) {
-        // run exp function
-        updateMedium();
-        $(clicked).parent(`div`).hide()
-    }
-
-    else if (clicked.className === `hard`)
-    {
-        // run exp function
-        updateHard();
-        $(clicked).parent(`div`).hide()
-    }
-
-    else if (clicked.className === `delete-project`) {
-        $(clicked).parent(`div`).hide()
-    }
-    else {
-        return;
+        storedMultipleTasks[index].subtaskArray.push("");
     }
 })
 
@@ -345,10 +400,10 @@ function saveUserLvl()
 
 function updateEXP() {
     level += 1;
-        //add a level up
-        toggleYoutubeModal()
-        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
-        exp -= 100;
+    //add a level up
+    toggleYoutubeModal()
+    document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+    exp -= 100;
         saveUserLvl();
 
     //remove the percentage then show again
@@ -361,8 +416,8 @@ function updateEXP() {
     lvlNotify.style.opacity = '1';
     void lvlNotify.offsetWidth;
 
-        lvlNotify.style.transition = 'opacity 5s';
-        lvlNotify.style.opacity = '0';
+    lvlNotify.style.transition = 'opacity 5s';
+    lvlNotify.style.opacity = '0';
 }
 
 function updateEasy() {
@@ -422,7 +477,8 @@ modeToggle.on(`change`, function () {
         $('body').addClass("pirateBody")
         motivationalsChange.setAttribute("class", "pirateMotivationals")
         pirateSec.removeAttribute("display", "none")
-         motivSec.setAttribute("display", "none")
+        motivSec.setAttribute("display", "none")
+
     }
     // remove pirate mode
     else {
