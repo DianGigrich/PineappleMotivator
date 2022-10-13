@@ -28,7 +28,7 @@ var pirateSec = document.querySelector("#demotivating");
 // Default mode to 'light'
 var mode = "light";
 
-
+var rewriteMotivator = document.getElementById('rewriteMotivator')
 
 
 // Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
@@ -44,16 +44,7 @@ function loadUserData() {
     youtubeSearch = loadUser.motivator
 };
 
-// rewrite Favorites
-function changeFavoriteUserData() {
-    let loadMotivator = JSON.parse(localStorage.getItem("motivator"));
-    if (loadMotivator == null) {
-        window.location.href = "./pages/userForm.html";
-        return
-    }
-    else {
-        
-    }
+
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
@@ -324,8 +315,6 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
         }
     })
 
-// ======================================ran out of times to do it, but it worked!
-
 // ========================================================
 
 function updateEXP() {
@@ -425,3 +414,17 @@ modeToggle.on(`change`, function () {
 // fetches youtube data on button click
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
+// rewrite Favorites
+function changeFavoriteUserData() {
+    var currentMotivator = document.getElementById('currentMotivator')
+    let loadUser = JSON.parse(localStorage.getItem("User"));
+    console.log(loadUser.motivator)
+    currentMotivator.textContent = loadUser.motivator
+        
+    rewriteMotivator.submit(function(event) {
+            event.preventDefault();
+            console.log("100");
+        })
+    
+}
+changeFavoriteUserData()
