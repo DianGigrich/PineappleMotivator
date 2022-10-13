@@ -16,7 +16,8 @@ How to attribute it?
 For websites:
 
 Please, copy this code on your website to accredit the author:
-<a href="http://www.freepik.com">Designed by dgim-studio / Freepik</a>
+>>>>>><a href="http://www.freepik.com">Designed by dgim-studio / Freepik</a>
+>>>>>Photo by Ricardo Esquivel: https://www.pexels.com/photo/photo-of-sea-waves-1802266/
 
 For printing:
 

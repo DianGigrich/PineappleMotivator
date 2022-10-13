@@ -16,7 +16,7 @@
 
  .bts {
   background-color: var(--red);
-  margin:2% !important;
+  margin:1% !important;
  }
  
 body {
@@ -66,14 +66,15 @@ font-size: x-large;
 .modal-content {
   background: var(--ltgray);
   border: 2px solid var(--brown);
-  
+
 }
 
 .task {
   border-radius: 2px !important;
   background-color: var(--wood) !important;
-  padding: 10px !important;
+  padding: 2%;
   border: 2px solid var(--brown);
+
 }
 
 
@@ -160,4 +161,21 @@ font-size: x-large;
   font-size:large;
 }
 
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration:none;
+  color: var(--dkgray)
+}
 
+a { color: var(--dkgray); text-decoration: none; }
+a:hover   { color: var(--red); text-decoration: none; }
+
+button {
+  background-color: var(--ltgray);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+  padding: 1%;
+  margin: 1%;
+  box-shadow: 0px 0px 10px 1px var(--brown);
+}
