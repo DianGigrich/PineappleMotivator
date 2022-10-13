@@ -38,6 +38,7 @@ border-radius: 15px !important;
 padding:2%;
 color:var(--whyte);
 font-size: x-large;
+text-align:center;
 }
 
 /* pirate changes */
@@ -49,6 +50,7 @@ font-size: x-large;
   -o-background-size: cover;
   background-size: cover;
   background-position: fixed;
+  text-align:center;
 }
 
 .pirateMotivationals {
@@ -74,7 +76,6 @@ font-size: x-large;
   background-color: var(--wood) !important;
   padding: 2%;
   border: 2px solid var(--brown);
-
 }
 
 
@@ -116,7 +117,6 @@ font-size: x-large;
 .input-field {
   background-color: white !important;
 }
-
 
 
 /* label color */
