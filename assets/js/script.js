@@ -393,7 +393,7 @@ modeToggle.on(`change`, function () {
     }
     // remove pirate mode
     else {
-        mode = "pirate";
+        mode = "light";
         $('body').removeClass("pirateBody")
         motivationalsChange.removeAttribute("class", "pirateMotivationals")
         motivationalsChange.setAttribute("class", "motivationals")
