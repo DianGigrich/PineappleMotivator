@@ -507,17 +507,26 @@ youtubeFetchBtn.on(`click`, fetchYoutube)
 
 var Makeitso = document.getElementById("Makeitso")
 Makeitso.addEventListener('click', function(e){
+    e.preventDefault()
+    let localStoredTaskList = [];
     let loadUser = JSON.parse(localStorage.getItem("User"));
     var newMotivator = document.getElementById('newMotivator').value
+    var sameName = loadUser.name
+    console.log(loadUser.name, "IS THIS IT")
     console.log(newMotivator)
     var objUser = {
-        user: loadUser.name,
+        name: sameName,
         motivator: newMotivator
     }
     console.log(objUser);
     console.log('click')
     console.log(e)
+    localStoredTaskList.push(objUser);
     localStorage.setItem("User", JSON.stringify(objUser))
+    document.querySelector('#userNameHere').textContent = "Welcome, " + sameName;
+    document.getElementById('currentMotivator').textContent = newMotivator;
+    youtubeSearch = loadUser.motivator
+    return
 })
 
 
