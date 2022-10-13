@@ -41,8 +41,10 @@ function loadUserData() {
         return
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
+    document.getElementById('currentMotivator').textContent = loadUser.motivator;
     checkTasks();
     youtubeSearch = loadUser.motivator
+loadUserData();
    
     //load the user's level and exp then display it
    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
@@ -87,7 +89,6 @@ function checkTasks() {
         createCard(storedMultipleTasks[i]);
     }
 };
-
 
 // Create a card for task(s)
 // list of variables that create elements 
@@ -463,7 +464,7 @@ function updateHard() {
 // })
 
 // Launches welcome statement
-loadUserData();
+
 
 // Modal function
 $(document).ready(function () {
@@ -502,18 +503,12 @@ modeToggle.on(`change`, function () {
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
 // rewrite Favorites
-function changeFavoriteUserData() {
-    var currentMotivator = document.getElementById('currentMotivator')
-    let loadUser = JSON.parse(localStorage.getItem("User"));
-    console.log(loadUser.motivator)
-    currentMotivator.textContent = loadUser.motivator
-        
     rewriteMotivator.submit(function(event) {
             event.preventDefault();
-            document.getElementById('textbox_id').value
-            console.log("100");
-            localStorage.setItem("User", JSON.stringify(""))
+           var newMotivator = document.getElementById('newMotiavtor').value
+            console.log();
+            localStorage.setItem("User", JSON.stringify("newMotivator"))
         })
     
-}
+
 changeFavoriteUserData()
