@@ -41,29 +41,29 @@ function loadUserData() {
         return
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
+    document.getElementById('currentMotivator').textContent = loadUser.motivator;
     checkTasks();
     youtubeSearch = loadUser.motivator
-   
+
+
     // load the user's level and exp then display it
     saveUserLvl();
 
-   let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
-   document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
-   if (loadLevel.level == null || loadLevel.exp == null)
-   {
-       level = 1;
-       exp = 0;
+    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
+    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+    if (loadLevel.level == null || loadLevel.exp == null) {
+        level = 1;
+        exp = 0;
     }
-    else
-    {
+    else {
         level = loadLevel.level;
         exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-   }
+    }
 };
 
-
+loadUserData();
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
@@ -89,7 +89,6 @@ function checkTasks() {
         createCard(storedMultipleTasks[i]);
     }
 };
-
 
 // Create a card for task(s)
 // list of variables that create elements 
@@ -138,21 +137,21 @@ function createCard(task) {
         div.append(completeBtn);
     }
 
-    
-    
+
+
     listedTasks.append(div);
     // create subtasks button
     div.append(h3, h4, p, textarea, subtaskBtn, textarea);
 
-    for (let i=0; i < task.subtaskArray.length; i++){
+    for (let i = 0; i < task.subtaskArray.length; i++) {
         var checkboxContainer = $(`<form><p>
         <label>
           <input type="checkbox" class="subtaskCheckbox" />
           <span><textarea id="subtask-${task.taskName}${(i + 1)}">${task.subtaskArray[i]}</textarea></span>
         </label>
       </p></form>`)
-      console.log(checkboxContainer)
-      div.append(checkboxContainer[0]);
+        console.log(checkboxContainer)
+        div.append(checkboxContainer[0]);
     };
 
     div.append(saveBtn, removeBtn);
@@ -182,18 +181,18 @@ function saveChanges(clicked) {
     taskObject.savedNote = newNotes;
 
 
-    for (let i=0; i < taskObject.subtaskArray.length; i++) {
-        let subtaskValue = document.getElementById(`subtask-${task}${i+1}`).value;
+    for (let i = 0; i < taskObject.subtaskArray.length; i++) {
+        let subtaskValue = document.getElementById(`subtask-${task}${i + 1}`).value;
         console.log(subtaskValue);
-        
+
         taskObject.subtaskArray[i] = subtaskValue;
     }
-    
+
     storedMultipleTasks[index] = taskObject;
 
     // let newSubtask = document.getElementsById("" + taskObject.taskName).value;
     // storedMultipleTasks[index].subtaskArray.push(newSubtask);
-    
+
 
 
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
@@ -201,7 +200,7 @@ function saveChanges(clicked) {
 };
 
 // handle completed subtasks
-listedTasks.on("click", ".delete-project", function(event) {
+listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
@@ -261,7 +260,7 @@ listedTasks.on("click", ".subtask-btn", function (event) {
     }
 
     let currentSubtasksAmount = taskObject.subtaskArray.length;
-        
+
     if (clicked.className === `subtask-btn`) {
         var checkboxContainer = $(`<form><p>
         <label>
@@ -397,13 +396,12 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 
 // ========================================================
 
-function saveUserLvl()
-{
+function saveUserLvl() {
     let currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
     }
-        localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
+    localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
 }
 
 function updateEXP() {
@@ -412,7 +410,7 @@ function updateEXP() {
     toggleYoutubeModal()
     document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
     exp -= 100;
-        saveUserLvl();
+    saveUserLvl();
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -466,6 +464,14 @@ function updateHard() {
 // updateexp(expvalue)
 // })
 
+// Launches welcome statement
+
+
+// Modal function
+$(document).ready(function () {
+    $('.modal').modal();
+    $('.parallax').parallax();
+});
 
 // pirate mode
 
@@ -488,7 +494,7 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
-        
+
     }
 })
 
@@ -498,29 +504,30 @@ modeToggle.on(`change`, function () {
 youtubeFetchBtn.on(`click`, fetchYoutube)
 
 // rewrite Favorites
-// function changeFavoriteUserData() {
-    //     var currentMotivator = document.getElementById('currentMotivator')
-    //     let loadUser = JSON.parse(localStorage.getItem("User"));
-    //     console.log(loadUser.motivator)
-    //     currentMotivator.textContent = loadUser.motivator
-    
-    //     rewriteMotivator.submit(function(event) {
-        //             event.preventDefault();
-        //             document.getElementById('textbox_id').value
-        //             console.log("100");
-        //             localStorage.setItem("User", JSON.stringify(""))
-        //         })
-        
-        // }
-        // changeFavoriteUserData();
+
+var Makeitso = document.getElementById("Makeitso")
+Makeitso.addEventListener('click', function(e){
+    e.preventDefault()
+    let localStoredTaskList = [];
+    let loadUser = JSON.parse(localStorage.getItem("User"));
+    var newMotivator = document.getElementById('newMotivator').value
+    var sameName = loadUser.name
+    console.log(loadUser.name, "IS THIS IT")
+    console.log(newMotivator)
+    var objUser = {
+        name: sameName,
+        motivator: newMotivator
+    }
+    console.log(objUser);
+    console.log('click')
+    console.log(e)
+    localStoredTaskList.push(objUser);
+    localStorage.setItem("User", JSON.stringify(objUser))
+    document.querySelector('#userNameHere').textContent = "Welcome, " + sameName;
+    document.getElementById('currentMotivator').textContent = newMotivator;
+    youtubeSearch = loadUser.motivator
+    return
+})
 
 
 
-// Launches welcome statement
-loadUserData();
-
-// Modal function
-$(document).ready(function () {
-    $('.modal').modal();
-    $('.parallax').parallax();
-});
