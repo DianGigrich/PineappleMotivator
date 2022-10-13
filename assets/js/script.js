@@ -3,6 +3,7 @@ let userInfo = {};
 
 // exp bar
 let exp = 0;
+let savedLevel;
 let level = 1;
 var easyEXP = document.querySelector(".easy");
 var mediumEXP = document.querySelector(".medium");
@@ -16,18 +17,21 @@ let listedTasks = $('#taskList');
 let youtubeAPIKey1 = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 let youtubeAPIKey2 = `AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`;
 let youtubeSearch = ``;
-let youtubeFetchBtn = $(`#youtube-fetch-btn`)
-let subtaskAmount = 0;
-let storedMultipleTasks
+let youtubeFetchBtn = $(`#youtube-fetch-btn`);
+let storedMultipleTasks;
 
 // Pirate mode variables
-var motivationalsChange = document.querySelector("article")
+var pirateKey = 'gkK3Z1JjIocTV2oE23wLYweF';
+var motivationalsChange = document.querySelector("article");
 let modeToggle = $(`input:checkbox`);
-// Default mode to 'light'
-var mode = "light"
-
 var motivSec = document.querySelector("#motivating");
-var pirateSec = document.querySelector("#demotivating")
+var pirateSec = document.querySelector("#demotivating");
+// Default mode to 'light'
+var mode = "light";
+
+var rewriteMotivator = document.getElementById('rewriteMotivator')
+
+
 // Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
@@ -39,7 +43,24 @@ function loadUserData() {
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
     checkTasks();
     youtubeSearch = loadUser.motivator
+   
+    //load the user's level and exp then display it
+   let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
+   document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+   if (loadLevel.level == null || loadLevel.exp == null)
+   {
+    level = 1;
+    exp = 0;
+   }
+   else
+   {
+    level = loadLevel.level;
+    exp = loadLevel.exp;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+   }
 };
+
 
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
@@ -366,9 +387,16 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
         }
     })
 
-// ======================================ran out of times to do it, but it worked!
-
 // ========================================================
+
+function saveUserLvl()
+{
+    let currentLevel = {
+        exp: exp.valueOf(),
+        level: level.valueOf()
+    }
+        localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
+}
 
 function updateEXP() {
     level += 1;
@@ -376,6 +404,7 @@ function updateEXP() {
     toggleYoutubeModal()
     document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
     exp -= 100;
+        saveUserLvl();
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -393,7 +422,7 @@ function updateEXP() {
 
 function updateEasy() {
     exp += 25;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
@@ -403,7 +432,7 @@ function updateEasy() {
 
 function updateMedium() {
     exp += 50;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
@@ -414,7 +443,7 @@ function updateMedium() {
 
 function updateHard() {
     exp += 75;
-
+    saveUserLvl();
     if (exp >= 100) {
         updateEXP();
     }
@@ -459,7 +488,26 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
+
     }
 })
+
+
+
 // fetches youtube data on button click
 youtubeFetchBtn.on(`click`, fetchYoutube)
+
+// rewrite Favorites
+function changeFavoriteUserData() {
+    var currentMotivator = document.getElementById('currentMotivator')
+    let loadUser = JSON.parse(localStorage.getItem("User"));
+    console.log(loadUser.motivator)
+    currentMotivator.textContent = loadUser.motivator
+        
+    rewriteMotivator.submit(function(event) {
+            event.preventDefault();
+            console.log("100");
+        })
+    
+}
+changeFavoriteUserData()
