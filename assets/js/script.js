@@ -204,6 +204,7 @@ listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
+    clicked.parentElement.setAttribute("class", "hide");
 });
 
 // completing projects
@@ -225,6 +226,7 @@ listedTasks.on("click", ".completeBtn", function (event) {
         updateHard();
     }
     deleteTask(task);
+    clicked.parentElement.setAttribute("class", "hide");
 })
 
 
@@ -239,7 +241,7 @@ function deleteTask(task) {
     })
 
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
-    window.location.reload();
+    // window.location.reload();
 }
 
 
@@ -333,7 +335,7 @@ function createTask() {
 
 // proof of concept youtube API fetch
 function fetchYoutube() {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&safeSearch=strict&videoDuration=short&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
         .then(function (response) {
             return response.json()
         })
