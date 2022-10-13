@@ -25,8 +25,8 @@ let modeToggle = $(`input:checkbox`);
 // Default mode to 'light'
 var mode = "light"
 
-
-
+var motivSec = document.querySelector("#motivating");
+var pirateSec = document.querySelector("#demotivating")
 // Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
@@ -171,7 +171,8 @@ $(document).click(function (event) {
         $(clicked).parent(`div`).hide()
     }
 
-    else if (clicked.className === `hard`) {
+    else if (clicked.className === `hard`)
+    {
         // run exp function
         updateHard();
         $(clicked).parent(`div`).hide()
@@ -261,38 +262,38 @@ function fetchYoutube() {
         })
 }
 
-// TODO:is this variable necessary
-var motivSec;
+
+
 // proof of concept motivational quote api
 function displayMotiv(mwords) {
+
     console.log(mwords)
-    motivSec = document.querySelector("#motivating")
     motivSec.textContent = mwords.quote + ". " + mwords.person
-    motivSec = mwords.quote + ". " + mwords.person
+    var motivQuote = mwords.quote + ". " + mwords.person
     console.log(mwords.quote, "1")
+
     // pirate translator api==================================================
+
     function displayPirate(pwords) {
         console.log(pwords)
-        var pirateSec = document.querySelector("#demotivating")
+
         pirateSec.textContent = pwords.contents.translated
-        console.log(pwords.contents.translated)
-
-
+        console.log(pwords.contents.translated, "2")
     }
 
-    // var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?text='+ motivSec;
+    var pirateURL = 'https://api.funtranslations.com/translate/pirate.json?api_key=gkK3Z1JjIocTV2oE23wLYweF&text=' + motivQuote;
     console.log(pirateURL)
     fetch(pirateURL)
         .then(function (response) {
             console.log(response);
             if (response.ok) {
                 response.json().then(function (data) {
-
-                    displayPirate()
+                    displayPirate(data)
                 })
             }
         })
-    return motivSec
+    // return motivSec
+    console.log(motivSec, "3")
 }
 
 fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
@@ -305,16 +306,17 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
             })
         }
     })
-console.log(motivSec, "after return")
+
+// ======================================ran out of times to do it, but it worked!
 
 // ========================================================
 
 function updateEXP() {
     level += 1;
-    //add a level up
-    toggleYoutubeModal()
-    document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
-    exp -= 100;
+        //add a level up
+        toggleYoutubeModal()
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+        exp -= 100;
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -326,8 +328,8 @@ function updateEXP() {
     lvlNotify.style.opacity = '1';
     void lvlNotify.offsetWidth;
 
-    lvlNotify.style.transition = 'opacity 5s';
-    lvlNotify.style.opacity = '0';
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
 }
 
 function updateEasy() {
@@ -386,15 +388,19 @@ modeToggle.on(`change`, function () {
         mode = "pirate"
         $('body').addClass("pirateBody")
         motivationalsChange.setAttribute("class", "pirateMotivationals")
+        pirateSec.removeAttribute("display", "none")
+         motivSec.setAttribute("display", "none")
+       
     }
     // remove pirate mode
     else {
-        mode = "light";
+        mode = "pirate";
         $('body').removeClass("pirateBody")
         motivationalsChange.removeAttribute("class", "pirateMotivationals")
         motivationalsChange.setAttribute("class", "motivationals")
+        pirateSec.setAttribute("display", "none")
+        motivSec.removeAttribute("display", "none")
     }
 })
-
 // fetches youtube data on button click
 youtubeFetchBtn.on(`click`, fetchYoutube)
