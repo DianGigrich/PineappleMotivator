@@ -19,7 +19,11 @@ let youtubeSearch = ``;
 let youtubeFetchBtn = $(`#youtube-fetch-btn`)
 let storedMultipleTasks
 
-
+// Pirate mode variables
+var motivationalsChange = document.querySelector("article")
+let modeToggle = $(`input:checkbox`);
+// Default mode to 'light'
+var mode = "light"
 
 var motivSec = document.querySelector("#motivating");
 var pirateSec = document.querySelector("#demotivating")
@@ -167,7 +171,8 @@ $(document).click(function (event) {
         $(clicked).parent(`div`).hide()
     }
 
-    else if (clicked.className === `hard`) {
+    else if (clicked.className === `hard`)
+    {
         // run exp function
         updateHard();
         $(clicked).parent(`div`).hide()
@@ -308,10 +313,10 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 
 function updateEXP() {
     level += 1;
-    //add a level up
-    toggleYoutubeModal()
-    document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
-    exp -= 100;
+        //add a level up
+        toggleYoutubeModal()
+        document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
+        exp -= 100;
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
@@ -323,8 +328,8 @@ function updateEXP() {
     lvlNotify.style.opacity = '1';
     void lvlNotify.offsetWidth;
 
-    lvlNotify.style.transition = 'opacity 5s';
-    lvlNotify.style.opacity = '0';
+        lvlNotify.style.transition = 'opacity 5s';
+        lvlNotify.style.opacity = '0';
 }
 
 function updateEasy() {
@@ -375,20 +380,7 @@ $(document).ready(function () {
 });
 
 // pirate mode
-var motivationalsChange = document.querySelector("article")
 
-let modeToggle = $(`input:checkbox`);
-
-// default mode to light
-var mode = "light"
-
-function toPirate() {
-    console.log(`I will change to dark mode`)
-    $(body).setAttrube("pirateBody")
-}
-function removePirate() {
-    console.log(`I will change to light mode`)
-}
 
 // dark mode toggle
 modeToggle.on(`change`, function () {
@@ -410,6 +402,5 @@ modeToggle.on(`change`, function () {
         motivSec.removeAttribute("display", "none")
     }
 })
-
 // fetches youtube data on button click
 youtubeFetchBtn.on(`click`, fetchYoutube)
