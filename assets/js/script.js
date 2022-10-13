@@ -199,9 +199,11 @@ function saveChanges(clicked) {
 };
 
 // handle completed subtasks
-listedTasks.on("click", ".subtaskCheckbox", function (event) {
-
-})
+listedTasks.on("click", ".delete-project", function(event) {
+    var clicked = event.target
+    let task = clicked.parentElement.id;
+    deleteTask(task)
+});
 
 // completing projects
 listedTasks.on("click", ".completeBtn", function (event) {
@@ -223,6 +225,8 @@ listedTasks.on("click", ".completeBtn", function (event) {
     }
     deleteTask(task);
 })
+
+
 
 function deleteTask(task) {
     storedMultipleTasks = storedMultipleTasks.filter(function (e) {
