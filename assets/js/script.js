@@ -43,10 +43,18 @@ function loadUserData() {
     //load the user's level and exp then display it
    let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
-   level = loadLevel.level;
-   exp = loadLevel.exp;
-   document.querySelector(".levelFill").style.width = `${exp}%`;
-   document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+   if (loadLevel.level == null || loadLevel.exp == null)
+   {
+    level = 1;
+    exp = 0;
+   }
+   else
+   {
+    level = loadLevel.level;
+    exp = loadLevel.exp;
+    document.querySelector(".levelFill").style.width = `${exp}%`;
+    document.querySelector(".levelPrcnt").textContent = `${exp}%`;
+   }
 };
 
 
