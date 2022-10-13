@@ -228,7 +228,6 @@ function createTask() {
         exp: document.querySelector('#difficultySelect').value,
         savedNote: "",
         subtaskArray: []
-        // subtasks: document.querySelector('#subtaskSelect').value
     };
 
     // checks to see if there are any other tasks with the same name, if there are then a message is displayed
