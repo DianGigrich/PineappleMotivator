@@ -41,6 +41,9 @@ font-size: x-large;
 text-align:center;
 }
 
+nav {
+  background: none;
+}
 /* pirate changes */
 .pirateBody { 
   font-family: 'Satisfy';

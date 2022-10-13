@@ -25,7 +25,6 @@
 </head>
 
 
-
 <body class="animate__animated animate__fadeIn">
   <!-- Title Start -->
   <div class="level">
@@ -45,10 +44,32 @@
   <!-- Title End -->
 
 
-  <!-- Modal Stuff Start -->
-  <div class="center-align">
-    <a href="#" class="bts btn waves-effect waves-light red z-depth-3" onclick="toggleModal()">Create a task</a>
+  <nav class="center">
+    <a href="#rewriteMotivator" class="bts btn waves-effect waves-light red modal-trigger" >Change
+      motivator</a>
+
+    <a href="#" class="bts btn waves-effect waves-light red" onclick="toggleModal()">Create a task</a>
+
+  </nav>
+
+  <!-- rewriteFavorite choice -->
+  <div id="rewriteMotivator" class="modal">
+    <div class="modal-content">
+      <h4>Current Motivator:</h4>
+      <h2 id="currentMotivator" class="center-align"></h2>
+      <h4>My favorite thing today is...</h4>
+      <input id="last_name" type="text" class="validate">
+      <label for="last_name">Favorite Thing</label>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Make it so.</a>
+    </div>
   </div>
+  <!-- rewriteFavorite end -->
+
+
+  <!-- Modal Stuff Start -->
+
 
   <section class="infomodal">
     <div id="modal3" class="modal">
@@ -99,7 +120,7 @@
           <a href="#" class="modal-close hoverable pulse btn-flat">Close</a>
 
         </div>
-        <!-- footer button end -->
+        <!-- modal footer button end -->
   </section>
 
 
