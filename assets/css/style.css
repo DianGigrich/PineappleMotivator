@@ -66,14 +66,15 @@ font-size: x-large;
 .modal-content {
   background: var(--ltgray);
   border: 2px solid var(--brown);
-  
+
 }
 
 .task {
   border-radius: 2px !important;
   background-color: var(--wood) !important;
-  padding: 10px !important;
+  padding: 2%;
   border: 2px solid var(--brown);
+
 }
 
 
@@ -166,6 +167,14 @@ footer {
   text-decoration:none;
   color: var(--dkgray)
 }
+
 a { color: var(--dkgray); text-decoration: none; }
 a:hover   { color: var(--red); text-decoration: none; }
 
+button {
+  background-color: var(--ltgray);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+  padding: 1%;
+  margin: 1%;
+}
