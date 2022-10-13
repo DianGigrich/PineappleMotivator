@@ -44,7 +44,7 @@ text-align:center;
 /* pirate changes */
 .pirateBody { 
   font-family: 'Satisfy';
-  background: url("/assets/Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
+  background: url("./../Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -55,7 +55,7 @@ text-align:center;
 
 .pirateMotivationals {
   color: var(--black);
-  background-image: url("/assets/Images/981.jpg");
+  background-image: url("./../Images/981.jpg");
   background-size: cover;
   border: 3px solid var(--brown);
   background-position: fixed;

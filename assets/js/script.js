@@ -247,7 +247,7 @@ function createTask() {
 
 // proof of concept youtube API fetch
 function fetchYoutube() {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&safeSearch=strict&videoDuration=short&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
         .then(function (response) {
             return response.json()
         })
