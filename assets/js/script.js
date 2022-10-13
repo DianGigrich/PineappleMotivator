@@ -16,17 +16,21 @@ let listedTasks = $('#taskList');
 let youtubeAPIKey1 = `AIzaSyAeZ3OPG8Md9rwhI3CzE3KoUWYC45JHKWw`;
 let youtubeAPIKey2 = `AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`;
 let youtubeSearch = ``;
-let youtubeFetchBtn = $(`#youtube-fetch-btn`)
-let storedMultipleTasks
+let youtubeFetchBtn = $(`#youtube-fetch-btn`);
+let storedMultipleTasks;
 
 // Pirate mode variables
-var motivationalsChange = document.querySelector("article")
+var pirateKey = 'gkK3Z1JjIocTV2oE23wLYweF';
+var motivationalsChange = document.querySelector("article");
 let modeToggle = $(`input:checkbox`);
-// Default mode to 'light'
-var mode = "light"
-
 var motivSec = document.querySelector("#motivating");
-var pirateSec = document.querySelector("#demotivating")
+var pirateSec = document.querySelector("#demotivating");
+// Default mode to 'light'
+var mode = "light";
+
+
+
+
 // Checks to see if the user has created a locally stored profile here before, if not then they are sent to the userForm.html page to make a new profile
 // On page load inserts a welcome message for the user based on the name they stored locally
 function loadUserData() {
@@ -40,6 +44,16 @@ function loadUserData() {
     youtubeSearch = loadUser.motivator
 };
 
+// rewrite Favorites
+function changeFavoriteUserData() {
+    let loadMotivator = JSON.parse(localStorage.getItem("motivator"));
+    if (loadMotivator == null) {
+        window.location.href = "./pages/userForm.html";
+        return
+    }
+    else {
+        
+    }
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
@@ -113,7 +127,11 @@ function createCard(task) {
         completeBtn.setAttribute('class', 'hard');
         div.append(completeBtn);
     }
-
+    let loadUser = JSON.parse(localStorage.getItem("User"));
+    if (loadUser == null) {
+                    return
+    }
+ 
 
     listedTasks.append(div);
     // create subtasks button
@@ -389,7 +407,6 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "pirateMotivationals")
         pirateSec.removeAttribute("display", "none")
          motivSec.setAttribute("display", "none")
-       
     }
     // remove pirate mode
     else {
@@ -399,7 +416,12 @@ modeToggle.on(`change`, function () {
         motivationalsChange.setAttribute("class", "motivationals")
         pirateSec.setAttribute("display", "none")
         motivSec.removeAttribute("display", "none")
+
     }
 })
+
+
+
 // fetches youtube data on button click
 youtubeFetchBtn.on(`click`, fetchYoutube)
+
