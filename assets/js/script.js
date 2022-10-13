@@ -237,7 +237,6 @@ function createTask() {
         exp: document.querySelector('#difficultySelect').value,
         savedNote: "",
         subtaskArray: []
-        // subtasks: document.querySelector('#subtaskSelect').value
     };
 
     // checks to see if there are any other tasks with the same name, if there are then a message is displayed
@@ -257,7 +256,7 @@ function createTask() {
 
 // proof of concept youtube API fetch
 function fetchYoutube() {
-    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&safeSearch=strict&videoDuration=short&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
         .then(function (response) {
             return response.json()
         })
@@ -413,7 +412,7 @@ modeToggle.on(`change`, function () {
     }
     // remove pirate mode
     else {
-        mode = "pirate";
+        mode = "light";
         $('body').removeClass("pirateBody")
         motivationalsChange.removeAttribute("class", "pirateMotivationals")
         motivationalsChange.setAttribute("class", "motivationals")
