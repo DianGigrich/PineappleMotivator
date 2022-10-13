@@ -3,6 +3,7 @@ let userInfo = {};
 
 // exp bar
 let exp = 0;
+let savedLevel;
 let level = 1;
 var easyEXP = document.querySelector(".easy");
 var mediumEXP = document.querySelector(".medium");
@@ -38,6 +39,8 @@ function loadUserData() {
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
     checkTasks();
     youtubeSearch = loadUser.motivator
+   //let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
+    document.querySelector(".skillLevel").textContent = "Level: " + savedLevel.level;
 };
 
 
@@ -312,11 +315,16 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 // ========================================================
 
 function updateEXP() {
+    let currentLevel = {
+        exp: exp.valueOf(),
+        level: level.valueOf()
+    }
     level += 1;
         //add a level up
         toggleYoutubeModal()
         document.querySelector(".skillLevel").textContent = `${"Level: " + level}`;
         exp -= 100;
+        localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
 
     //remove the percentage then show again
     lvlPercentage.style.visibility = "hidden";
