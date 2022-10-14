@@ -77,17 +77,27 @@ text-align:center;
   border: 2px solid var(--brown);
 
 }
-
+/* project cards */
 .task {
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  justify-content: space-between;
   border-radius: 2px !important;
   background-color: var(--wood) !important;
   border: 2px solid var(--brown);
+  width:380px;
   padding: 2%;
+  margin: 5px;
   opacity: 1;
   transition: all 2s;
 }
 
-/* image styling */
+.tasks {
+  display:flex;
+  flex-wrap:wrap;
+}
+
 .task-img {
   width: 200px;
   height: auto;
@@ -187,7 +197,7 @@ footer a { color: var(--dkgray); text-decoration: none; }
 footer a:hover   { color: var(--red); text-decoration: none; }
 
 button {
-  background-color: var(--ltgray);
+  background-color: var(--orange);
   border: 2px solid var(--brown);
   border-radius: 4px;
   padding: 1%;
@@ -270,6 +280,4 @@ button {
 }
 
 
-.scale-out{
-display:none;
-}
+

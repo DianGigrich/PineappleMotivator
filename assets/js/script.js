@@ -62,11 +62,11 @@ function loadUserData() {
     //     exp = 0;
     // }
     // else {
-        level = loadLevel.level;
-        exp = loadLevel.exp;
+    //     level = loadLevel.level;
+    //     exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-    // }
+    // // }
 };
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
@@ -115,18 +115,18 @@ function createCard(task) {
     div.setAttribute("class", "task card z-depth-3 p-2");
     div.id = task.taskName;
     completeBtn.innerText = `Project Completed!`;
-    //completeBtn.setAttribute(`class`,`complete-project`);
+    completeBtn.setAttribute(`class`,`complete-project btn waves-effect waves-light red`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`class`, `subtask-btn`);
+    subtaskBtn.setAttribute(`class`, `subtask-btn btn waves-effect deep-orange`);
     saveBtn.innerText = "Save changes!";
-    saveBtn.setAttribute("class", "saveBtn");
+    saveBtn.setAttribute("class", "saveBtn btn waves-effect waves-light deep-orange");
     textarea.innerText = task.savedNote || "Notes go here!";
     textarea.id = "textarea-" + task.taskName;
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
-    removeBtn.setAttribute(`class`, `delete-project swing`);
+    removeBtn.setAttribute(`class`, `delete-project btn waves-effect waves-light deep-orange darken-4 swing`);
     img.setAttribute(`class`, `task-img`)
 
     if (task.exp == 1) {
@@ -284,8 +284,6 @@ function toggleYoutubeModal() {
 }
 
 
-
-
 // Creates an object that locally stores the most recent input value
 // Adds that object to the global variable (which is an array) storedMultipleTasks
 // Makes a new card with the most recent taskDetails
@@ -311,6 +309,11 @@ function createTask() {
     storedMultipleTasks.push(taskDetails);
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
     createCard(taskDetails);
+};
+
+function deleteUserData() {
+    localStorage.clear();
+    window.location.reload()
 };
 
 // proof of concept youtube API fetch
@@ -377,6 +380,8 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 // ========================================================
 
 function saveUserLvl() {
+    
+
     currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
@@ -540,7 +545,9 @@ listedTasks.on("click", ".subtask-btn", function (event) {
     let currentSubtasksAmount = taskObject.subtaskArray.length;
     let currentCheckBoxAmount = taskObject.checkboxArray.length;
 
-    if (clicked.className === `subtask-btn`) {
+    if (clicked.className === `subtask-btn btn waves-effect deep-orange`) {
+        console.log('clicked');
+        
         var checkboxContainer = $(`<form><p>
         <label>
           <input type="checkbox" class="subtaskCheckbox" id="checkbox-${task}${(currentCheckBoxAmount + 1)}" />
