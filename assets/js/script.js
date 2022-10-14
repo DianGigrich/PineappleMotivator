@@ -47,6 +47,7 @@ function loadUserData() {
 
 
     // load the user's level and exp then display it
+    saveUserLvl();
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
     document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
