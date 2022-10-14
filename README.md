@@ -1,77 +1,75 @@
 # PineappleMotivator
+This application helps you stay focused on your ongoing projects and provides a motivation to complete the tasks by 'gamifying' the experience. 
 
-
-# USER STORY
+## USER STORY
 AS A user I need motivation
 I WANT help tracking my projects and staying motivated
 SO THAT I can complete my projects
 
-# Acceptance
+## Acceptance Criteria
 GIVEN I enter the site for the time
 THEN I can enter my name and favorite thing
+WHEN I have netered my name and favporite thing 
+THEN I am greeted by the main page that has a motivational quote, toggle to pirate mode, option to create a task, my level/exp, and an option to change my motivation.
+WHEN I click the pirate mode toggle
+THEN my motivational quote and display turn pirate themed.
+WHEN I create a task
+THEN I am prompted with a modal to input my project name and difficulty
+WHEN I try to create a task with the same name as another task
+THEN I am given an error message and told to input a differnt project name
+WHEN I submit this inpoformation
+THEN a card is created on the main page with the information I put in, a representative motivational image related to the project difficulty, a create subtasks button, a notes section, a save changes button, and a delete project button.
+WHEN i click on create a subtask
+THEN it creates a checkbox and text area for me to write what the subtask is and check it off upon completion
+WHEN I click save changes
+THEN everything is saved to local storage so that if I close the page and reopen it my information will still be there
+WHEN I delete a task
+THEN the project card will disappear and it will not affect my level/exp
+WHEN I complete a task
+THEN I see my exp bar fill up based on the difficulty level of the task
+WHEN my exp bar fills up
+THEN a modal appears with a button to bring up YouTube videos related to my motivation that I can choose from.
+WHEN I click on a YouTube video
+THEN it opens the video in another tab
 
-GIVEN I enter the site for the first time
-THEN I am greeted by a motivational quote
+## Installation
+there is no installation necessary and our applicatioin can be accessed from any web browser at this URL: [insert url here]
 
-WHEN I click the dark mode toggle
-THEN my motivational quote and display turn dark
+## Usage 
+If it is the first time loading the page or you clear your local storage then you will immediately be prompted to input your name and a motivational item (i.e. cats, dogs, etc.).
 
-GIVEN I have a project to start
-WHEN I enter the site
-THEN I am prompted to enter my project name and difficulty
+![](./assets/Images/user-input-page.PNG) 
 
-GIVEN I sumbited that information
-WHEN I return to the site
-THEN  I can see it and my progress tracker towards my favorite thing
+![](./assets/Images/main-page-empty.PNG)
 
-GIVEN I can see it
-WHEN I can enter subtasks
-THEN I can add tasks and delete them
+When you submit this information, you are taken to the main page that has a number of different features. At the top of the page, there is a level and exp bar. The exp bar indicates how close you are to rewarding yourself with a YouTube video (which happens on level up) as well as a level indiccating your progress on consistently completing tasks using the application. There is a button that gives the user an option to change their motviation if they get tired of their original input. There is a motivational quote loaded to the page with a pirate toggle right next to it. If the pirate toggle is flipped then the page transforms the color scheme and style to a nautical pirate theme and translates the motivational quote into 'pirate.' 
 
-WHEN I finish a project
-THEN it goes away and I can access it later
+![](./assets/Images/main-page-pirate.PNG)
 
-WHEN I finish a task
-THEN the progress tracker fills up
+The create task button brings up a modal to put in all of your project information. The name of the project cannot match another active project or you will get an error message within the modal saying that you must have a project name that does not match another. Additionally, you will be prompted to select the difficulty of the task and the exp earned for the task will depend on the difficulty as you should be rewarded more for a more difficult task. 
 
-WHEN the progress tracker is full
-THEN a youtube video pops up of your favorite thing and I can choose from 5 videos
+![](./assets/Images/create-task-modal.PNG)
 
+When you hit submit, a project card will be created. On this project card you will see the name and difficulty that you had just put in. as well as some other content. At the top there is a complete project button which will mark the project as complete and delete the card and award you the exp for completing the task. There is a graphic relating to the difficulty of the project. There is a button to create subtasks which creates a checkbox and text area for you to use to break down you project into smaller sections. There is a notes section to keep track of any notes about the project that you may want. There is a save changes button which saves any changes you make to this card; if you do not hit this button your changes will not be saved upon refresh/reload. There is also a delete button for you to delete the project; this works like the complete project button except that it does not award the exp as you are not completing the task. 
 
-MANATEE TANK
-wireframe
-role breakdown
-kanban board w/ tasks assigned
-api;s make sure they work
-rouch schedule, tasks/ milestones
-=======
-html psuedo
-//seperate loading page**
-//   asks for name and fav things
-//main page**
-//header*
-//welcomes user by name (storage) 
-//exp bar 
-//completed projects history button (redirects to different page?)
-//main* section 1*
-//motivational quote
-//toggle for dark mode
-//create a task button
-//brings up modal with difficulty selection, project name, # of subtasks, picture?
-//tasks housed in section 2*
-//hamburger menu to see subtasks, delete button, place for notes?
+![](./assets/Images/test-task.PNG)
 
+## Credits
+While this project was created entirely from scratch by Dian Gigrich, Erik Buss, Kristen Killingsworth, and David Kovalchuk, we utilized a number of resourse from other places. 
 
-JavaScript
-//if local storage empty, direct to form page, else load main page
-//tasks in local storage
-//event listener create task button brings up modal
-//if exp >= limit show Youtube video selection
-//reset exp back to 0
-//if time-- make limit increase exponetnially
-//fetch motivationl quote and display on page
-//event listener for light mode/dark mode toggle
-//fetch demotivational 'quote' and display on page for dark mode
-//event listener for hamburger menu
-//on tasks prevent defualt to save checkbox (subtasks) input -> local storage 
+The APIs that we used are:
 
+- [YoutTube API] (https://developers.google.com/youtube/v3)
+- [Motivational Quote API] (https://motivational-quote-api.herokuapp.com/)
+- [Pirate Translator API] (https://pirate.monkeyness.com/api.html)
+- [Materialize] (https://materializecss.com/getting-started.html)
+- [JQuery] (https://api.jquery.com/)
+- [Google Fonts API] (https://developers.google.com/fonts/docs/developer_api)
+- [animate CSS] (https://cdnjs.com/libraries/animate.css)
+
+The Images that we used were all free to use/royalty free:
+- [Parchment pirate background](https://www.freepik.com/free-vector/old-nautical-map-template_7998456.htm#query=parchment&from_query=parchemnt&position=22&from_view=search&track=sph)
+- [Main Pirate Background](https://www.pexels.com/photo/photo-of-sea-waves-1802266/)
+- [Easy task picture](https://unsplash.com/photos/_SEbdtH4ZLM)
+- [Medium task picture](https://unsplash.com/photos/JRPTaUQS43g)
+- [Hard task picture](https://unsplash.com/photos/bdYyOOGakBE)
