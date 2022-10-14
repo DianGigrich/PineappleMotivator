@@ -47,7 +47,6 @@ function loadUserData() {
 
 
     // load the user's level and exp then display it
-    saveUserLvl();
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
     document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
@@ -106,7 +105,7 @@ function createCard(task) {
     let textarea = document.createElement("textarea");
 
 
-    div.setAttribute("class", "task container z-depth-3 p-2");
+    div.setAttribute("class", "task card z-depth-3 p-2");
     div.id = task.taskName;
     completeBtn.innerText = `Project Completed!`;
     //completeBtn.setAttribute(`class`,`complete-project`);
@@ -121,25 +120,25 @@ function createCard(task) {
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
     removeBtn.setAttribute(`class`, `delete-project swing`);
-    img.setAttribute(`class`,`task-img`)
+    img.setAttribute(`class`, `task-img`)
 
     if (task.exp == 1) {
         completeBtn.setAttribute('class', 'easy completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/pablo-arroyo-_SEbdtH4ZLM-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
     else if (task.exp == 2) {
         completeBtn.setAttribute('class', 'medium completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/ashley-whitlatch-JRPTaUQS43g-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
     else {
         completeBtn.setAttribute('class', 'hard completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/jess-zoerb-bdYyOOGakBE-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
 
     // var checked = JSON.parse(localStorage.getItem('checkbox1zaal1'));
@@ -217,14 +216,11 @@ listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
-        clicked.parentElement.setAttribute("class", "hide");
-        // clicked.parentElement.setAttribute("class", "scale-transition scale-out");
-        // if (clicked === 'hide') {
-        //     setTimeout(function(){
-        //       clicked.parentElement.style.display = 'none';
-        //       console.log(clicked.parentElement.style.display, "huh")
-        //     },1000);
-        // }
+    clicked.parentElement.style.opacity = 0;
+    clicked.parentElement.style.transform = 'scale(0)';
+    setTimeout(function () {
+        clicked.parentElement.style.display = "none";
+    }, 1000);
 });
 
 // completing projects
@@ -332,8 +328,8 @@ function fetchYoutube() {
 function displayMotiv(mwords) {
 
     console.log(mwords)
-    motivSec.textContent = mwords.quote + ". " + mwords.person
-    var motivQuote = mwords.quote + ". " + mwords.person
+    motivSec.textContent = mwords.quote + ". -" + mwords.person
+    var motivQuote = mwords.quote + ". -" + mwords.person
     console.log(mwords.quote, "1")
 
     // pirate translator api==================================================
@@ -468,7 +464,7 @@ youtubeFetchBtn.on(`click`, fetchYoutube)
 // rewrite Favorites
 
 var Makeitso = document.getElementById("Makeitso")
-Makeitso.addEventListener('click', function(e){
+Makeitso.addEventListener('click', function (e) {
     e.preventDefault()
     let localStoredTaskList = [];
     let loadUser = JSON.parse(localStorage.getItem("User"));
