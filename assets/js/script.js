@@ -122,7 +122,7 @@ function createCard(task) {
     textarea.id = "textarea-" + task.taskName;
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
-    removeBtn.setAttribute(`class`, `delete-project`)
+    removeBtn.setAttribute(`class`, `delete-project swing`)
 
     if (task.exp == 1) {
         completeBtn.setAttribute('class', 'easy completeBtn');
@@ -204,7 +204,14 @@ listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
-    clicked.parentElement.setAttribute("class", "hide");
+        clicked.parentElement.setAttribute("class", "hide");
+        // clicked.parentElement.setAttribute("class", "scale-transition scale-out");
+        // if (clicked === 'hide') {
+        //     setTimeout(function(){
+        //       clicked.parentElement.style.display = 'none';
+        //       console.log(clicked.parentElement.style.display, "huh")
+        //     },1000);
+        // }
 });
 
 // completing projects
