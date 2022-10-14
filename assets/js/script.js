@@ -489,8 +489,8 @@ modeToggle.on(`change`, function () {
         mode = "pirate"
         $('body').addClass("pirateBody")
         motivationalsChange.setAttribute("class", "pirateMotivationals")
-        pirateSec.removeAttribute("display", "none")
-        motivSec.setAttribute("display", "none")
+        pirateSec.removeAttribute("class", "hidden")
+        motivSec.setAttribute("class", "hide")
 
     }
     // remove pirate mode
@@ -499,8 +499,8 @@ modeToggle.on(`change`, function () {
         $('body').removeClass("pirateBody")
         motivationalsChange.removeAttribute("class", "pirateMotivationals")
         motivationalsChange.setAttribute("class", "motivationals")
-        pirateSec.setAttribute("display", "none")
-        motivSec.removeAttribute("display", "none")
+        pirateSec.setAttribute("class", "hide")
+        motivSec.removeAttribute("class", "hide")
 
     }
 })
