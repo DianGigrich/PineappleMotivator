@@ -1,0 +1,283 @@
+:root {
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+
+  /* pirate colors */
+  --black: #050404;
+  --dkgray: #252422;
+  --mdgray: #403D39;
+  --ltgray:#CCC5B9;
+  --whyte:#FFFCF2;
+  --orange:#EB5E28;
+  --red: #eb2d28;
+  --brown: #5e2a0e;
+  --wood: #a14818;
+}
+
+ .bts {
+  background-color: var(--red);
+  margin:1% !important;
+ }
+ 
+body {
+  background: url("./../Images/room pic.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: fixed;
+}
+
+.headerClr {
+  color: var(--red);
+}
+
+.txtColor{
+  color: var(--dkgray);
+}
+
+.motivationals {
+background:var(--mdgray);
+border: 2px solid var(--brown);
+border-radius: 15px !important;
+padding:2%;
+color:var(--whyte);
+font-size: x-large;
+text-align:center;
+}
+
+
+/* pirate changes */
+.pirateBody { 
+  font-family: 'Satisfy';
+  background: url("./../Images/pexels-ricardo-esquivel-1802268.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: fixed;
+
+}
+
+.pirateMotivationals {
+  color: var(--black);
+  background-image: url("./../Images/981.jpg");
+  background-size: cover;
+  border: 3px solid var(--brown);
+  background-position: fixed;
+  border-radius: 15px !important;
+padding:2%;
+font-size: x-large;
+text-align:center;
+
+}
+
+.modal-content {
+  background: var(--ltgray);
+  border: 2px solid var(--brown);
+
+}
+/* project cards */
+.task {
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  border-radius: 2px !important;
+  background-color: var(--wood) !important;
+  border: 2px solid var(--brown);
+  width:380px;
+  padding: 2%;
+  margin: 5px;
+  opacity: 1;
+  transition: all 2s;
+}
+
+.tasks {
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.task-img {
+  width: 200px;
+  height: auto;
+  border: 2px solid var(--brown);
+}
+
+.level {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  background: var(--whyte);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.levelFill {
+  width: 0%;
+  height: 100%;
+  background: var(--wood);
+  transition: all 3s;
+}
+
+.levelPrcnt {
+  position: absolute;
+  font: bold 25px 'Quicksand', sans-serif;
+  color: var(--whyte);
+}
+
+.levelNotify {
+  position: absolute;
+  font: bold 25px 'Quicksand', sans-serif;
+  color: yellow;
+  opacity: 0;
+}
+
+.skillLevel {
+  position: absolute;
+  font: bold 20px 'Quicksand', sans-serif;
+  color: var(--whyte);
+}
+
+.input-field {
+  background-color: white !important;
+}
+
+
+/* label color */
+.input-field label {
+  color: #000 !important;
+  font-size: 30px;
+  margin: -15px;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus+label {
+  color: #000 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000 !important;
+  box-shadow: 0 1px 0 0 #000 !important;
+}
+
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #000 !important;
+  box-shadow: 0 1px 0 0 #000 !important;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000 !important;
+  box-shadow: 0 1px 0 0 #000 !important;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000 !important;
+}
+
+
+/* switch text color */
+.switch label {
+  color: var(--whyte) !important;
+  font-size:large;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  text-decoration:none;
+  color: var(--dkgray)
+}
+
+footer a { color: var(--dkgray); text-decoration: none; }
+footer a:hover   { color: var(--red); text-decoration: none; }
+
+button {
+  background-color: var(--orange);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+  padding: 1%;
+  margin: 1%;
+  box-shadow: 0px 0px 10px 1px var(--brown);
+}
+/* delete project button swing */
+.swing:hover {
+        -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+}
+
+@-webkit-keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+       transform: translateX(-5px);
+    } 
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+
+
