@@ -196,12 +196,14 @@ function saveChanges(clicked) {
         taskObject.subtaskArray[i] = subtaskValue;
     }
 
+    for (let i = 0; i < taskObject.checkboxArray.length; i++) {
+        let checkboxValue = document.getElementById(`checkbox-${task}${(i + 1)}`).checked;
+        console.log(checkboxValue);
+
+        taskObject.checkboxArray[i] = checkboxValue;
+    }
+
     storedMultipleTasks[index] = taskObject;
-
-    // let newSubtask = document.getElementsById("" + taskObject.taskName).value;
-    // storedMultipleTasks[index].subtaskArray.push(newSubtask);
-
-
 
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
 
@@ -546,3 +548,48 @@ Makeitso.addEventListener('click', function(e){
 
 
 
+
+loadUserData();
+
+// Modal function
+$(document).ready(function () {
+    $('.modal').modal();
+    $('.parallax').parallax();
+});
+
+listedTasks.on("click", ".saveBtn", function (event) {
+    saveChanges(event.target);
+})
+
+// create subtasks, complete project, delete project
+listedTasks.on("click", ".subtask-btn", function (event) {
+    var clicked = event.target;
+    let task = clicked.parentElement.id;
+    let taskObject
+    let index
+    for (let i = 0; i < storedMultipleTasks.length; i++) {
+        const element = storedMultipleTasks[i];
+        if (element.taskName == task) {
+            taskObject = element;
+            index = i;
+        }
+    }
+
+    let currentSubtasksAmount = taskObject.subtaskArray.length;
+    let currentCheckBoxAmount = taskObject.checkboxArray.length;
+
+    if (clicked.className === `subtask-btn btn waves-effect deep-orange`) {
+        console.log('clicked');
+        
+        var checkboxContainer = $(`<form><p>
+        <label>
+          <input type="checkbox" class="subtaskCheckbox" id="checkbox-${task}${(currentCheckBoxAmount + 1)}" />
+          <span><textarea id="subtask-${task}${(currentSubtasksAmount + 1)}"></textarea></span>
+        </label>
+      </p></form>`)
+        $(clicked).parent(`div`).append(checkboxContainer)
+        // clicked.after(checkboxContainer)
+        storedMultipleTasks[index].checkboxArray.push("");
+        storedMultipleTasks[index].subtaskArray.push("");
+    }
+})
