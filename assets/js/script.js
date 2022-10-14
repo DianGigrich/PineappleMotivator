@@ -109,18 +109,18 @@ function createCard(task) {
     div.setAttribute("class", "task card z-depth-3 p-2");
     div.id = task.taskName;
     completeBtn.innerText = `Project Completed!`;
-    //completeBtn.setAttribute(`class`,`complete-project`);
+    completeBtn.setAttribute(`class`,`complete-project btn waves-effect waves-light red`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`class`, `subtask-btn`);
+    subtaskBtn.setAttribute(`class`, `subtask-btn btn waves-effect deep-orange`);
     saveBtn.innerText = "Save changes!";
-    saveBtn.setAttribute("class", "saveBtn");
+    saveBtn.setAttribute("class", "saveBtn btn waves-effect waves-light deep-orange");
     textarea.innerText = task.savedNote || "Notes go here!";
     textarea.id = "textarea-" + task.taskName;
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
-    removeBtn.setAttribute(`class`, `delete-project swing`);
+    removeBtn.setAttribute(`class`, `delete-project btn waves-effect waves-light deep-orange darken-4 swing`);
     img.setAttribute(`class`, `task-img`)
 
     if (task.exp == 1) {
@@ -276,8 +276,6 @@ function toggleYoutubeModal() {
         // $('.parallax').parallax();
     });
 }
-
-
 
 
 // Creates an object that locally stores the most recent input value
