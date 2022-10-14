@@ -16,12 +16,11 @@ submitUserInfoForm.submit(function(event) {
         motivator: userMotivator.val()
     };
 
+
     localStoredTaskList.push(userInfo);
     console.log(localStoredTaskList);
 
-
     localStorage.setItem("User", JSON.stringify(userInfo));
-
     window.location.assign("../index.html");
 
 });
