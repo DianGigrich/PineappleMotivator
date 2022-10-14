@@ -33,7 +33,7 @@ WHEN I click on a YouTube video
 THEN it opens the video in another tab  
 
 ## Installation
-There is no installation necessary and our applicatioin can be accessed from any web browser at this URL: [insert url here]
+There is no installation necessary and our applicatioin can be accessed from any web browser at this URL: https://diangigrich.github.io/PineappleMotivator/pages/userForm.html
 
 ## Usage 
 If it is the first time loading the page or you clear your local storage then you will immediately be prompted to input your name and a motivational item (i.e. cats, dogs, etc.).
