@@ -2,38 +2,38 @@
 This application helps you stay focused on your ongoing projects and provides a motivation to complete the tasks by 'gamifying' the experience. 
 
 ## USER STORY
-AS A user I need motivation
-I WANT help tracking my projects and staying motivated
-SO THAT I can complete my projects
+AS A user I need motivation  
+I WANT help tracking my projects and staying motivated  
+SO THAT I can complete my projects  
 
 ## Acceptance Criteria
-GIVEN I enter the site for the time
-THEN I can enter my name and favorite thing
-WHEN I have netered my name and favporite thing 
-THEN I am greeted by the main page that has a motivational quote, toggle to pirate mode, option to create a task, my level/exp, and an option to change my motivation.
-WHEN I click the pirate mode toggle
-THEN my motivational quote and display turn pirate themed.
-WHEN I create a task
-THEN I am prompted with a modal to input my project name and difficulty
-WHEN I try to create a task with the same name as another task
-THEN I am given an error message and told to input a differnt project name
-WHEN I submit this inpoformation
-THEN a card is created on the main page with the information I put in, a representative motivational image related to the project difficulty, a create subtasks button, a notes section, a save changes button, and a delete project button.
-WHEN i click on create a subtask
-THEN it creates a checkbox and text area for me to write what the subtask is and check it off upon completion
-WHEN I click save changes
-THEN everything is saved to local storage so that if I close the page and reopen it my information will still be there
-WHEN I delete a task
-THEN the project card will disappear and it will not affect my level/exp
-WHEN I complete a task
-THEN I see my exp bar fill up based on the difficulty level of the task
-WHEN my exp bar fills up
-THEN a modal appears with a button to bring up YouTube videos related to my motivation that I can choose from.
-WHEN I click on a YouTube video
-THEN it opens the video in another tab
+GIVEN I enter the site for the time  
+THEN I can enter my name and favorite thing  
+WHEN I have netered my name and favporite thing   
+THEN I am greeted by the main page that has a motivational quote, toggle to pirate mode, option to create a task, my level/exp, and an option to change my motivation.  
+WHEN I click the pirate mode toggle  
+THEN my motivational quote and display turn pirate themed.  
+WHEN I create a task  
+THEN I am prompted with a modal to input my project name and difficulty  
+WHEN I try to create a task with the same name as another task  
+THEN I am given an error message and told to input a differnt project name  
+WHEN I submit this inpoformation  
+THEN a card is created on the main page with the information I put in, a representative motivational image related to the project difficulty, a create subtasks button, a notes section, a save changes button, and a delete project button.  
+WHEN i click on create a subtask  
+THEN it creates a checkbox and text area for me to write what the subtask is and check it off upon completion  
+WHEN I click save changes  
+THEN everything is saved to local storage so that if I close the page and reopen it my information will still be there  
+WHEN I delete a task  
+THEN the project card will disappear and it will not affect my level/exp  
+WHEN I complete a task  
+THEN I see my exp bar fill up based on the difficulty level of the task  
+WHEN my exp bar fills up  
+THEN a modal appears with a button to bring up YouTube videos related to my motivation that I can choose from.  
+WHEN I click on a YouTube video  
+THEN it opens the video in another tab  
 
 ## Installation
-there is no installation necessary and our applicatioin can be accessed from any web browser at this URL: [insert url here]
+There is no installation necessary and our applicatioin can be accessed from any web browser at this URL: [insert url here]
 
 ## Usage 
 If it is the first time loading the page or you clear your local storage then you will immediately be prompted to input your name and a motivational item (i.e. cats, dogs, etc.).
@@ -55,17 +55,17 @@ When you hit submit, a project card will be created. On this project card you wi
 ![](./assets/Images/test-task.PNG)
 
 ## Credits
-While this project was created entirely from scratch by Dian Gigrich, Erik Buss, Kristen Killingsworth, and David Kovalchuk, we utilized a number of resourse from other places. 
+While this project was created entirely from scratch by Dian Gigrich, Erik Buss, Kristen Killingsworth, and David Kovalchuk; however, we utilized a number of resourse from other places. 
 
 The APIs that we used are:
 
-- [YoutTube API] (https://developers.google.com/youtube/v3)
-- [Motivational Quote API] (https://motivational-quote-api.herokuapp.com/)
-- [Pirate Translator API] (https://pirate.monkeyness.com/api.html)
-- [Materialize] (https://materializecss.com/getting-started.html)
-- [JQuery] (https://api.jquery.com/)
-- [Google Fonts API] (https://developers.google.com/fonts/docs/developer_api)
-- [animate CSS] (https://cdnjs.com/libraries/animate.css)
+- [YouTube API](https://developers.google.com/youtube/v3)
+- [Motivational Quote API](https://motivational-quote-api.herokuapp.com/)
+- [Pirate Translator API](https://pirate.monkeyness.com/api.html)
+- [Materialize](https://materializecss.com/getting-started.html)
+- [JQuery](https://api.jquery.com/)
+- [Google Fonts API](https://developers.google.com/fonts/docs/developer_api)
+- [Animate CSS](https://cdnjs.com/libraries/animate.css)
 
 The Images that we used were all free to use/royalty free:
 - [Parchment pirate background](https://www.freepik.com/free-vector/old-nautical-map-template_7998456.htm#query=parchment&from_query=parchemnt&position=22&from_view=search&track=sph)
@@ -73,3 +73,6 @@ The Images that we used were all free to use/royalty free:
 - [Easy task picture](https://unsplash.com/photos/_SEbdtH4ZLM)
 - [Medium task picture](https://unsplash.com/photos/JRPTaUQS43g)
 - [Hard task picture](https://unsplash.com/photos/bdYyOOGakBE)
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
