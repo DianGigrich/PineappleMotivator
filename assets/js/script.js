@@ -525,7 +525,9 @@ listedTasks.on("click", ".subtask-btn", function (event) {
     let currentSubtasksAmount = taskObject.subtaskArray.length;
     let currentCheckBoxAmount = taskObject.checkboxArray.length;
 
-    if (clicked.className === `subtask-btn`) {
+    if (clicked.className === `subtask-btn btn waves-effect deep-orange`) {
+        console.log('clicked');
+        
         var checkboxContainer = $(`<form><p>
         <label>
           <input type="checkbox" class="subtaskCheckbox" id="checkbox-${task}${(currentCheckBoxAmount + 1)}" />
