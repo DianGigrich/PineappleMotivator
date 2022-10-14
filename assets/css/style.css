@@ -80,6 +80,7 @@ text-align:center;
   border: 2px solid var(--brown);
 }
 
+/* image styling */
 .task-img {
   width: 200px;
   height: auto;
