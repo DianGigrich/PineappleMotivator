@@ -47,20 +47,21 @@ function loadUserData() {
 
 
     // load the user's level and exp then display it
-    saveUserLvl();
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
-    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
-    // if (loadLevel.level == null || loadLevel.exp == null) {
-    //     level = 1;
-    //     exp = 0;
-    // }
-    // else {
-    //     level = loadLevel.level;
-    //     exp = loadLevel.exp;
+     if (loadLevel == null) 
+     {
+        level = 1;
+        exp = 0;
+     }
+     else 
+     {
+        level = loadLevel.level;
+        exp = loadLevel.exp;
+        document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-    // }
+     }
 };
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
