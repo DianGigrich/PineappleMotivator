@@ -47,24 +47,21 @@ function loadUserData() {
 
 
     // load the user's level and exp then display it
+    saveUserLvl();
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
-    if (loadLevel == null) 
-    {
-        level = 1;
-        exp = 0;
-    }
-    else 
-    {
-        level = loadLevel.level;
-        exp = loadLevel.exp;
-        document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+    document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
+    // if (loadLevel.level == null || loadLevel.exp == null) {
+    //     level = 1;
+    //     exp = 0;
+    // }
+    // else {
+    //     level = loadLevel.level;
+    //     exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-    }
+    // }
 };
-
-loadUserData();
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
 function dropdownTranslate1(exp) {
@@ -109,56 +106,66 @@ function createCard(task) {
     let textarea = document.createElement("textarea");
 
 
-    div.setAttribute("class", "task container z-depth-3 p-2");
+    div.setAttribute("class", "task card z-depth-3 p-2");
     div.id = task.taskName;
     completeBtn.innerText = `Project Completed!`;
-    //completeBtn.setAttribute(`class`,`complete-project`);
+    completeBtn.setAttribute(`class`,`complete-project btn waves-effect waves-light red`);
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`class`, `subtask-btn`);
+    subtaskBtn.setAttribute(`class`, `subtask-btn btn waves-effect deep-orange`);
     saveBtn.innerText = "Save changes!";
-    saveBtn.setAttribute("class", "saveBtn");
+    saveBtn.setAttribute("class", "saveBtn btn waves-effect waves-light deep-orange");
     textarea.innerText = task.savedNote || "Notes go here!";
     textarea.id = "textarea-" + task.taskName;
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
-    removeBtn.setAttribute(`class`, `delete-project swing`);
-    img.setAttribute(`class`,`task-img`)
+    removeBtn.setAttribute(`class`, `delete-project btn waves-effect waves-light deep-orange darken-4 swing`);
+    img.setAttribute(`class`, `task-img`)
 
     if (task.exp == 1) {
         completeBtn.setAttribute('class', 'easy completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/pablo-arroyo-_SEbdtH4ZLM-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
     else if (task.exp == 2) {
         completeBtn.setAttribute('class', 'medium completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/ashley-whitlatch-JRPTaUQS43g-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
     else {
         completeBtn.setAttribute('class', 'hard completeBtn');
         div.append(completeBtn);
         let imgSrc = `./assets/Images/jess-zoerb-bdYyOOGakBE-unsplash.jpg`;
-        img.setAttribute(`src`,`${imgSrc}`);
+        img.setAttribute(`src`, `${imgSrc}`);
     }
 
-
+    // var checked = JSON.parse(localStorage.getItem('checkbox1zaal1'));
+    // document.getElementById("checkbox1zaal1").checked = checked;
 
     listedTasks.append(div);
     // create subtasks button
     div.append(h3, h4, p, textarea, subtaskBtn, textarea);
 
+    // small function that checks if the value passed through is true, and if it is to return "checked", which will leave the checkbox checked.
+    function checkboxCheck(ifCheck) {
+        if (ifCheck == true)       {
+            return "checked"
+        } else return 
+        };
+
+
     for (let i = 0; i < task.subtaskArray.length; i++) {
         var checkboxContainer = $(`<form><p>
         <label>
-          <input type="checkbox" class="subtaskCheckbox" />
+          <input type="checkbox" class="subtaskCheckbox" id="checkbox-${task.taskName}${(i + 1)}" 
+          ${checkboxCheck(task.checkboxArray[i])} 
+          />
           <span><textarea id="subtask-${task.taskName}${(i + 1)}">${task.subtaskArray[i]}</textarea></span>
         </label>
       </p></form>`)
-        console.log(checkboxContainer)
         div.append(checkboxContainer[0]);
     };
 
@@ -168,9 +175,6 @@ function createCard(task) {
 
 };
 
-listedTasks.on("click", ".saveBtn", function (event) {
-    saveChanges(event.target);
-})
 
 function saveChanges(clicked) {
     // which task
@@ -191,7 +195,6 @@ function saveChanges(clicked) {
 
     for (let i = 0; i < taskObject.subtaskArray.length; i++) {
         let subtaskValue = document.getElementById(`subtask-${task}${i + 1}`).value;
-        console.log(subtaskValue);
 
         taskObject.subtaskArray[i] = subtaskValue;
     }
@@ -214,14 +217,11 @@ listedTasks.on("click", ".delete-project", function (event) {
     var clicked = event.target
     let task = clicked.parentElement.id;
     deleteTask(task)
-        clicked.parentElement.setAttribute("class", "hide");
-        // clicked.parentElement.setAttribute("class", "scale-transition scale-out");
-        // if (clicked === 'hide') {
-        //     setTimeout(function(){
-        //       clicked.parentElement.style.display = 'none';
-        //       console.log(clicked.parentElement.style.display, "huh")
-        //     },1000);
-        // }
+    clicked.parentElement.style.opacity = 0;
+    clicked.parentElement.style.transform = 'scale(0)';
+    setTimeout(function () {
+        clicked.parentElement.style.display = "none";
+    }, 1000);
 });
 
 // completing projects
@@ -262,35 +262,6 @@ function deleteTask(task) {
 }
 
 
-// create subtasks, complete project, delete project
-listedTasks.on("click", ".subtask-btn", function (event) {
-    var clicked = event.target;
-    let task = clicked.parentElement.id;
-    let taskObject
-    let index
-    for (let i = 0; i < storedMultipleTasks.length; i++) {
-        const element = storedMultipleTasks[i];
-        if (element.taskName == task) {
-            taskObject = element;
-            index = i;
-        }
-    }
-
-    let currentSubtasksAmount = taskObject.subtaskArray.length;
-
-    if (clicked.className === `subtask-btn`) {
-        var checkboxContainer = $(`<form><p>
-        <label>
-          <input type="checkbox" class="subtaskCheckbox" />
-          <span><textarea id="subtask-${task}${(currentSubtasksAmount + 1)}"></textarea></span>
-        </label>
-      </p></form>`)
-        $(clicked).parent(`div`).append(checkboxContainer)
-        // clicked.after(checkboxContainer)
-        storedMultipleTasks[index].subtaskArray.push("");
-    }
-})
-
 
 // Launches the modal window
 function toggleModal() {
@@ -306,23 +277,6 @@ function toggleYoutubeModal() {
     });
 }
 
-// textarea local storage pseudo-code
-// get the array
-// get the specific object (event.target probs?) based on the click
-// add another element to that object
-//
-
-// what if user creates new subtasks?
-
-
-// load textarea local storage pseudo-code
-// get the array
-// get the specific objects
-// return them in the same order as they get grabbed? into the corresponding text areas
-
-
-
-
 
 // Creates an object that locally stores the most recent input value
 // Adds that object to the global variable (which is an array) storedMultipleTasks
@@ -332,7 +286,8 @@ function createTask() {
         taskName: document.querySelector('#taskName').value,
         exp: document.querySelector('#difficultySelect').value,
         savedNote: "",
-        subtaskArray: []
+        subtaskArray: [],
+        checkboxArray: []
     };
 
     // checks to see if there are any other tasks with the same name, if there are then a message is displayed
@@ -348,6 +303,11 @@ function createTask() {
     storedMultipleTasks.push(taskDetails);
     localStorage.setItem("MultiTask", JSON.stringify(storedMultipleTasks));
     createCard(taskDetails);
+};
+
+function deleteUserData() {
+    localStorage.clear();
+    window.location.reload()
 };
 
 // proof of concept youtube API fetch
@@ -372,8 +332,8 @@ function fetchYoutube() {
 function displayMotiv(mwords) {
 
     console.log(mwords)
-    motivSec.textContent = mwords.quote + ". " + mwords.person
-    var motivQuote = mwords.quote + ". " + mwords.person
+    motivSec.textContent = mwords.quote + ". -" + mwords.person
+    var motivQuote = mwords.quote + ". -" + mwords.person
     console.log(mwords.quote, "1")
 
     // pirate translator api==================================================
@@ -414,6 +374,8 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 // ========================================================
 
 function saveUserLvl() {
+    
+
     let currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
@@ -475,21 +437,6 @@ function updateHard() {
     document.querySelector(".levelPrcnt").textContent = `${exp}%`;
 }
 
-// easyEXP.addEventListener("click", () => updateEasy(25));
-// completebtn.addEventListener("click", function(event) {
-// figure out exp diffculty of completede task 
-// updateexp(expvalue)
-// })
-
-// Launches welcome statement
-
-
-// Modal function
-$(document).ready(function () {
-    $('.modal').modal();
-    $('.parallax').parallax();
-});
-
 // pirate mode
 
 
@@ -523,7 +470,7 @@ youtubeFetchBtn.on(`click`, fetchYoutube)
 // rewrite Favorites
 
 var Makeitso = document.getElementById("Makeitso")
-Makeitso.addEventListener('click', function(e){
+Makeitso.addEventListener('click', function (e) {
     e.preventDefault()
     let localStoredTaskList = [];
     let loadUser = JSON.parse(localStorage.getItem("User"));
