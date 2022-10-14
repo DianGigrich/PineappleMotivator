@@ -2,9 +2,7 @@
 let userInfo = {};
 
 // exp bar
-let exp = 0;
 let savedLevel;
-let level = 1;
 var easyEXP = document.querySelector(".easy");
 var mediumEXP = document.querySelector(".medium");
 var hardEXP = document.querySelector(".hard");
@@ -38,7 +36,16 @@ function loadUserData() {
     let loadUser = JSON.parse(localStorage.getItem("User"));
     if (loadUser == null) {
         window.location.href = "./pages/userForm.html";
-        return
+        let exp = 0;
+        let level = 1;
+        let savedLevel = [];
+        currentLevel = {
+            exp: exp.valueOf(),
+            level: level.valueOf()
+        }
+        savedLevel.push(currentLevel)
+        localStorage.setItem(`savedLevel`,JSON.stringify(currentLevel))
+        return exp, level
     }
     document.querySelector('#userNameHere').textContent = "Welcome, " + loadUser.name;
     document.getElementById('currentMotivator').textContent = loadUser.motivator;
@@ -46,8 +53,7 @@ function loadUserData() {
     youtubeSearch = loadUser.motivator
 
 
-    // load the user's level and exp then display it
-    saveUserLvl();
+    // retrieve user's level and exp then display it
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
     document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
@@ -60,7 +66,7 @@ function loadUserData() {
     //     exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-    // }
+    // // }
 };
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
@@ -376,12 +382,24 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 function saveUserLvl() {
     
 
-    let currentLevel = {
+    currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
     }
     localStorage.setItem("savedLevel", JSON.stringify(currentLevel));
 }
+
+// function updateUserExp () {
+//     let oldSavedLevel = JSON.parse(localStorage.getItem(`savedLevel`));
+//     let newSavedLevelArr = [];
+//     let newSavedLevelObj = {
+//         exp: exp + oldSavedLevel.exp.valueOf(),
+//         level: level + oldSavedLevel.exp.valueOf()
+//     }
+//     newSavedLevelArr.push(newSavedLevelObj)
+//     localStorage.setItem(`savedLevel`,newSavedLevelArr);
+//     return newExp
+// }
 
 function updateEXP() {
     level += 1;
@@ -407,6 +425,8 @@ function updateEXP() {
 
 function updateEasy() {
     exp += 25;
+
+    // updateUserExp(exp);
     saveUserLvl();
     if (exp >= 100) {
         updateEXP();
