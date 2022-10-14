@@ -51,16 +51,16 @@ function loadUserData() {
 
     let loadLevel = JSON.parse(localStorage.getItem("savedLevel"));
     document.querySelector(".skillLevel").textContent = `${"Level: " + loadLevel.level}`;
-    if (loadLevel.level == null || loadLevel.exp == null) {
-        level = 1;
-        exp = 0;
-    }
-    else {
-        level = loadLevel.level;
-        exp = loadLevel.exp;
+    // if (loadLevel.level == null || loadLevel.exp == null) {
+    //     level = 1;
+    //     exp = 0;
+    // }
+    // else {
+    //     level = loadLevel.level;
+    //     exp = loadLevel.exp;
         document.querySelector(".levelFill").style.width = `${exp}%`;
         document.querySelector(".levelPrcnt").textContent = `${exp}%`;
-    }
+    // }
 };
 
 // takes the exp value from the task object and returns a string equivalent to the exp level.
@@ -307,6 +307,11 @@ function createTask() {
     createCard(taskDetails);
 };
 
+function deleteUserData() {
+    localStorage.clear();
+    window.location.reload()
+};
+
 // proof of concept youtube API fetch
 function fetchYoutube() {
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${youtubeSearch}&key=AIzaSyCeygEJTKDYacxfKLnZwWv2EiFnAhQUb_8`)
@@ -371,6 +376,8 @@ fetch(`https://motivational-quote-api.herokuapp.com/quotes/random`)
 // ========================================================
 
 function saveUserLvl() {
+    
+
     let currentLevel = {
         exp: exp.valueOf(),
         level: level.valueOf()
