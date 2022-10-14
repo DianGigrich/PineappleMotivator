@@ -76,13 +76,16 @@ text-align:center;
 .task {
   border-radius: 2px !important;
   background-color: var(--wood) !important;
-  padding: 2%;
   border: 2px solid var(--brown);
+  padding: 2%;
+  opacity: 1;
+  transition: all 2s;
 }
 
 .task-img {
   width: 200px;
   height: auto;
+  border: 2px solid var(--brown);
 }
 
 .level {
