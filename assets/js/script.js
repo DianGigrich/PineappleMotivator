@@ -115,26 +115,33 @@ function createCard(task) {
     h3.innerText = task.taskName;
     h4.innerText = dropdownTranslate1(task.exp);
     subtaskBtn.innerText = `Create Subtask`;
-    subtaskBtn.setAttribute(`class`, `subtask-btn`)
+    subtaskBtn.setAttribute(`class`, `subtask-btn`);
     saveBtn.innerText = "Save changes!";
     saveBtn.setAttribute("class", "saveBtn");
     textarea.innerText = task.savedNote || "Notes go here!";
     textarea.id = "textarea-" + task.taskName;
     textarea.setAttribute("class", "white");
     removeBtn.innerText = `Delete Project`;
-    removeBtn.setAttribute(`class`, `delete-project swing`)
+    removeBtn.setAttribute(`class`, `delete-project swing`);
+    img.setAttribute(`class`,`task-img`)
 
     if (task.exp == 1) {
         completeBtn.setAttribute('class', 'easy completeBtn');
         div.append(completeBtn);
+        let imgSrc = `./assets/Images/pablo-arroyo-_SEbdtH4ZLM-unsplash.jpg`;
+        img.setAttribute(`src`,`${imgSrc}`);
     }
     else if (task.exp == 2) {
         completeBtn.setAttribute('class', 'medium completeBtn');
         div.append(completeBtn);
+        let imgSrc = `./assets/Images/ashley-whitlatch-JRPTaUQS43g-unsplash.jpg`;
+        img.setAttribute(`src`,`${imgSrc}`);
     }
     else {
         completeBtn.setAttribute('class', 'hard completeBtn');
         div.append(completeBtn);
+        let imgSrc = `./assets/Images/jess-zoerb-bdYyOOGakBE-unsplash.jpg`;
+        img.setAttribute(`src`,`${imgSrc}`);
     }
 
 
