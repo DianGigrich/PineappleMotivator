@@ -74,5 +74,8 @@ The Images that we used were all free to use/royalty free:
 - [Medium task picture](https://unsplash.com/photos/JRPTaUQS43g)
 - [Hard task picture](https://unsplash.com/photos/bdYyOOGakBE)
 
+## Deployed Application
+https://musicguava.herokuapp.com/
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
